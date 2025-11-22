@@ -9,10 +9,9 @@ import { Menu, X } from "lucide-react";
 const menuItems = [
   { label: "Home", href: "/" },
   { label: "Services", href: "/services" },
-  { label: "Faq", href: "/faq" },
+  // { label: "Faq", href: "/faq" },
   { label: "Blog", href: "/blog" },
   { label: "Portfolio", href: "/portfolio" },
-  { label: "About", href: "/about" },
 ];
 
 export function Navigation() {
@@ -61,9 +60,11 @@ export function Navigation() {
 
           {/* Desktop Contact Button */}
           <div className="hidden md:block">
-            <button className="bg-[#101010] cursor-pointer text-[white] p-[10px] rounded-[8px] hover:bg-[#202020] transition-colors font-semibold text-[16px] leading-[24px]">
-              Contact
-            </button>
+            <Link href="/contact">
+              <button className="bg-[#101010] cursor-pointer text-[white] p-[10px] rounded-[8px] hover:bg-[#202020] transition-colors font-semibold text-[16px] leading-[24px]">
+                Contact
+              </button>
+            </Link>
           </div>
 
           {/* Mobile Menu Button */}
