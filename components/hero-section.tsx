@@ -64,7 +64,7 @@ export function HeroSection() {
       <Navigation />
 
       {/* Hero Section */}
-      <section className="bg-white py-[20px] sm:py-[35px] md:py-[50px] lg:py-[64px]">
+      <section className="bg-white py-[20px] sm:py-[35px] md:py-[50px] lg:py-[64px]  ">
         <div className="container lg:mx-auto mx-2 max-w-7xl px-4 lg:px-0">
           <div className="grid md:grid-cols-2 gap-8 md:gap-12 lg:gap-16 items-center">
             {/* Left Content */}
@@ -108,82 +108,39 @@ export function HeroSection() {
                 <p className="text-sm sm:text-base md:text-[16px] font-normal text-[#606060]">
                   Compatible with
                 </p>
-                <div className="overflow-hidden w-full">
-                  <div className="flex items-center gap-4 sm:gap-5 md:gap-6 animate-marquee whitespace-nowrap">
-                    {/* First set of logos */}
-                    <div className="flex items-center gap-4 sm:gap-5 md:gap-6 shrink-0">
-                      <Image
-                        src="/assets/Google Cloud.svg"
-                        alt="Google Cloud"
-                        width={200}
-                        height={48}
-                        className="w-auto h-6 sm:h-8 md:h-10 lg:h-12 max-w-[120px] sm:max-w-[150px] md:max-w-[200px] object-contain"
-                        loading="lazy"
-                      />
-                      <Image
-                        src="/assets/AWS.svg"
-                        alt="AWS"
-                        width={70}
-                        height={48}
-                        className="w-auto h-6 sm:h-8 md:h-10 lg:h-12 max-w-[50px] sm:max-w-[60px] md:max-w-[70px] object-contain"
-                        loading="lazy"
-                      />
-                      <Image
-                        src="/assets/Azure.svg"
-                        alt="Azure"
-                        width={70}
-                        height={48}
-                        className="w-auto h-6 sm:h-8 md:h-10 lg:h-12 max-w-[50px] sm:max-w-[60px] md:max-w-[70px] object-contain"
-                        loading="lazy"
-                      />
-                      <Image
-                        src="/assets/Oracle.svg"
-                        alt="Oracle"
-                        width={70}
-                        height={48}
-                        className="w-auto h-6 sm:h-8 md:h-10 lg:h-12 max-w-[50px] sm:max-w-[60px] md:max-w-[70px] object-contain"
-                        loading="lazy"
-                      />
-                    </div>
-                    {/* Duplicate set for seamless loop */}
-                    <div
-                      className="flex items-center gap-4 sm:gap-5 md:gap-6 shrink-0"
-                      aria-hidden="true"
-                    >
-                      <Image
-                        src="/assets/Google Cloud.svg"
-                        alt="Google Cloud"
-                        width={200}
-                        height={48}
-                        className="w-auto h-6 sm:h-8 md:h-10 lg:h-12 max-w-[120px] sm:max-w-[150px] md:max-w-[200px] object-contain"
-                        loading="lazy"
-                      />
-                      <Image
-                        src="/assets/AWS.svg"
-                        alt="AWS"
-                        width={70}
-                        height={48}
-                        className="w-auto h-6 sm:h-8 md:h-10 lg:h-12 max-w-[50px] sm:max-w-[60px] md:max-w-[70px] object-contain"
-                        loading="lazy"
-                      />
-                      <Image
-                        src="/assets/Azure.svg"
-                        alt="Azure"
-                        width={70}
-                        height={48}
-                        className="w-auto h-6 sm:h-8 md:h-10 lg:h-12 max-w-[50px] sm:max-w-[60px] md:max-w-[70px] object-contain"
-                        loading="lazy"
-                      />
-                      <Image
-                        src="/assets/Oracle.svg"
-                        alt="Oracle"
-                        width={70}
-                        height={48}
-                        className="w-auto h-6 sm:h-8 md:h-10 lg:h-12 max-w-[50px] sm:max-w-[60px] md:max-w-[70px] object-contain"
-                        loading="lazy"
-                      />
-                    </div>
-                  </div>
+                <div className="flex items-center gap-3 sm:gap-4 md:gap-5 lg:gap-6 flex-wrap">
+                  <Image
+                    src="/assets/Google Cloud.svg"
+                    alt="Google Cloud"
+                    width={200}
+                    height={48}
+                    className="w-auto h-5 sm:h-6 md:h-8 lg:h-10 xl:h-12 max-w-[100px] sm:max-w-[120px] md:max-w-[150px] lg:max-w-[200px] object-contain"
+                    loading="lazy"
+                  />
+                  <Image
+                    src="/assets/AWS.svg"
+                    alt="AWS"
+                    width={70}
+                    height={48}
+                    className="w-auto h-5 sm:h-6 md:h-8 lg:h-10 xl:h-12 max-w-[40px] sm:max-w-[50px] md:max-w-[60px] lg:max-w-[70px] object-contain"
+                    loading="lazy"
+                  />
+                  <Image
+                    src="/assets/Azure.svg"
+                    alt="Azure"
+                    width={70}
+                    height={48}
+                    className="w-auto h-5 sm:h-6 md:h-8 lg:h-10 xl:h-12 max-w-[40px] sm:max-w-[50px] md:max-w-[60px] lg:max-w-[70px] object-contain"
+                    loading="lazy"
+                  />
+                  <Image
+                    src="/assets/Oracle.svg"
+                    alt="Oracle"
+                    width={70}
+                    height={48}
+                    className="w-auto h-5 sm:h-6 md:h-8 lg:h-10 xl:h-12 max-w-[40px] sm:max-w-[50px] md:max-w-[60px] lg:max-w-[70px] object-contain"
+                    loading="lazy"
+                  />
                 </div>
               </div>
             </motion.div>
