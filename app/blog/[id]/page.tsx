@@ -21,12 +21,15 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const resolvedParams = params instanceof Promise ? await params : params;
   const post = getBlogPost(Number(resolvedParams.id));
+  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://asapdba.com";
 
   if (!post) {
     return {
       title: "Blog Post Not Found | ASAP DBA",
     };
   }
+
+  const postUrl = `${siteUrl}/blog/${post.id}`;
 
   return {
     title: `${post.title} | ASAP DBA Blog`,
@@ -35,20 +38,30 @@ export async function generateMetadata({
       post.category.toLowerCase(),
       "database management",
       "database administration",
+      "database optimization",
+      "database security",
       post.title.split(" ").slice(0, 5).join(" "),
     ],
     authors: [{ name: post.author }],
+    alternates: {
+      canonical: postUrl,
+    },
     openGraph: {
+      type: "article",
+      locale: "en_US",
+      url: postUrl,
+      siteName: "ASAP DBA",
       title: post.title,
       description: post.excerpt,
-      type: "article",
       publishedTime: new Date(post.date).toISOString(),
       authors: [post.author],
+      section: post.category,
+      tags: [post.category, "database management", "database administration"],
       images: [
         {
           url: post.imageUrl,
           width: 1200,
-          height: 600,
+          height: 630,
           alt: post.title,
         },
       ],
@@ -58,6 +71,7 @@ export async function generateMetadata({
       title: post.title,
       description: post.excerpt,
       images: [post.imageUrl],
+      creator: "@asapdba",
     },
   };
 }

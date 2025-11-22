@@ -50,11 +50,19 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     locale: "en_US",
-    url: "/",
+    url: process.env.NEXT_PUBLIC_SITE_URL || "https://asapdba.com",
     siteName: "ASAP DBA",
-    title: "ASAP DBA - Database Management Services",
+    title: "ASAP DBA - Database Management Services | 24/7 Database Support",
     description:
-      "The smarter way to manage your databases 24/7. We ensure your databases stay fast, secure, and always available.",
+      "Professional database management services for PostgreSQL, MySQL, MongoDB, and cloud databases. 24/7 monitoring, performance optimization, security, and migrations. Trusted by businesses worldwide.",
+    images: [
+      {
+        url: `${process.env.NEXT_PUBLIC_SITE_URL || "https://asapdba.com"}/assets/Asap-Dba hero Image.png`,
+        width: 1200,
+        height: 630,
+        alt: "ASAP DBA - Database Management Services",
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
