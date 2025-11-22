@@ -6,9 +6,10 @@ const siteUrl =
   process.env.NEXT_PUBLIC_SITE_URL || "https://asapdba.netlify.app";
 
 export const metadata: Metadata = {
-  title: "FAQ - Frequently Asked Questions | ASAP DBA",
+  title:
+    "FAQ - Frequently Asked Questions About Database Management | ASAP DBA",
   description:
-    "Find answers to common questions about our database management services, including platform support, response times, migrations, security, backups, and query optimization.",
+    "Find answers to common questions about our database management services. Learn about platform support, response times, migrations, security measures, backup strategies, and query optimization. Get the information you need to make informed decisions.",
   keywords: [
     "database management FAQ",
     "database administration questions",
@@ -17,18 +18,24 @@ export const metadata: Metadata = {
     "database security FAQ",
     "database management help",
     "database support questions",
+    "database services FAQ",
+    "PostgreSQL FAQ",
+    "MySQL questions",
+    "MongoDB FAQ",
+    "cloud database FAQ",
   ],
   alternates: {
-    canonical: "/faq",
+    canonical: `${siteUrl}/faq`,
   },
   openGraph: {
     type: "website",
     locale: "en_US",
     url: `${siteUrl}/faq`,
     siteName: "ASAP DBA",
-    title: "FAQ - Frequently Asked Questions | ASAP DBA",
+    title:
+      "FAQ - Frequently Asked Questions About Database Management | ASAP DBA",
     description:
-      "Find answers to common questions about our database management services, including platform support, response times, migrations, security, backups, and query optimization.",
+      "Find answers to common questions about our database management services. Learn about platform support, response times, migrations, security, backups, and query optimization.",
     images: [
       {
         url: `${siteUrl}/assets/Asap-DBA_Logo.png`,
@@ -40,10 +47,24 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "FAQ - Frequently Asked Questions | ASAP DBA",
+    site: "@asapdba",
+    creator: "@asapdba",
+    title:
+      "FAQ - Frequently Asked Questions About Database Management | ASAP DBA",
     description:
-      "Find answers to common questions about our database management services, including platform support, response times, migrations, security, backups, and query optimization.",
+      "Find answers to common questions about our database management services. Learn about platform support, response times, migrations, security, backups, and query optimization.",
     images: [`${siteUrl}/assets/Asap-DBA_Logo.png`],
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-video-preview": -1,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+    },
   },
 };
 

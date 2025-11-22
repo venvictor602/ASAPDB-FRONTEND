@@ -106,7 +106,7 @@ export function BlogSection() {
             <motion.button
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
-              className="bg-[#101010] text-white px-6 py-3 sm:px-8 sm:py-4 rounded-[8px] font-semibold text-sm sm:text-base hover:bg-[#262626] transition-colors inline-flex items-center gap-2"
+              className="bg-[#101010] cursor-pointer text-white px-6 py-3 sm:px-8 sm:py-4 rounded-[8px] font-semibold text-sm sm:text-base hover:bg-[#262626] transition-colors inline-flex items-center gap-2"
             >
               View All Posts
               <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5" />

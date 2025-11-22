@@ -8,8 +8,13 @@ export function Footer() {
   const [firstName, setFirstName] = useState("");
   const [email, setEmail] = useState("");
 
+  // Check if form is valid
+  const isFormValid = firstName.trim() !== "" && email.trim() !== "";
+
   const handleSubscribe = (e: React.FormEvent) => {
     e.preventDefault();
+    if (!isFormValid) return;
+
     // Handle newsletter subscription
     console.log("Subscribe:", { firstName, email });
     setFirstName("");
@@ -20,7 +25,7 @@ export function Footer() {
     <footer className="bg-[#101010] text-white py-[40px] md:py-[80px] space-y-[40px] md:space-y-[80px]">
       {/* Top Section */}
       <div className=" bg-[#262626] rounded-[16px] max-w-7xl sm:mx-auto mx-2 p-4 sm:p-6 lg:p-[45px]">
-        <div className="grid sm:grid-cols-2 lg:grid-cols-3 items-center gap-8 sm:gap-12">
+        <div className="grid sm:grid-cols-2 lg:grid-cols-3 items-start gap-8 sm:gap-12">
           {/* Quick Links */}
           <div className=" space-y-[16px]">
             <h3 className="text-white text-lg sm:text-xl font-semibold">
@@ -49,6 +54,15 @@ export function Footer() {
                   className="text-[#FFFFFF] transition-colors text-sm sm:text-base"
                 >
                   Blog
+                </Link>
+              </li>
+
+              <li>
+                <Link
+                  href="/contact"
+                  className="text-[#FFFFFF] transition-colors text-sm sm:text-base"
+                >
+                  Contact Us
                 </Link>
               </li>
             </ul>
@@ -204,7 +218,8 @@ export function Footer() {
                 />
                 <button
                   type="submit"
-                  className="bg-white text-[#101010] px-6 py-3 rounded-[8px] font-semibold text-sm sm:text-base hover:bg-gray-100 transition-colors whitespace-nowrap"
+                  disabled={!isFormValid}
+                  className="bg-white text-[#101010] px-6 py-3 rounded-[8px] font-semibold text-sm sm:text-base hover:bg-gray-100 transition-colors whitespace-nowrap disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:bg-white"
                 >
                   Subscribe
                 </button>

@@ -55,8 +55,9 @@ export function FeaturesSection() {
                 Proactive Monitoring
               </h3>
               <p className="text-[#48484A] text-[14px] sm:text-[16px] font-normal leading-[24px]">
-                Real-time insights, alerts, and automated checks ensure your
-                databases stay healthy 24/7.
+                We watch your databases around the clock, catching issues before
+                they become problems. Get instant alerts and detailed insights
+                into what's happening with your data.
               </p>
             </div>
           </motion.div>
@@ -84,8 +85,9 @@ export function FeaturesSection() {
                 Performance Optimization
               </h3>
               <p className="text-[#48484A] text-[14px] sm:text-[16px] font-normal leading-[24px]">
-                Identify bottlenecks, tune queries, and scale effortlessly for
-                peak performance.
+                We find what's slowing you down and fix it. From query
+                optimization to scaling your infrastructure, we make sure
+                everything runs at peak speed.
               </p>
             </div>
           </motion.div>
@@ -113,8 +115,9 @@ export function FeaturesSection() {
                 Enterprise-Grade Security
               </h3>
               <p className="text-[#48484A] text-[14px] sm:text-[16px] font-normal leading-[24px]">
-                Continuous backups, encryption, and threat protection for
-                complete peace of mind.
+                Your data stays protected with automated backups, encryption,
+                and security monitoring. We've got your back, so you can sleep
+                easy.
               </p>
             </div>
           </motion.div>

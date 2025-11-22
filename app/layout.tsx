@@ -67,9 +67,14 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
+    site: "@asapdba",
+    creator: "@asapdba",
     title: "ASAP DBA - Database Management Services",
     description:
       "The smarter way to manage your databases 24/7. We ensure your databases stay fast, secure, and always available.",
+    images: [
+      `${process.env.NEXT_PUBLIC_SITE_URL || "https://asapdba.netlify.app"}/assets/Asap-DBA_Logo.png`,
+    ],
   },
   robots: {
     index: true,

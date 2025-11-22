@@ -51,8 +51,9 @@ export function WhyChooseUsSection() {
 
             {/* Description */}
             <p className="text-[14px] md:text-[16px] font-normal text-[#48484A] leading-[24px] sm:leading-[28px] md:leading-[32px]">
-              We are not just service providers—we&apos;re long-term partners
-              invested in your growth.
+              We&apos;re not just here to fix problems—we&apos;re your long-term
+              partners. When you succeed, we succeed. That&apos;s why we&apos;re
+              invested in your growth every step of the way.
             </p>
 
             {/* Benefits List */}

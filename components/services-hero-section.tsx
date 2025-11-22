@@ -27,8 +27,9 @@ export function ServicesHeroSection() {
             transition={{ duration: 0.6, delay: 0.1 }}
             className="text-[16px] sm:text-[18px] md:text-[24px] font-normal text-[#4F4F4F] leading-[24px] sm:leading-[28px] md:leading-[32px] max-w-3xl mx-auto"
           >
-            From optimization to full-scale management, we ensure your systems
-            stay fast, secure, and always available.
+            Whether you need a quick optimization or full database management,
+            we keep your systems running fast, secure, and available when you
+            need them most.
           </motion.p>
 
           {/* CTA Button */}

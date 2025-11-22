@@ -9,9 +9,9 @@ const siteUrl =
   process.env.NEXT_PUBLIC_SITE_URL || "https://asapdba.netlify.app";
 
 export const metadata: Metadata = {
-  title: "Services - Database Management Solutions | ASAP DBA",
+  title: "Our Services - Database Management Solutions | ASAP DBA",
   description:
-    "Comprehensive database management services including administration, migrations, cloud infrastructure, security, performance optimization, and managed services. Trusted by businesses worldwide.",
+    "Comprehensive database management services including 24/7 administration, seamless migrations, cloud infrastructure setup, enterprise security, performance optimization, and fully managed database services. Expert solutions trusted by businesses worldwide.",
   keywords: [
     "database administration services",
     "database migration services",
@@ -21,18 +21,26 @@ export const metadata: Metadata = {
     "managed database services",
     "database management solutions",
     "database support services",
+    "PostgreSQL administration",
+    "MySQL management",
+    "MongoDB support",
+    "AWS database services",
+    "Azure database management",
+    "database consulting",
+    "database monitoring services",
+    "database backup services",
   ],
   alternates: {
-    canonical: "/services",
+    canonical: `${siteUrl}/services`,
   },
   openGraph: {
     type: "website",
     locale: "en_US",
     url: `${siteUrl}/services`,
     siteName: "ASAP DBA",
-    title: "Services - Database Management Solutions | ASAP DBA",
+    title: "Our Services - Database Management Solutions | ASAP DBA",
     description:
-      "Comprehensive database management services including administration, migrations, cloud infrastructure, security, performance optimization, and managed services. Trusted by businesses worldwide.",
+      "Comprehensive database management services including 24/7 administration, seamless migrations, cloud infrastructure setup, enterprise security, performance optimization, and fully managed database services.",
     images: [
       {
         url: `${siteUrl}/assets/Asap-DBA_Logo.png`,
@@ -44,10 +52,23 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Services - Database Management Solutions | ASAP DBA",
+    site: "@asapdba",
+    creator: "@asapdba",
+    title: "Our Services - Database Management Solutions | ASAP DBA",
     description:
-      "Comprehensive database management services including administration, migrations, cloud infrastructure, security, performance optimization, and managed services. Trusted by businesses worldwide.",
+      "Comprehensive database management services including 24/7 administration, seamless migrations, cloud infrastructure setup, enterprise security, and performance optimization.",
     images: [`${siteUrl}/assets/Asap-DBA_Logo.png`],
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-video-preview": -1,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+    },
   },
 };
 

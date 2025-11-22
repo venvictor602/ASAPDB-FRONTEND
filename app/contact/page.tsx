@@ -1,10 +1,28 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 import { motion } from "framer-motion";
-import { Send, Mail, Phone, MapPin, Clock } from "lucide-react";
+import {
+  Send,
+  Mail,
+  Phone,
+  MapPin,
+  Clock,
+  X,
+  ChevronDown,
+  Check,
+} from "lucide-react";
 import { Navigation } from "@/components/navigation";
 import { Footer } from "@/components/footer";
+
+const servicesList = [
+  "Database Administration Services",
+  "Data Migration & Upgrades",
+  "Cloud Infrastructure Services",
+  "Security & Compliance",
+  "Performance Optimization",
+  "Managed Services",
+];
 
 export default function ContactPage() {
   const [formData, setFormData] = useState({
@@ -12,7 +30,8 @@ export default function ContactPage() {
     email: "",
     phone: "",
     company: "",
-    subject: "",
+    subject: "Other",
+    services: [] as string[],
     message: "",
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -31,8 +50,58 @@ export default function ContactPage() {
     });
   };
 
+  const [isServicesOpen, setIsServicesOpen] = useState(false);
+  const servicesDropdownRef = useRef<HTMLDivElement>(null);
+
+  const toggleService = (service: string) => {
+    if (formData.services.includes(service)) {
+      setFormData({
+        ...formData,
+        services: formData.services.filter((s) => s !== service),
+      });
+    } else {
+      setFormData({
+        ...formData,
+        services: [...formData.services, service],
+      });
+    }
+  };
+
+  const removeService = (serviceToRemove: string) => {
+    setFormData({
+      ...formData,
+      services: formData.services.filter((s) => s !== serviceToRemove),
+    });
+  };
+
+  // Close dropdown when clicking outside
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (
+        servicesDropdownRef.current &&
+        !servicesDropdownRef.current.contains(event.target as Node)
+      ) {
+        setIsServicesOpen(false);
+      }
+    };
+
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, []);
+
+  // Check if form is valid
+  const isFormValid =
+    formData.name.trim() !== "" &&
+    formData.email.trim() !== "" &&
+    formData.subject.trim() !== "" &&
+    formData.message.trim() !== "";
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    if (!isFormValid) return;
+
     setIsSubmitting(true);
     setSubmitStatus("idle");
 
@@ -45,7 +114,8 @@ export default function ContactPage() {
         email: "",
         phone: "",
         company: "",
-        subject: "",
+        subject: "Other",
+        services: [],
         message: "",
       });
 
@@ -73,9 +143,9 @@ export default function ContactPage() {
               Get in Touch
             </h1>
             <p className="text-[#606060] text-base sm:text-lg md:text-xl font-normal leading-relaxed max-w-2xl mx-auto">
-              Have questions about our database management services? We&apos;re
-              here to help. Reach out and let&apos;s discuss how we can support
-              your business.
+              Got questions about database management? We&apos;re here to help.
+              Drop us a line and let&apos;s talk about how we can support your
+              business.
             </p>
           </motion.div>
 
@@ -92,15 +162,16 @@ export default function ContactPage() {
                   Contact Information
                 </h2>
                 <p className="text-[#606060] text-sm sm:text-base font-normal leading-relaxed mb-8">
-                  We&apos;re available 24/7 to assist with your database
-                  management needs. Choose the best way to reach us.
+                  We&apos;re here 24/7 to help with your database needs. Pick
+                  whichever way works best for you—email, phone, or the form
+                  below.
                 </p>
               </div>
 
               <div className="space-y-6">
                 {/* Email */}
                 <div className="flex items-start gap-4">
-                  <div className="w-12 h-12 bg-[#101010] rounded-[8px] flex items-center justify-center flex-shrink-0">
+                  <div className="w-12 h-12 bg-[#101010] rounded-[8px] flex items-center justify-center shrink-0">
                     <Mail className="w-5 h-5 text-white" />
                   </div>
                   <div>
@@ -118,7 +189,7 @@ export default function ContactPage() {
 
                 {/* Phone */}
                 <div className="flex items-start gap-4">
-                  <div className="w-12 h-12 bg-[#101010] rounded-[8px] flex items-center justify-center flex-shrink-0">
+                  <div className="w-12 h-12 bg-[#101010] rounded-[8px] flex items-center justify-center shrink-0">
                     <Phone className="w-5 h-5 text-white" />
                   </div>
                   <div>
@@ -136,7 +207,7 @@ export default function ContactPage() {
 
                 {/* Hours */}
                 <div className="flex items-start gap-4">
-                  <div className="w-12 h-12 bg-[#101010] rounded-[8px] flex items-center justify-center flex-shrink-0">
+                  <div className="w-12 h-12 bg-[#101010] rounded-[8px] flex items-center justify-center shrink-0">
                     <Clock className="w-5 h-5 text-white" />
                   </div>
                   <div>
@@ -151,7 +222,7 @@ export default function ContactPage() {
 
                 {/* Location */}
                 <div className="flex items-start gap-4">
-                  <div className="w-12 h-12 bg-[#101010] rounded-[8px] flex items-center justify-center flex-shrink-0">
+                  <div className="w-12 h-12 bg-[#101010] rounded-[8px] flex items-center justify-center shrink-0">
                     <MapPin className="w-5 h-5 text-white" />
                   </div>
                   <div>
@@ -287,14 +358,93 @@ export default function ContactPage() {
                       required
                       className="w-full bg-white border border-[#E8E8E8] rounded-[8px] px-4 py-3 text-[#48484A] text-sm sm:text-base focus:outline-none focus:border-[#101010] transition-colors"
                     >
-                      <option value="">Select a subject</option>
-                      <option value="general">General Inquiry</option>
-                      <option value="support">Technical Support</option>
-                      <option value="consultation">Free Consultation</option>
-                      <option value="migration">Database Migration</option>
-                      <option value="monitoring">24/7 Monitoring</option>
-                      <option value="other">Other</option>
+                      {servicesList.map((service) => (
+                        <option key={service} value={service}>
+                          {service}
+                        </option>
+                      ))}
+                      <option value="Other">Other</option>
                     </select>
+                  </div>
+
+                  <div className="relative" ref={servicesDropdownRef}>
+                    <label
+                      htmlFor="services"
+                      className="block text-[#48484A] text-sm sm:text-base font-semibold mb-2"
+                    >
+                      Services (Select multiple if needed)
+                    </label>
+                    <button
+                      type="button"
+                      onClick={() => setIsServicesOpen(!isServicesOpen)}
+                      className="w-full bg-white border border-[#E8E8E8] rounded-[8px] px-4 py-3 text-left text-[#48484A] text-sm sm:text-base focus:outline-none focus:border-[#101010] transition-colors flex items-center justify-between"
+                    >
+                      <span className="text-[#606060]">
+                        {formData.services.length === 0
+                          ? "Select services..."
+                          : `${formData.services.length} service${
+                              formData.services.length > 1 ? "s" : ""
+                            } selected`}
+                      </span>
+                      <ChevronDown
+                        className={`w-4 h-4 sm:w-5 sm:h-5 text-[#48484A] transition-transform ${
+                          isServicesOpen ? "rotate-180" : ""
+                        }`}
+                      />
+                    </button>
+                    {isServicesOpen && (
+                      <div className="absolute z-10 w-full mt-2 bg-white border border-[#E8E8E8] rounded-[8px] shadow-lg max-h-[240px] overflow-y-auto">
+                        {servicesList.map((service) => {
+                          const isSelected =
+                            formData.services.includes(service);
+                          return (
+                            <button
+                              key={service}
+                              type="button"
+                              onClick={() => toggleService(service)}
+                              className={`w-full px-4 py-3 text-left text-sm sm:text-base transition-colors flex items-center gap-3 hover:bg-gray-50 ${
+                                isSelected
+                                  ? "bg-gray-50 text-[#101010]"
+                                  : "text-[#48484A]"
+                              }`}
+                            >
+                              <div
+                                className={`w-5 h-5 border-2 rounded flex items-center justify-center shrink-0 ${
+                                  isSelected
+                                    ? "bg-[#101010] border-[#101010]"
+                                    : "border-[#E8E8E8]"
+                                }`}
+                              >
+                                {isSelected && (
+                                  <Check className="w-3 h-3 text-white" />
+                                )}
+                              </div>
+                              <span className="flex-1">{service}</span>
+                            </button>
+                          );
+                        })}
+                      </div>
+                    )}
+                    {formData.services.length > 0 && (
+                      <div className="mt-3 flex flex-wrap gap-2">
+                        {formData.services.map((service) => (
+                          <span
+                            key={service}
+                            className="inline-flex items-center gap-1.5 bg-[#101010] text-white px-3 py-1.5 rounded-[6px] text-xs sm:text-sm font-medium"
+                          >
+                            {service}
+                            <button
+                              type="button"
+                              onClick={() => removeService(service)}
+                              className="hover:bg-white/20 rounded-full p-0.5 transition-colors"
+                              aria-label={`Remove ${service}`}
+                            >
+                              <X className="w-3 h-3" />
+                            </button>
+                          </span>
+                        ))}
+                      </div>
+                    )}
                   </div>
 
                   <div>
@@ -318,9 +468,13 @@ export default function ContactPage() {
 
                   <motion.button
                     type="submit"
-                    disabled={isSubmitting}
-                    whileHover={{ scale: 1.02 }}
-                    whileTap={{ scale: 0.98 }}
+                    disabled={isSubmitting || !isFormValid}
+                    whileHover={
+                      isFormValid && !isSubmitting ? { scale: 1.02 } : {}
+                    }
+                    whileTap={
+                      isFormValid && !isSubmitting ? { scale: 0.98 } : {}
+                    }
                     className="w-full bg-[#101010] text-white px-6 py-3 sm:px-8 sm:py-4 rounded-[8px] font-semibold text-sm sm:text-base hover:bg-[#262626] transition-colors disabled:opacity-50 disabled:cursor-not-allowed inline-flex items-center justify-center gap-2"
                   >
                     {isSubmitting ? (

@@ -3,6 +3,7 @@
 import { motion } from "framer-motion";
 import { ArrowRight } from "lucide-react";
 import Image from "next/image";
+import Link from "next/link";
 
 export function DatabaseManagementSection() {
   return (
@@ -50,24 +51,26 @@ export function DatabaseManagementSection() {
             transition={{ duration: 0.6, delay: 0.2 }}
             className="text-gray-300 text-[14px] md:text-[16px] font-normal leading-relaxed"
           >
-            Whether you&apos;re a growing business or an established enterprise,
-            we provide clear, reliable, and scalable database solutions that
-            remove complexity and boost performance.
+            From startups to Fortune 500 companies, we simplify database
+            management for everyone. No technical jargon, no headaches—just
+            reliable solutions that scale with your business.
           </motion.p>
 
           {/* CTA Button */}
-          <motion.button
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6, delay: 0.3 }}
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-            className="bg-white text-[#131313] px-[20px] py-[10px] rounded-[8px] font-semibold text-[14px] sm:text-base flex items-center gap-2 hover:bg-gray-100 transition-colors"
-          >
-            Learn More
-            <ArrowRight className="w-5 h-5" />
-          </motion.button>
+          <Link href="/services">
+            <motion.button
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: 0.3 }}
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              className="bg-white cursor-pointer text-[#131313] px-[20px] py-[10px] rounded-[8px] font-semibold text-[14px] sm:text-base flex items-center gap-2 hover:bg-gray-100 transition-colors"
+            >
+              Learn More
+              <ArrowRight className="w-5 h-5" />
+            </motion.button>
+          </Link>
         </div>
 
         {/* Feature Cards */}
@@ -92,8 +95,8 @@ export function DatabaseManagementSection() {
                 Performance Optimization
               </h3>
               <p className="text-[#A1A1A1] text-sm sm:text-[15px] md:text-base font-normal leading-relaxed">
-                Identify slow queries, fix bottlenecks, and fine-tune your
-                database for maximum speed and stability.
+                We dig into your database to find what&apos;s causing slowdowns,
+                then fix it. Faster queries, better performance, happier users.
               </p>
             </div>
           </motion.div>
@@ -117,8 +120,8 @@ export function DatabaseManagementSection() {
                 24/7 Monitoring & Support
               </h3>
               <p className="text-[#A1A1A1] text-sm sm:text-[15px] md:text-base font-normal leading-relaxed">
-                Real-time health checks, alerts, and expert intervention the
-                moment an issue arises.
+                We&apos;re always watching. When something goes wrong, we know
+                about it immediately and jump in to fix it—even at 2 AM.
               </p>
             </div>
           </motion.div>
@@ -142,8 +145,9 @@ export function DatabaseManagementSection() {
                 Automated Backups & Recovery
               </h3>
               <p className="text-[#A1A1A1] text-sm sm:text-[15px] md:text-base font-normal leading-relaxed">
-                Scheduled backups, disaster recovery planning, and rapid
-                restoration to keep your business running.
+                Your data is backed up automatically, and we can restore it fast
+                if disaster strikes. Business continuity isn&apos;t
+                optional—it&apos;s essential.
               </p>
             </div>
           </motion.div>
@@ -168,8 +172,9 @@ export function DatabaseManagementSection() {
                 Cloud Database Management
               </h3>
               <p className="text-[#A1A1A1] text-sm sm:text-[15px] md:text-base font-normal leading-relaxed">
-                Full support for AWS, Azure, and Google Cloud — including
-                migrations, setup, and daily operations.
+                Whether you&apos;re on AWS, Azure, or Google Cloud, we&apos;ve
+                got you covered. We handle migrations, setup, and day-to-day
+                management across all major platforms.
               </p>
             </div>
           </motion.div>

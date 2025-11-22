@@ -65,9 +65,13 @@ export function BlogInteractions({ postId }: BlogInteractionsProps) {
     saveToStorage({ liked: newLiked, likeCount: newCount });
   };
 
+  // Check if comment form is valid
+  const isCommentFormValid =
+    newComment.trim() !== "" && commentAuthor.trim() !== "";
+
   const handleSubmitComment = (e: React.FormEvent) => {
     e.preventDefault();
-    if (!newComment.trim() || !commentAuthor.trim()) return;
+    if (!isCommentFormValid) return;
 
     const comment: Comment = {
       id: Date.now().toString(),
@@ -175,9 +179,10 @@ export function BlogInteractions({ postId }: BlogInteractionsProps) {
             />
             <motion.button
               type="submit"
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              className="bg-[#101010] text-white px-6 py-3 rounded-[8px] font-semibold hover:bg-[#262626] transition-colors self-end"
+              disabled={!isCommentFormValid}
+              whileHover={isCommentFormValid ? { scale: 1.05 } : {}}
+              whileTap={isCommentFormValid ? { scale: 0.95 } : {}}
+              className="bg-[#101010] text-white px-6 py-3 rounded-[8px] font-semibold hover:bg-[#262626] transition-colors self-end disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:bg-[#101010]"
             >
               <Send className="w-5 h-5" />
             </motion.button>
@@ -240,6 +245,9 @@ function CommentItem({
   onCancelReply,
 }: CommentItemProps) {
   const isReplying = replyingTo === comment.id;
+  // Check if reply form is valid
+  const isReplyFormValid =
+    replyContent.trim() !== "" && replyAuthor.trim() !== "";
 
   return (
     <div className="border-l-2 border-[#E8E8E8] pl-4 sm:pl-6 space-y-4">
@@ -261,7 +269,7 @@ function CommentItem({
         </p>
         <button
           onClick={() => onReply(comment.id)}
-          className="text-[#606060] hover:text-[#101010] text-xs sm:text-sm font-medium transition-colors"
+          className="text-[#606060] cursor-pointer hover:text-[#101010] text-xs sm:text-sm font-medium transition-colors"
         >
           Reply
         </button>
@@ -296,9 +304,10 @@ function CommentItem({
             <div className="flex flex-col gap-2">
               <motion.button
                 type="submit"
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                className="bg-[#101010] text-white px-4 py-2 rounded-[8px] font-semibold hover:bg-[#262626] transition-colors text-sm"
+                disabled={!isReplyFormValid}
+                whileHover={isReplyFormValid ? { scale: 1.05 } : {}}
+                whileTap={isReplyFormValid ? { scale: 0.95 } : {}}
+                className="bg-[#101010] text-white px-4 py-2 rounded-[8px] font-semibold hover:bg-[#262626] transition-colors text-sm disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:bg-[#101010]"
               >
                 <Send className="w-4 h-4" />
               </motion.button>

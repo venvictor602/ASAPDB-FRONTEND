@@ -105,9 +105,11 @@ export function Navigation() {
                 </Link>
               );
             })}
-            <button className="w-full bg-[#101010] cursor-pointer text-[white] p-[10px] rounded-[8px] hover:bg-[#202020] transition-colors font-semibold text-[16px] leading-[24px] mt-4">
-              Contact
-            </button>
+            <Link href="/contact">
+              <button className="w-full bg-[#101010] cursor-pointer text-[white] p-[10px] rounded-[8px] hover:bg-[#202020] transition-colors font-semibold text-[16px] leading-[24px] mt-4">
+                Contact
+              </button>
+            </Link>
           </div>
         </div>
       </div>

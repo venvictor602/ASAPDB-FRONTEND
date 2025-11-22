@@ -34,7 +34,8 @@ export function CtaSection() {
                 Schedule a call
               </h3>
               <p className="text-[#606060] text-sm sm:text-base font-normal leading-relaxed">
-                We are gladly helping companies to get started.
+                Let&apos;s talk about how we can help your business. Schedule a
+                call and we&apos;ll discuss your database needs.
               </p>
             </div>
             <Link href="/contact" className="w-full sm:w-auto">
@@ -62,7 +63,8 @@ export function CtaSection() {
                 Browse our Services
               </h3>
               <p className="text-[#606060] text-sm sm:text-base font-normal leading-relaxed">
-                We have made it as easy as possible to try ASAP DBA
+                Explore our services and see how we can help your business.
+                Getting started is simple.
               </p>
             </div>
             <Link href="/services" className="w-full sm:w-auto">

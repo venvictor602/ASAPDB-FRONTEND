@@ -8,9 +8,10 @@ const siteUrl =
   process.env.NEXT_PUBLIC_SITE_URL || "https://asapdba.netlify.app";
 
 export const metadata: Metadata = {
-  title: "Portfolio - Our Work & Projects | ASAP DBA",
+  title:
+    "Portfolio - Our Database Management Projects & Success Stories | ASAP DBA",
   description:
-    "Explore our portfolio of successful database management projects and solutions. See how we've helped businesses optimize their database infrastructure, improve performance, and achieve their goals.",
+    "Explore our portfolio of successful database management projects and solutions. See real examples of how we've helped businesses optimize their database infrastructure, improve performance, reduce costs, and achieve their business goals.",
   keywords: [
     "database management portfolio",
     "database projects",
@@ -20,18 +21,21 @@ export const metadata: Metadata = {
     "database optimization portfolio",
     "database management case studies",
     "database services portfolio",
+    "database success stories",
+    "database project examples",
   ],
   alternates: {
-    canonical: "/portfolio",
+    canonical: `${siteUrl}/portfolio`,
   },
   openGraph: {
     type: "website",
     locale: "en_US",
     url: `${siteUrl}/portfolio`,
     siteName: "ASAP DBA",
-    title: "Portfolio - Our Work & Projects | ASAP DBA",
+    title:
+      "Portfolio - Our Database Management Projects & Success Stories | ASAP DBA",
     description:
-      "Explore our portfolio of successful database management projects and solutions. See how we've helped businesses optimize their database infrastructure, improve performance, and achieve their goals.",
+      "Explore our portfolio of successful database management projects and solutions. See real examples of how we've helped businesses optimize their database infrastructure, improve performance, and achieve their goals.",
     images: [
       {
         url: `${siteUrl}/assets/Asap-DBA_Logo.png`,
@@ -43,10 +47,24 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Portfolio - Our Work & Projects | ASAP DBA",
+    site: "@asapdba",
+    creator: "@asapdba",
+    title:
+      "Portfolio - Our Database Management Projects & Success Stories | ASAP DBA",
     description:
-      "Explore our portfolio of successful database management projects and solutions. See how we've helped businesses optimize their database infrastructure, improve performance, and achieve their goals.",
+      "Explore our portfolio of successful database management projects and solutions. See how we've helped businesses optimize their database infrastructure and improve performance.",
     images: [`${siteUrl}/assets/Asap-DBA_Logo.png`],
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-video-preview": -1,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+    },
   },
 };
 

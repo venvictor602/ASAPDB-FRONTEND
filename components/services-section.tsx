@@ -7,37 +7,37 @@ const services = [
   {
     title: "Database Administration Services",
     description:
-      "Proactive monitoring, tuning, and maintenance to keep your databases running smoothly. We handle everything from backups to high-availability setups—so your business never slows down.",
+      "We keep an eye on your databases 24/7, making sure everything runs smoothly. From routine maintenance to high-availability setups, we handle it all so you can focus on your business.",
     icon: "/assets/service-icon-1.svg", // Placeholder - you can replace with actual icons
   },
   {
     title: "Data Migration & Upgrades",
     description:
-      "Smooth, safe transitions—zero downtime, zero data loss. We migrate your databases or upgrade them to new versions with complete reliability.",
+      "Moving databases doesn't have to be scary. We plan every migration carefully, test thoroughly, and execute with minimal downtime. Your data stays safe throughout the process.",
     icon: "/assets/service-icon-2.svg",
   },
   {
     title: "Cloud Infrastructure Services",
     description:
-      "Accelerate growth with scalable and secure cloud environments. We help you migrate, deploy, and manage cloud solutions across AWS, Azure, and Google Cloud.",
+      "Take your infrastructure to the cloud with confidence. We help you migrate, set up, and manage cloud databases on AWS, Azure, or Google Cloud—whichever works best for you.",
     icon: "/assets/service-icon-3.svg",
   },
   {
     title: "Security & Compliance",
     description:
-      "Protect your data with enterprise-level security solutions. We implement security standards that safeguard your systems from threats and vulnerabilities.",
+      "Your data security is non-negotiable. We implement industry-standard security measures, encryption, and access controls to keep your databases safe from threats.",
     icon: "/assets/service-icon-4.svg",
   },
   {
     title: "Performance Optimization",
     description:
-      "Slow systems? We make them fast again—without disrupting your operations. We analyze your workload, detect bottlenecks, and optimize performance for maximum efficiency.",
+      "When your database is crawling, we speed it up. We analyze what's causing the slowdown, fix bottlenecks, and optimize everything—all without interrupting your day-to-day operations.",
     icon: "/assets/service-icon-5.svg",
   },
   {
     title: "Managed Services",
     description:
-      "Let us run your database while you run your business. We provide full management support with guaranteed uptime and performance.",
+      "Hand over your database management to us and focus on what you do best. We provide complete management with guaranteed uptime and performance metrics you can count on.",
     icon: "/assets/service-icon-6.svg",
   },
 ];

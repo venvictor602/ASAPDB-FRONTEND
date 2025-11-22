@@ -42,7 +42,10 @@ export async function generateMetadata({
       "database administration",
       "database optimization",
       "database security",
+      "database monitoring",
+      "cloud database",
       post.title.split(" ").slice(0, 5).join(" "),
+      ...post.title.split(" ").map((word) => word.toLowerCase()),
     ],
     authors: [{ name: post.author }],
     alternates: {
@@ -56,9 +59,16 @@ export async function generateMetadata({
       title: post.title,
       description: post.excerpt,
       publishedTime: new Date(post.date).toISOString(),
+      modifiedTime: new Date(post.date).toISOString(),
       authors: [post.author],
       section: post.category,
-      tags: [post.category, "database management", "database administration"],
+      tags: [
+        post.category,
+        "database management",
+        "database administration",
+        "database optimization",
+        "database security",
+      ],
       images: [
         {
           url: post.imageUrl,
@@ -70,10 +80,22 @@ export async function generateMetadata({
     },
     twitter: {
       card: "summary_large_image",
+      site: "@asapdba",
+      creator: "@asapdba",
       title: post.title,
       description: post.excerpt,
       images: [post.imageUrl],
-      creator: "@asapdba",
+    },
+    robots: {
+      index: true,
+      follow: true,
+      googleBot: {
+        index: true,
+        follow: true,
+        "max-video-preview": -1,
+        "max-image-preview": "large",
+        "max-snippet": -1,
+      },
     },
   };
 }
@@ -256,7 +278,7 @@ export default async function BlogPostPage({
               </div>
               <Link
                 href="/blog"
-                className="inline-flex items-center gap-2 bg-[#101010] text-white px-6 py-3 rounded-[8px] font-semibold text-sm sm:text-base hover:bg-[#262626] transition-colors"
+                className="inline-flex cursor-pointer items-center gap-2 bg-[#101010] text-white px-6 py-3 rounded-[8px] font-semibold text-sm sm:text-base hover:bg-[#262626] transition-colors"
               >
                 View All Posts
                 <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5" />

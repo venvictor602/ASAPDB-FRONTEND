@@ -4,6 +4,7 @@ import { useState, useEffect, useMemo } from "react";
 import { motion } from "framer-motion";
 import { Navigation } from "./navigation";
 import Image from "next/image";
+import Link from "next/link";
 
 export function HeroSection() {
   const texts = useMemo(
@@ -79,27 +80,32 @@ export function HeroSection() {
               </h1>
 
               <p className="text-base sm:text-lg md:text-xl font-normal text-[#606060] leading-[24px] sm:leading-[28px] md:leading-[32px]">
-                We ensure your databases stay fast, secure, and always
-                available. From daily monitoring to complex migrations, we
-                handle the backend so your business can focus on growth.
+                Keep your databases running smoothly while you focus on what
+                matters most. We handle monitoring, optimization, and
+                migrations—so you don&apos;t have to worry about downtime or
+                performance issues.
               </p>
 
               {/* CTA Buttons */}
               <div className="flex flex-col sm:flex-row gap-3 sm:gap-4">
-                <motion.button
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                  className="bg-[#101010] px-4 py-[10px] sm:px-6 sm:py-[10px] rounded-[8px] text-white font-semibold text-[14px] sm:text-[16px] leading-[20px] sm:leading-[24px] transition-colors cursor-pointer text-center whitespace-nowrap"
-                >
-                  Get a Free Consultation
-                </motion.button>
-                <motion.button
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                  className="text-[#48484A] border border-[#E8E8E8] px-4 py-[10px] sm:px-6 sm:py-[10px] rounded-[8px] font-semibold hover:border-gray-400 transition-colors text-[14px] sm:text-[16px] leading-[20px] sm:leading-[24px] cursor-pointer text-center whitespace-nowrap"
-                >
-                  Explore Our Services
-                </motion.button>
+                <Link href="/contact">
+                  <motion.button
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.95 }}
+                    className="bg-[#101010] px-4 py-[10px] sm:px-6 sm:py-[10px] rounded-[8px] text-white font-semibold text-[14px] sm:text-[16px] leading-[20px] sm:leading-[24px] transition-colors cursor-pointer text-center whitespace-nowrap"
+                  >
+                    Get a Free Consultation
+                  </motion.button>
+                </Link>
+                <Link href="/services">
+                  <motion.button
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.95 }}
+                    className="text-[#48484A] border border-[#E8E8E8] px-4 py-[10px] sm:px-6 sm:py-[10px] rounded-[8px] font-semibold hover:border-gray-400 transition-colors text-[14px] sm:text-[16px] leading-[20px] sm:leading-[24px] cursor-pointer text-center whitespace-nowrap"
+                  >
+                    Explore Our Services
+                  </motion.button>
+                </Link>
               </div>
 
               {/* Compatible With Section */}
