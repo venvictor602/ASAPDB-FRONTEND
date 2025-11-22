@@ -6,7 +6,7 @@ import Image from "next/image";
 export function FeaturesSection() {
   return (
     <section className="bg-slate-100 py-[20px] sm:py-[30px] md:py-[40px] lg:py-[50px]">
-      <div className="container mx-auto max-w-7xl px-4 md:px-0 space-y-[32px]">
+      <div className="container mx-auto max-w-7xl px-4 lg:px-0 space-y-[32px]">
         <div className="text-center space-y-[32px]">
           <motion.div
             initial={{ opacity: 0, y: -10 }}

@@ -13,6 +13,11 @@ export const metadata: Metadata = {
   title: "ASAP DBA - Database Management Services",
   description:
     "The smarter way to manage your databases 24/7. We ensure your databases stay fast, secure, and always available.",
+  icons: {
+    icon: "/Asap-favico.svg",
+    shortcut: "/Asap-favico.svg",
+    apple: "/Asap-favico.svg",
+  },
 };
 
 export default function RootLayout({
