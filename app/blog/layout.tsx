@@ -27,7 +27,7 @@ export const metadata: Metadata = {
       "Stay updated with database management insights, best practices, and industry trends. Learn about performance optimization, security, migrations, and cloud database management.",
     images: [
       {
-        url: `${siteUrl}/assets/Asap-Dba hero Image.png`,
+        url: `${siteUrl}/assets/Asap-DBA_Logo.png`,
         width: 1200,
         height: 630,
         alt: "ASAP DBA Blog - Database Management Insights",
@@ -39,7 +39,7 @@ export const metadata: Metadata = {
     title: "Blog - Database Management Insights | ASAP DBA",
     description:
       "Stay updated with database management insights, best practices, and industry trends. Learn about performance optimization, security, migrations, and cloud database management.",
-    images: [`${siteUrl}/assets/Asap-Dba hero Image.png`],
+    images: [`${siteUrl}/assets/Asap-DBA_Logo.png`],
   },
 };
 

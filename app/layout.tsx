@@ -57,7 +57,7 @@ export const metadata: Metadata = {
       "Professional database management services for PostgreSQL, MySQL, MongoDB, and cloud databases. 24/7 monitoring, performance optimization, security, and migrations. Trusted by businesses worldwide.",
     images: [
       {
-        url: `${process.env.NEXT_PUBLIC_SITE_URL || "https://asapdba.com"}/assets/Asap-Dba hero Image.png`,
+        url: `${process.env.NEXT_PUBLIC_SITE_URL || "https://asapdba.com"}/assets/Asap-DBA_Logo.png`,
         width: 1200,
         height: 630,
         alt: "ASAP DBA - Database Management Services",

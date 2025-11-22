@@ -30,7 +30,7 @@ export const metadata: Metadata = {
       "Find answers to common questions about our database management services, including platform support, response times, migrations, security, backups, and query optimization.",
     images: [
       {
-        url: `${siteUrl}/assets/Asap-Dba hero Image.png`,
+        url: `${siteUrl}/assets/Asap-DBA_Logo.png`,
         width: 1200,
         height: 630,
         alt: "ASAP DBA FAQ - Frequently Asked Questions",
@@ -42,7 +42,7 @@ export const metadata: Metadata = {
     title: "FAQ - Frequently Asked Questions | ASAP DBA",
     description:
       "Find answers to common questions about our database management services, including platform support, response times, migrations, security, backups, and query optimization.",
-    images: [`${siteUrl}/assets/Asap-Dba hero Image.png`],
+    images: [`${siteUrl}/assets/Asap-DBA_Logo.png`],
   },
 };
 
