@@ -74,7 +74,7 @@ export function HeroSection() {
               transition={{ duration: 0.6 }}
               className="space-y-6 sm:space-y-7 md:space-y-8"
             >
-              <h1 className="text-[28px] sm:text-[36px] md:text-[44px] lg:text-[50px] xl:text-[56px] font-semibold text-[#48484A] leading-[36px] sm:leading-[44px] md:leading-[56px] lg:leading-[64px] xl:leading-[70px]">
+              <h1 className="text-[44px] lg:text-[50px] xl:text-[56px] font-semibold text-[#48484A] leading-[36px] sm:leading-[44px] md:leading-[56px] lg:leading-[64px] xl:leading-[70px]">
                 {displayedText}
                 <span className="animate-pulse">|</span>
               </h1>

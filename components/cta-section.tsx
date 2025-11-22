@@ -20,14 +20,14 @@ export function CtaSection() {
         </motion.h2>
 
         {/* CTA Cards */}
-        <div className="grid sm:grid-cols-2 gap-[20px] md:gap-0">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-[20px] md:gap-0">
           {/* Schedule a Call Card */}
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.1 }}
-            className="bg-white space-y-[40px] md:rounded-tl-[16px] md:rounded-bl-[16px] md:border-r border-[#E8E8E8] rounded-[16px] md:rounded-none p-[20px] sm:py-[43px] sm:px-[40px] shadow-sm hover:shadow-md transition-shadow flex flex-col"
+            className="bg-white space-y-[40px] md:rounded-tl-[16px] md:rounded-bl-[16px] md:border-r border-[#E8E8E8] rounded-[16px] md:rounded-none p-[20px] sm:py-[43px] sm:px-[40px] shadow-sm hover:shadow-md transition-shadow flex flex-col w-full"
           >
             <div className=" space-y-[20px]">
               <h3 className="text-[#101010] text-xl sm:text-2xl font-semibold">
@@ -55,7 +55,7 @@ export function CtaSection() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.2 }}
-            className="bg-white space-y-[40px] rounded-[16px] md:rounded-none md:rounded-tr-[16px] md:rounded-br-[16px] p-6 sm:p-8 shadow-sm hover:shadow-md transition-shadow flex flex-col"
+            className="bg-white space-y-[40px] rounded-[16px] md:rounded-none md:rounded-tr-[16px] md:rounded-br-[16px] p-6 sm:p-8 shadow-sm hover:shadow-md transition-shadow flex flex-col w-full"
           >
             <div className=" space-y-[20px]">
               <h3 className="text-[#101010] text-xl sm:text-2xl font-semibold">
