@@ -88,20 +88,20 @@ export function HeroSection() {
 
               {/* CTA Buttons */}
               <div className="flex flex-col sm:flex-row gap-3 sm:gap-4">
-                <Link href="/contact">
+                <Link href="/contact" className="w-full sm:w-auto">
                   <motion.button
                     whileHover={{ scale: 1.05 }}
                     whileTap={{ scale: 0.95 }}
-                    className="bg-[#101010] px-4 py-[10px] sm:px-6 sm:py-[10px] rounded-[8px] text-white font-semibold text-[14px] sm:text-[16px] leading-[20px] sm:leading-[24px] transition-colors cursor-pointer text-center whitespace-nowrap"
+                    className="w-full sm:w-auto bg-[#101010] px-4 py-[10px] sm:px-6 sm:py-[10px] rounded-[8px] text-white font-semibold text-[14px] sm:text-[16px] leading-[20px] sm:leading-[24px] transition-colors cursor-pointer text-center whitespace-nowrap"
                   >
                     Get a Free Consultation
                   </motion.button>
                 </Link>
-                <Link href="/services">
+                <Link href="/services" className="w-full sm:w-auto">
                   <motion.button
                     whileHover={{ scale: 1.05 }}
                     whileTap={{ scale: 0.95 }}
-                    className="text-[#48484A] border border-[#E8E8E8] px-4 py-[10px] sm:px-6 sm:py-[10px] rounded-[8px] font-semibold hover:border-gray-400 transition-colors text-[14px] sm:text-[16px] leading-[20px] sm:leading-[24px] cursor-pointer text-center whitespace-nowrap"
+                    className="w-full sm:w-auto text-[#48484A] border border-[#E8E8E8] px-4 py-[10px] sm:px-6 sm:py-[10px] rounded-[8px] font-semibold hover:border-gray-400 transition-colors text-[14px] sm:text-[16px] leading-[20px] sm:leading-[24px] cursor-pointer text-center whitespace-nowrap"
                   >
                     Explore Our Services
                   </motion.button>
