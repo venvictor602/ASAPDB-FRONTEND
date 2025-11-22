@@ -35,7 +35,6 @@ export function HeroSection() {
 
       return () => clearTimeout(timeout);
     } else if (!isDeleting && currentIndex === currentText.length) {
-      // Wait at the end before starting to delete
       const timeout = setTimeout(() => {
         setIsDeleting(true);
       }, 2000);
