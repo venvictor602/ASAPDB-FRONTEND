@@ -37,11 +37,11 @@ export function CtaSection() {
                 We are gladly helping companies to get started.
               </p>
             </div>
-            <Link href="/contact">
+            <Link href="/contact" className="w-full sm:w-auto">
               <motion.button
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
-                className=" bg-[#101010] text-white p-[10px] rounded-[8px] font-semibold text-sm sm:text-base hover:bg-[#262626] transition-colors inline-flex items-center justify-center gap-2"
+                className="w-full sm:w-auto bg-[#101010] cursor-pointer text-white p-[10px] rounded-[8px] font-semibold text-sm sm:text-base hover:bg-[#262626] transition-colors inline-flex items-center justify-center gap-2"
               >
                 Contact Us
                 <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5" />
@@ -65,11 +65,11 @@ export function CtaSection() {
                 We have made it as easy as possible to try ASAP DBA
               </p>
             </div>
-            <Link href="/contact">
+            <Link href="/services" className="w-full sm:w-auto">
               <motion.button
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
-                className=" bg-[#101010] text-white p-[10px] rounded-[8px] font-semibold text-sm sm:text-base hover:bg-[#262626] transition-colors inline-flex items-center justify-center gap-2"
+                className="w-full sm:w-auto bg-[#101010] cursor-pointer text-white p-[10px] rounded-[8px] font-semibold text-sm sm:text-base hover:bg-[#262626] transition-colors inline-flex items-center justify-center gap-2"
               >
                 Our Services
                 <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5" />

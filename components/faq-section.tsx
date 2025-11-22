@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { motion } from "framer-motion";
-import { ChevronDown } from "lucide-react";
+import { ChevronDown, Link } from "lucide-react";
 
 const faqs = [
   {
@@ -117,13 +117,15 @@ export function FaqSection() {
             <p className="text-[#606060] text-sm sm:text-base mb-4 sm:mb-6">
               Still have questions?
             </p>
-            <motion.button
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              className="bg-[#101010] text-white px-6 py-3 sm:px-8 sm:py-4 rounded-[8px] font-semibold text-sm sm:text-base hover:bg-[#262626] transition-colors"
-            >
-              Contact Our Team
-            </motion.button>
+            <Link href="/contact">
+              <motion.button
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                className="bg-[#101010] cursor-pointer text-white px-6 py-3 sm:px-8 sm:py-4 rounded-[8px] font-semibold text-sm sm:text-base hover:bg-[#262626] transition-colors"
+              >
+                Contact Our Team
+              </motion.button>
+            </Link>
           </motion.div>
         </div>
       </div>

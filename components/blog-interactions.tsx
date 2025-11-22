@@ -32,9 +32,15 @@ export function BlogInteractions({ postId }: BlogInteractionsProps) {
     const stored = localStorage.getItem(storageKey);
     if (stored) {
       const data = JSON.parse(stored);
-      setLiked(data.liked || false);
-      setLikeCount(data.likeCount || 0);
-      setComments(data.comments || []);
+      setTimeout(() => {
+        setLiked(data.liked || false);
+      }, 0);
+      setTimeout(() => {
+        setLikeCount(data.likeCount || 0);
+      }, 0);
+      setTimeout(() => {
+        setComments(data.comments || []);
+      }, 0);
     }
   }, [postId]);
 
@@ -87,7 +93,7 @@ export function BlogInteractions({ postId }: BlogInteractionsProps) {
     if (!replyContent.trim() || !replyAuthor.trim()) return;
 
     const reply: Comment = {
-      id: Date.now().toString(),
+      id: crypto.randomUUID(),
       author: replyAuthor,
       content: replyContent,
       date: new Date().toLocaleDateString("en-US", {
