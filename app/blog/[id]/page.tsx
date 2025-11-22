@@ -21,7 +21,8 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const resolvedParams = params instanceof Promise ? await params : params;
   const post = getBlogPost(Number(resolvedParams.id));
-  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://asapdba.com";
+  const siteUrl =
+    process.env.NEXT_PUBLIC_SITE_URL || "https://asapdba.netlify.app";
 
   if (!post) {
     return {
@@ -106,12 +107,12 @@ export default async function BlogPostPage({
       name: "ASAP DBA",
       logo: {
         "@type": "ImageObject",
-        url: `${process.env.NEXT_PUBLIC_SITE_URL || "https://asapdba.com"}/assets/Asap-DBA_Logo.png`,
+        url: `${process.env.NEXT_PUBLIC_SITE_URL || "https://asapdba.netlify.app"}/assets/Asap-DBA_Logo.png`,
       },
     },
     mainEntityOfPage: {
       "@type": "WebPage",
-      "@id": `${process.env.NEXT_PUBLIC_SITE_URL || "https://asapdba.com"}/blog/${post.id}`,
+      "@id": `${process.env.NEXT_PUBLIC_SITE_URL || "https://asapdba.netlify.app"}/blog/${post.id}`,
     },
   };
 

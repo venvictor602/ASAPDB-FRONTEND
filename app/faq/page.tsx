@@ -2,7 +2,8 @@ import type { Metadata } from "next";
 import { FaqSection } from "@/components/faq-section";
 import { Navigation } from "@/components/navigation";
 
-const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://asapdba.com";
+const siteUrl =
+  process.env.NEXT_PUBLIC_SITE_URL || "https://asapdba.netlify.app";
 
 export const metadata: Metadata = {
   title: "FAQ - Frequently Asked Questions | ASAP DBA",

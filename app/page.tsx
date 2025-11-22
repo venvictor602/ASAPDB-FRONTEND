@@ -8,7 +8,8 @@ import { FaqSection } from "@/components/faq-section";
 import { CtaSection } from "@/components/cta-section";
 import { Footer } from "@/components/footer";
 
-const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://asapdba.com";
+const siteUrl =
+  process.env.NEXT_PUBLIC_SITE_URL || "https://asapdba.netlify.app";
 
 export const metadata: Metadata = {
   title: "ASAP DBA - Database Management Services | 24/7 Database Support",

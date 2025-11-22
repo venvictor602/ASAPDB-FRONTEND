@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 
-const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://asapdba.com";
+const siteUrl =
+  process.env.NEXT_PUBLIC_SITE_URL || "https://asapdba.netlify.app";
 
 export const metadata: Metadata = {
   title: "Blog - Database Management Insights | ASAP DBA",

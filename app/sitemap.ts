@@ -1,7 +1,8 @@
 import { MetadataRoute } from "next";
 import { getAllBlogPosts } from "@/lib/blog-data";
 
-const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://asapdba.com";
+const siteUrl =
+  process.env.NEXT_PUBLIC_SITE_URL || "https://asapdba.netlify.app";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const blogPosts = getAllBlogPosts();

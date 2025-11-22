@@ -12,7 +12,7 @@ const raleway = Raleway({
 
 export const metadata: Metadata = {
   metadataBase: new URL(
-    process.env.NEXT_PUBLIC_SITE_URL || "https://asapdba.com"
+    process.env.NEXT_PUBLIC_SITE_URL || "https://asapdba.netlify.app"
   ),
   title: {
     default: "ASAP DBA - Database Management Services | 24/7 Database Support",
@@ -50,14 +50,14 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     locale: "en_US",
-    url: process.env.NEXT_PUBLIC_SITE_URL || "https://asapdba.com",
+    url: process.env.NEXT_PUBLIC_SITE_URL || "https://asapdba.netlify.app",
     siteName: "ASAP DBA",
     title: "ASAP DBA - Database Management Services | 24/7 Database Support",
     description:
       "Professional database management services for PostgreSQL, MySQL, MongoDB, and cloud databases. 24/7 monitoring, performance optimization, security, and migrations. Trusted by businesses worldwide.",
     images: [
       {
-        url: `${process.env.NEXT_PUBLIC_SITE_URL || "https://asapdba.com"}/assets/Asap-DBA_Logo.png`,
+        url: `${process.env.NEXT_PUBLIC_SITE_URL || "https://asapdba.netlify.app"}/assets/Asap-DBA_Logo.png`,
         width: 1200,
         height: 630,
         alt: "ASAP DBA - Database Management Services",
@@ -94,8 +94,8 @@ export default function RootLayout({
     name: "ASAP DBA",
     description:
       "Professional database management services for PostgreSQL, MySQL, MongoDB, and cloud databases. 24/7 monitoring, performance optimization, security, and migrations.",
-    url: process.env.NEXT_PUBLIC_SITE_URL || "https://asapdba.com",
-    logo: `${process.env.NEXT_PUBLIC_SITE_URL || "https://asapdba.com"}/assets/Asap-DBA_Logo.png`,
+    url: process.env.NEXT_PUBLIC_SITE_URL || "https://asapdba.netlify.app",
+    logo: `${process.env.NEXT_PUBLIC_SITE_URL || "https://asapdba.netlify.app"}/assets/Asap-DBA_Logo.png`,
     sameAs: [],
     contactPoint: {
       "@type": "ContactPoint",

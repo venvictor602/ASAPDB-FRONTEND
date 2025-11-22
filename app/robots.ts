@@ -1,6 +1,7 @@
 import { MetadataRoute } from "next";
 
-const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://asapdba.com";
+const siteUrl =
+  process.env.NEXT_PUBLIC_SITE_URL || "https://asapdba.netlify.app";
 
 export default function robots(): MetadataRoute.Robots {
   return {
