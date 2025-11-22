@@ -42,10 +42,12 @@ export function FeaturesSection() {
             <div className="">
               <Image
                 src="/assets/K8s Operator.png"
-                alt="Proactive Monitoring"
-                width={100}
-                height={100}
+                alt="Proactive Monitoring illustration"
+                width={400}
+                height={300}
                 className="w-full h-auto object-contain"
+                loading="lazy"
+                quality={85}
               />
             </div>
             <div className=" space-y-[16px]">
@@ -69,10 +71,12 @@ export function FeaturesSection() {
             <div className="">
               <Image
                 src="/assets/K8s Operator-2.png"
-                alt="Proactive Monitoring"
-                width={100}
-                height={100}
+                alt="Performance Optimization illustration"
+                width={400}
+                height={300}
                 className="w-full h-auto object-contain"
+                loading="lazy"
+                quality={85}
               />
             </div>
             <div className=" space-y-[16px]">
@@ -96,10 +100,12 @@ export function FeaturesSection() {
             <div className="">
               <Image
                 src="/assets/Developer Tools.png"
-                alt="Proactive Monitoring"
-                width={100}
-                height={100}
+                alt="Enterprise-Grade Security illustration"
+                width={400}
+                height={300}
                 className="w-full h-auto object-contain"
+                loading="lazy"
+                quality={85}
               />
             </div>
             <div className=" space-y-[16px]">

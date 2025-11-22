@@ -57,30 +57,34 @@ export function HeroSection() {
                   <Image
                     src="/assets/Google Cloud.svg"
                     alt="Google Cloud"
-                    width={100}
-                    height={100}
+                    width={200}
+                    height={48}
                     className="w-auto h-6 sm:h-8 md:h-10 lg:h-12 max-w-[120px] sm:max-w-[150px] md:max-w-[200px] object-contain"
+                    loading="lazy"
                   />
                   <Image
                     src="/assets/AWS.svg"
                     alt="AWS"
-                    width={100}
-                    height={100}
+                    width={70}
+                    height={48}
                     className="w-auto h-6 sm:h-8 md:h-10 lg:h-12 max-w-[50px] sm:max-w-[60px] md:max-w-[70px] object-contain"
+                    loading="lazy"
                   />
                   <Image
                     src="/assets/Azure.svg"
                     alt="Azure"
-                    width={100}
-                    height={100}
+                    width={70}
+                    height={48}
                     className="w-auto h-6 sm:h-8 md:h-10 lg:h-12 max-w-[50px] sm:max-w-[60px] md:max-w-[70px] object-contain"
+                    loading="lazy"
                   />
                   <Image
                     src="/assets/Oracle.svg"
                     alt="Oracle"
-                    width={100}
-                    height={100}
+                    width={70}
+                    height={48}
                     className="w-auto h-6 sm:h-8 md:h-10 lg:h-12 max-w-[50px] sm:max-w-[60px] md:max-w-[70px] object-contain"
+                    loading="lazy"
                   />
                 </div>
               </div>
@@ -96,10 +100,12 @@ export function HeroSection() {
               <div className="w-full h-full flex items-center justify-center">
                 <Image
                   src="/assets/Asap-Dba hero Image.png"
-                  alt="Hero Section"
-                  width={500}
-                  height={500}
+                  alt="Database management illustration showing cloud infrastructure and database servers"
+                  width={600}
+                  height={600}
                   className="w-full max-w-[300px] sm:max-w-[400px] md:max-w-full h-auto object-contain md:object-cover"
+                  sizes="(max-width: 768px) 300px, (max-width: 1024px) 400px, 600px"
+                  priority
                 />
               </div>
             </motion.div>

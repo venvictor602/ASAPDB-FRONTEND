@@ -20,10 +20,11 @@ export function DatabaseManagementSection() {
           >
             <Image
               src="/assets/Asap-Mini Logo.svg"
-              alt="Asap-Mini Logo"
-              width={100}
-              height={100}
+              alt="ASAP DBA Logo"
+              width={14}
+              height={14}
               className="w-full max-w-[14px] h-auto object-contain"
+              loading="lazy"
             />
             <span className="text-[#D8D8D8] text-sm sm:text-base font-normal">
               Expert Support · 24/7 Reliability
@@ -80,10 +81,11 @@ export function DatabaseManagementSection() {
           >
             <Image
               src="/assets/Network Configurations Icon.svg"
-              alt="Performance Optimization"
-              width={100}
-              height={100}
+              alt="Performance Optimization icon"
+              width={60}
+              height={60}
               className="w-full h-auto object-contain max-w-[50px] sm:max-w-[60px]"
+              loading="lazy"
             />
             <div className="space-y-3 sm:space-y-4">
               <h3 className="text-white text-base sm:text-lg md:text-[20px] font-semibold leading-tight">
@@ -104,10 +106,11 @@ export function DatabaseManagementSection() {
           >
             <Image
               src="/assets/div.framer-1kce91c.svg"
-              alt="24/7 Monitoring & Support"
-              width={100}
-              height={100}
+              alt="24/7 Monitoring & Support icon"
+              width={60}
+              height={60}
               className="w-full h-auto object-contain max-w-[50px] sm:max-w-[60px]"
+              loading="lazy"
             />
             <div className="space-y-3 sm:space-y-4">
               <h3 className="text-white text-base sm:text-lg md:text-[20px] font-semibold leading-tight">
@@ -128,10 +131,11 @@ export function DatabaseManagementSection() {
           >
             <Image
               src="/assets/div.framer-o1njyo.svg"
-              alt="Automated Backups & Recovery"
-              width={100}
-              height={100}
+              alt="Automated Backups & Recovery icon"
+              width={60}
+              height={60}
               className="w-full h-auto object-contain max-w-[50px] sm:max-w-[60px]"
+              loading="lazy"
             />
             <div className="space-y-3 sm:space-y-4">
               <h3 className="text-white text-base sm:text-lg md:text-[20px] font-semibold leading-tight">
@@ -153,10 +157,11 @@ export function DatabaseManagementSection() {
           >
             <Image
               src="/assets/Container Settings Icon.svg"
-              alt="Cloud Database Management"
-              width={100}
-              height={100}
+              alt="Cloud Database Management icon"
+              width={60}
+              height={60}
               className="w-full h-auto object-contain max-w-[50px] sm:max-w-[60px]"
+              loading="lazy"
             />
             <div className="space-y-3 sm:space-y-4">
               <h3 className="text-white text-base sm:text-lg md:text-[20px] font-semibold leading-tight">

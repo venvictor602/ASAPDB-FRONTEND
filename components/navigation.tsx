@@ -28,14 +28,18 @@ export function Navigation() {
       <div className="container mx-auto max-w-7xl">
         <div className="flex items-center justify-between">
           {/* Logo */}
-          <div className="">
-            <Image
-              src="/assets/Asap-DBA_Logo.png"
-              alt="ASAP DBA Logo"
-              width={100}
-              height={100}
-            />
-          </div>
+          <Link href="/">
+            <div className="">
+              <Image
+                src="/assets/Asap-DBA_Logo.png"
+                alt="ASAP DBA Logo"
+                width={100}
+                height={100}
+                priority
+                quality={90}
+              />
+            </div>
+          </Link>
 
           {/* Desktop Navigation Links */}
           <div className="hidden md:flex items-center gap-8">
