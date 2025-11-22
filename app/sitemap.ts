@@ -5,7 +5,7 @@ const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://asapdba.com";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const blogPosts = getAllBlogPosts();
-  
+
   const blogEntries: MetadataRoute.Sitemap = blogPosts.map((post) => ({
     url: `${siteUrl}/blog/${post.id}`,
     lastModified: new Date(post.date),
@@ -35,4 +35,3 @@ export default function sitemap(): MetadataRoute.Sitemap {
     ...blogEntries,
   ];
 }
-
