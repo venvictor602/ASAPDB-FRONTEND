@@ -43,12 +43,18 @@ export function BlogHeroCarousel({ posts }: BlogHeroCarouselProps) {
 
   useEffect(() => {
     if (!emblaApi) return;
-    onSelect();
-    setScrollSnaps(emblaApi.scrollSnapList());
+
+    // Defer initial state update to avoid synchronous setState in effect
+    const timeout = setTimeout(() => {
+      onSelect();
+      setScrollSnaps(emblaApi.scrollSnapList());
+    }, 0);
+
     emblaApi.on("select", onSelect);
     emblaApi.on("reInit", onSelect);
 
     return () => {
+      clearTimeout(timeout);
       emblaApi.off("select", onSelect);
     };
   }, [emblaApi, onSelect]);
@@ -90,7 +96,7 @@ export function BlogHeroCarousel({ posts }: BlogHeroCarouselProps) {
         >
           <div className="overflow-hidden rounded-[16px]" ref={emblaRef}>
             <div className="flex">
-              {posts.map((post) => (
+              {posts.map((post, index) => (
                 <div
                   key={post.id}
                   className="flex-[0_0_100%] min-w-0 relative group"
@@ -108,8 +114,8 @@ export function BlogHeroCarousel({ posts }: BlogHeroCarouselProps) {
                         quality={90}
                       />
                       {/* Overlay Gradient */}
-                      <div className="absolute inset-0 bg-gradient-to-t from-[#101010] via-[#101010]/80 to-transparent" />
-                      
+                      <div className="absolute inset-0 bg-linear-to-t from-[#101010] via-[#101010]/80 to-transparent" />
+
                       {/* Content */}
                       <div className="absolute bottom-0 left-0 right-0 p-6 sm:p-8 md:p-12 text-white">
                         <div className="max-w-4xl">
@@ -198,5 +204,3 @@ export function BlogHeroCarousel({ posts }: BlogHeroCarouselProps) {
     </section>
   );
 }
-
-

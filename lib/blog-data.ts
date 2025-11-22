@@ -78,7 +78,8 @@ Remember, every database is unique. What works for one may not work for another.
     readTime: "5 min read",
     author: "Sarah Johnson",
     authorRole: "Senior Database Architect",
-    imageUrl: "https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=1200&h=600&fit=crop",
+    imageUrl:
+      "https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=1200&h=600&fit=crop",
   },
   {
     id: 2,
@@ -155,7 +156,8 @@ Remember, security is not a one-time setup but an ongoing process that requires 
     readTime: "7 min read",
     author: "Michael Chen",
     authorRole: "Security Specialist",
-    imageUrl: "https://images.unsplash.com/photo-1563013544-824ae1b704d3?w=1200&h=600&fit=crop",
+    imageUrl:
+      "https://images.unsplash.com/photo-1563013544-824ae1b704d3?w=1200&h=600&fit=crop",
   },
   {
     id: 3,
@@ -242,7 +244,8 @@ Take your time, plan thoroughly, and don't hesitate to seek expert assistance wh
     readTime: "6 min read",
     author: "David Martinez",
     authorRole: "Cloud Solutions Architect",
-    imageUrl: "https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=1200&h=600&fit=crop",
+    imageUrl:
+      "https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=1200&h=600&fit=crop",
   },
   {
     id: 4,
@@ -326,7 +329,8 @@ Don't wait for an outage to realize the importance of monitoring. Start implemen
     readTime: "4 min read",
     author: "Emily Rodriguez",
     authorRole: "Database Operations Manager",
-    imageUrl: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=1200&h=600&fit=crop",
+    imageUrl:
+      "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=1200&h=600&fit=crop",
   },
 ];
 
