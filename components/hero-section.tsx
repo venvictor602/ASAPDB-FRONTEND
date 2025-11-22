@@ -65,7 +65,7 @@ export function HeroSection() {
 
       {/* Hero Section */}
       <section className="bg-white py-[20px] sm:py-[35px] md:py-[50px] lg:py-[64px]">
-        <div className="container mx-auto max-w-7xl px-4 lg:px-0">
+        <div className="container lg:mx-auto mx-2 max-w-7xl px-4 lg:px-0">
           <div className="grid md:grid-cols-2 gap-8 md:gap-12 lg:gap-16 items-center">
             {/* Left Content */}
             <motion.div
