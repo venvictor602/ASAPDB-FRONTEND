@@ -29,14 +29,6 @@ export function Footer() {
             <ul className="space-y-3 sm:space-y-[16px] font-normal">
               <li>
                 <Link
-                  href="/about"
-                  className="text-[#FFFFFF] transition-colors text-sm sm:text-base"
-                >
-                  About Us
-                </Link>
-              </li>
-              <li>
-                <Link
                   href="/services"
                   className="text-[#FFFFFF] transition-colors text-sm sm:text-base"
                 >

@@ -6,6 +6,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { Navigation } from "@/components/navigation";
 import { Footer } from "@/components/footer";
+import { BlogInteractions } from "@/components/blog-interactions";
 
 export async function generateStaticParams() {
   const posts = getAllBlogPosts();
@@ -235,6 +236,11 @@ export default async function BlogPostPage({
                 );
               })}
             </div>
+          </div>
+
+          {/* Blog Interactions - Likes and Comments */}
+          <div className="mt-12 sm:mt-16 pt-8 sm:pt-12 border-t border-[#E8E8E8]">
+            <BlogInteractions postId={post.id} />
           </div>
 
           {/* Footer */}
