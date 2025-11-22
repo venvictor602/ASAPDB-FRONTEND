@@ -10,8 +10,8 @@ export function HeroSection() {
       <Navigation />
 
       {/* Hero Section */}
-      <section className="bg-white py-8 sm:py-12 md:py-16 lg:py-24">
-        <div className="container mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+      <section className="bg-white py-[20px] sm:py-[35px] md:py-[50px] lg:py-[64px]">
+        <div className="container mx-auto max-w-7xl px-4 md:px-0">
           <div className="grid md:grid-cols-2 gap-8 md:gap-12 lg:gap-16 items-center">
             {/* Left Content */}
             <motion.div
