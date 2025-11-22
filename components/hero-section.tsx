@@ -1,10 +1,64 @@
 "use client";
 
+import { useState, useEffect, useMemo } from "react";
 import { motion } from "framer-motion";
 import { Navigation } from "./navigation";
 import Image from "next/image";
 
 export function HeroSection() {
+  const texts = useMemo(
+    () => [
+      "The smarter way to manage your databases 24/7",
+      "Professional database management made simple",
+      "Keep your databases fast, secure, and always available",
+      "Expert database administration at your service",
+      "24/7 database monitoring and optimization",
+      "Trusted database management for modern businesses",
+    ],
+    []
+  );
+
+  const [displayedText, setDisplayedText] = useState("");
+  const [currentTextIndex, setCurrentTextIndex] = useState(0);
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const [isDeleting, setIsDeleting] = useState(false);
+
+  useEffect(() => {
+    const currentText = texts[currentTextIndex];
+    const typingSpeed = isDeleting ? 50 : 100;
+
+    if (!isDeleting && currentIndex < currentText.length) {
+      const timeout = setTimeout(() => {
+        setDisplayedText((prev) => prev + currentText[currentIndex]);
+        setCurrentIndex((prev) => prev + 1);
+      }, typingSpeed);
+
+      return () => clearTimeout(timeout);
+    } else if (!isDeleting && currentIndex === currentText.length) {
+      // Wait at the end before starting to delete
+      const timeout = setTimeout(() => {
+        setIsDeleting(true);
+      }, 2000);
+
+      return () => clearTimeout(timeout);
+    } else if (isDeleting && currentIndex > 0) {
+      const timeout = setTimeout(() => {
+        setDisplayedText((prev) => prev.slice(0, -1));
+        setCurrentIndex((prev) => prev - 1);
+      }, typingSpeed);
+
+      return () => clearTimeout(timeout);
+    } else if (isDeleting && currentIndex === 0) {
+      // Move to next text after a brief pause
+      const timeout = setTimeout(() => {
+        setIsDeleting(false);
+        setCurrentTextIndex((prev) => (prev + 1) % texts.length);
+      }, 500);
+
+      return () => clearTimeout(timeout);
+    }
+  }, [currentIndex, isDeleting, currentTextIndex, texts]);
+
   return (
     <>
       <Navigation />
@@ -21,7 +75,8 @@ export function HeroSection() {
               className="space-y-6 sm:space-y-7 md:space-y-8"
             >
               <h1 className="text-[28px] sm:text-[36px] md:text-[44px] lg:text-[50px] xl:text-[56px] font-semibold text-[#48484A] leading-[36px] sm:leading-[44px] md:leading-[56px] lg:leading-[64px] xl:leading-[70px]">
-                The smarter way to manage your databases 24/7
+                {displayedText}
+                <span className="animate-pulse">|</span>
               </h1>
 
               <p className="text-base sm:text-lg md:text-xl font-normal text-[#606060] leading-[24px] sm:leading-[28px] md:leading-[32px]">

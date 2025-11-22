@@ -91,7 +91,9 @@ export function FaqSection() {
                 </button>
                 <div
                   className={`overflow-hidden transition-all duration-300 ease-in-out ${
-                    openIndex === index ? "max-h-[500px] opacity-100" : "max-h-0 opacity-0"
+                    openIndex === index
+                      ? "max-h-[500px] opacity-100"
+                      : "max-h-0 opacity-0"
                   }`}
                 >
                   <div className="px-4 sm:px-6 pb-4 sm:pb-5">
@@ -128,5 +130,3 @@ export function FaqSection() {
     </section>
   );
 }
-
-
