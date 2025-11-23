@@ -72,23 +72,11 @@ export function HeroSection() {
         style={{
           background: `
             linear-gradient(to bottom right, var(--hero-bg-start), var(--hero-bg-mid), var(--hero-bg-end)),
-            url("data:image/svg+xml,%3Csvg width='100' height='100' xmlns='http://www.w3.org/2000/svg'%3E%3Cdefs%3E%3Cpattern id='grid' width='100' height='100' patternUnits='userSpaceOnUse'%3E%3Cpath d='M 100 0 L 0 0 0 100' fill='none' stroke='%232563eb' stroke-width='0.5' opacity='0.08'/%3E%3C/pattern%3E%3C/defs%3E%3Crect width='100%25' height='100%25' fill='url(%23grid)'/%3E%3C/svg%3E"),
-            linear-gradient(90deg, transparent 0%, rgba(37, 99, 235, 0.06) 50%, transparent 100%),
-            linear-gradient(0deg, transparent 0%, rgba(37, 99, 235, 0.04) 50%, transparent 100%),
-            linear-gradient(to right, rgba(37, 99, 235, 0.05) 1px, transparent 1px),
-            linear-gradient(to bottom, rgba(37, 99, 235, 0.05) 1px, transparent 1px),
-            radial-gradient(ellipse at top right, rgba(91, 141, 239, 0.06) 0%, transparent 50%),
-            radial-gradient(ellipse at bottom left, rgba(139, 92, 246, 0.04) 0%, transparent 50%)
+            url("data:image/svg+xml,%3Csvg width='100' height='100' xmlns='http://www.w3.org/2000/svg'%3E%3Cdefs%3E%3Cpattern id='grid' width='100' height='100' patternUnits='userSpaceOnUse'%3E%3Cpath d='M 100 0 L 0 0 0 100' fill='none' stroke='%232563eb' stroke-width='0.5' opacity='0.04'/%3E%3C/pattern%3E%3C/defs%3E%3Crect width='100%25' height='100%25' fill='url(%23grid)'/%3E%3C/svg%3E")
           `,
           backgroundSize: `
             cover,
-            60px 60px,
-            200px 200px,
-            200px 200px,
-            80px 80px,
-            80px 80px,
-            cover,
-            cover
+            80px 80px
           `,
           backgroundPosition: "center",
         }}
@@ -205,7 +193,7 @@ export function HeroSection() {
               <div className="relative w-full h-full flex items-center justify-center">
                 {/* Subtle glow effect behind image */}
                 <div
-                  className="absolute inset-0 rounded-full blur-3xl opacity-50"
+                  className="absolute inset-0 rounded-full blur-3xl opacity-30"
                   style={{
                     background: `linear-gradient(to right, var(--hero-glow-start), var(--hero-glow-mid), var(--hero-glow-end))`,
                   }}
