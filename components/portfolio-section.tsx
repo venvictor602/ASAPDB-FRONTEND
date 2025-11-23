@@ -27,8 +27,8 @@ const projects = [
 
 export function PortfolioSection() {
   return (
-    <section className="bg-white py-[40px] sm:py-[60px] md:py-[80px] lg:py-[100px]">
-      <div className="container mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+    <section className="bg-white py-[20px] sm:py-[35px] md:py-[50px] lg:py-[64px] xl:py-[80px]">
+      <div className="container mx-auto max-w-7xl px-4 sm:px-6 md:px-8 lg:px-12 xl:px-16 2xl:px-20">
         <div className="space-y-16 sm:space-y-20 md:space-y-24">
           {projects.map((project, index) => {
             const isEven = index % 2 === 1; // Alternating layout
@@ -53,11 +53,11 @@ export function PortfolioSection() {
                   transition={{ duration: 0.6, delay: 0.2 }}
                   className={`space-y-6 sm:space-y-8 ${isEven ? "md:order-2" : ""}`}
                 >
-                  <h2 className="text-[32px] sm:text-[40px] md:text-[48px] font-semibold text-[#48484A] leading-[40px] sm:leading-[48px] md:leading-[56px]">
+                  <h2 className="text-[32px] sm:text-[40px] md:text-[48px] font-semibold text-[#1e3a5f] leading-[40px] sm:leading-[48px] md:leading-[56px]">
                     {project.title}
                   </h2>
 
-                  <p className="text-[16px] sm:text-[18px] md:text-[20px] font-normal text-[#48484A] leading-[24px] sm:leading-[28px] md:leading-[32px]">
+                  <p className="text-[16px] sm:text-[18px] md:text-[20px] font-normal text-[#1e3a5f] leading-[24px] sm:leading-[28px] md:leading-[32px]">
                     {project.description}
                   </p>
 
@@ -67,7 +67,7 @@ export function PortfolioSection() {
                     rel="noopener noreferrer"
                     whileHover={{ scale: 1.05 }}
                     whileTap={{ scale: 0.95 }}
-                    className="inline-flex items-center gap-2 bg-[#101010] text-white px-6 py-[12px] sm:px-8 sm:py-[14px] rounded-[8px] font-semibold text-[14px] sm:text-[16px] md:text-[18px] leading-[20px] sm:leading-[24px] hover:bg-[#202020] transition-colors cursor-pointer"
+                    className="inline-flex items-center gap-2 bg-[#2563eb] text-white px-6 py-[12px] sm:px-8 sm:py-[14px] rounded-[8px] font-semibold text-[14px] sm:text-[16px] md:text-[18px] leading-[20px] sm:leading-[24px] hover:bg-[#1d4ed8] transition-colors cursor-pointer"
                   >
                     Visit live link
                     <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5" />
@@ -94,7 +94,7 @@ export function PortfolioSection() {
                             <div className="w-3 h-3 rounded-full bg-green-500"></div>
                           </div>
                           <div className="bg-white rounded-b-lg p-4 h-48 flex items-center justify-center">
-                            <p className="text-[#48484A] text-sm font-medium text-center">
+                            <p className="text-[#1e3a5f] text-sm font-medium text-center">
                               {project.imageAlt}
                             </p>
                           </div>

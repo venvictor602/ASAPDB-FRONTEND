@@ -112,8 +112,8 @@ export function TestimonialsSection() {
   }, [emblaApi, isHovered]);
 
   return (
-    <section className="bg-white py-[40px] sm:py-[60px] md:py-[80px] lg:py-[100px]">
-      <div className="container mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 space-y-[32px]">
+    <section className="bg-white py-[20px] sm:py-[35px] md:py-[50px] lg:py-[64px] xl:py-[80px]">
+      <div className="container mx-auto max-w-7xl px-4 sm:px-6 md:px-8 lg:px-12 xl:px-16 2xl:px-20 space-y-[32px]">
         {/* Heading Section */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -122,10 +122,10 @@ export function TestimonialsSection() {
           transition={{ duration: 0.6 }}
           className="text-center space-y-4"
         >
-          <p className="text-[#48484A] text-sm sm:text-base md:text-[20px] font-normal">
+          <p className="text-[#1e3a5f] text-sm sm:text-base md:text-[20px] font-normal">
             2,157 people have said how good Asap DBA
           </p>
-          <h2 className="text-[28px] sm:text-[36px] md:text-[44px] lg:text-[48px] font-semibold text-[#48484A] leading-[36px] sm:leading-[44px] md:leading-[56px] lg:leading-[64px]">
+          <h2 className="text-[28px] sm:text-[36px] md:text-[44px] lg:text-[48px] font-semibold text-[#1e3a5f] leading-[36px] sm:leading-[44px] md:leading-[56px] lg:leading-[64px]">
             Our happy clients say about us
           </h2>
         </motion.div>
@@ -182,7 +182,7 @@ export function TestimonialsSection() {
                     </div>
 
                     {/* Testimonial Text */}
-                    <p className="text-[#48484A] text-sm sm:text-base font-normal leading-relaxed mb-6 sm:mb-8 grow">
+                    <p className="text-[#1e3a5f] text-sm sm:text-base font-normal leading-relaxed mb-6 sm:mb-8 grow">
                       {testimonial.text}
                     </p>
 
@@ -200,10 +200,10 @@ export function TestimonialsSection() {
                         />
                       </div>
                       <div>
-                        <h4 className="text-[#48484A] text-sm sm:text-lg font-semibold">
+                        <h4 className="text-[#1e3a5f] text-sm sm:text-lg font-semibold">
                           {testimonial.name}
                         </h4>
-                        <p className="text-[#48484A] text-xs sm:text-base font-normal">
+                        <p className="text-[#3b82f6] text-xs sm:text-base font-normal">
                           {testimonial.role}
                         </p>
                       </div>
@@ -226,7 +226,7 @@ export function TestimonialsSection() {
               <motion.button
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
-                className="bg-[#262626] border border-[#48484A] text-white px-6 py-3 sm:px-8 sm:py-4 rounded-[8px] font-semibold text-sm sm:text-base hover:bg-[#333333] transition-colors inline-flex items-center gap-2"
+                className="bg-[#2563eb] border border-[#3b82f6] text-white px-6 py-3 sm:px-8 sm:py-4 rounded-[8px] font-semibold text-sm sm:text-base hover:bg-[#1d4ed8] transition-colors inline-flex items-center gap-2"
               >
                 Check all 2,157 reviews
                 <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5" />

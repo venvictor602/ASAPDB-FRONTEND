@@ -46,8 +46,8 @@ export function FaqSection() {
   };
 
   return (
-    <section className="bg-white py-[40px] sm:py-[60px] md:py-[80px] lg:py-[100px]">
-      <div className="container mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+    <section className="bg-white py-[20px] sm:py-[35px] md:py-[50px] lg:py-[64px] xl:py-[80px]">
+      <div className="container mx-auto max-w-7xl px-4 sm:px-6 md:px-8 lg:px-12 xl:px-16 2xl:px-20">
         <div className="max-w-4xl mx-auto">
           {/* Header */}
           <motion.div
@@ -57,10 +57,10 @@ export function FaqSection() {
             transition={{ duration: 0.6 }}
             className="text-center mb-12 sm:mb-16 md:mb-20 space-y-4"
           >
-            <h2 className="text-[28px] sm:text-[36px] md:text-[44px] lg:text-[48px] font-semibold text-[#48484A] leading-[36px] sm:leading-[44px] md:leading-[56px] lg:leading-[64px]">
+            <h2 className="text-[28px] sm:text-[36px] md:text-[44px] lg:text-[48px] font-semibold text-[#1e3a5f] leading-[36px] sm:leading-[44px] md:leading-[56px] lg:leading-[64px]">
               Frequently Asked Questions
             </h2>
-            <p className="text-[#606060] text-base sm:text-lg md:text-xl font-normal leading-relaxed max-w-2xl mx-auto">
+            <p className="text-[#3b82f6] text-base sm:text-lg md:text-xl font-normal leading-relaxed max-w-2xl mx-auto">
               Find answers to common questions about our database management
               services
             </p>
@@ -81,11 +81,11 @@ export function FaqSection() {
                   onClick={() => toggleFaq(index)}
                   className="w-full px-4 sm:px-6 py-4 sm:py-5 flex items-center justify-between text-left gap-4 hover:bg-gray-50 transition-colors"
                 >
-                  <h3 className="text-[#48484A] text-base sm:text-lg md:text-xl font-semibold leading-relaxed pr-4">
+                  <h3 className="text-[#1e3a5f] text-base sm:text-lg md:text-xl font-semibold leading-relaxed pr-4">
                     {faq.question}
                   </h3>
                   <ChevronDown
-                    className={`w-5 h-5 sm:w-6 sm:h-6 text-[#48484A] shrink-0 transition-transform duration-300 ${
+                    className={`w-5 h-5 sm:w-6 sm:h-6 text-[#2563eb] shrink-0 transition-transform duration-300 ${
                       openIndex === index ? "rotate-180" : ""
                     }`}
                   />
@@ -98,7 +98,7 @@ export function FaqSection() {
                   }`}
                 >
                   <div className="px-4 sm:px-6 pb-4 sm:pb-5">
-                    <p className="text-[#606060] text-sm sm:text-base font-normal leading-relaxed">
+                    <p className="text-[#3b82f6] text-sm sm:text-base font-normal leading-relaxed">
                       {faq.answer}
                     </p>
                   </div>
@@ -115,14 +115,14 @@ export function FaqSection() {
             transition={{ duration: 0.6, delay: 0.6 }}
             className="text-center mt-12 sm:mt-16"
           >
-            <p className="text-[#606060] text-sm sm:text-base mb-4 sm:mb-6">
+            <p className="text-[#3b82f6] text-sm sm:text-base mb-4 sm:mb-6">
               Still have questions?
             </p>
             <Link href="/contact">
               <motion.button
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
-                className="bg-[#101010] cursor-pointer text-white px-6 py-3 sm:px-8 sm:py-4 rounded-[8px] font-semibold text-sm sm:text-base hover:bg-[#262626] transition-colors"
+                className="bg-[#2563eb] cursor-pointer text-white px-6 py-3 sm:px-8 sm:py-4 rounded-[8px] font-semibold text-sm sm:text-base hover:bg-[#1d4ed8] transition-colors"
               >
                 Contact Our Team
               </motion.button>

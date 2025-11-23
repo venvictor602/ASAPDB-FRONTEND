@@ -48,7 +48,7 @@ export function Navigation() {
                 <Link
                   key={item.href}
                   href={item.href}
-                  className={`text-[16px] text-[#48484A] leading-[24px] transition-colors ${
+                  className={`text-[16px] text-[#1e3a5f] leading-[24px] transition-colors ${
                     isActive ? "font-semibold" : "font-normal"
                   }`}
                 >
@@ -61,7 +61,7 @@ export function Navigation() {
           {/* Desktop Contact Button */}
           <div className="hidden md:block">
             <Link href="/contact">
-              <button className="bg-[#101010] cursor-pointer text-[white] p-[10px] rounded-[8px] hover:bg-[#202020] transition-colors font-semibold text-[16px] leading-[24px]">
+              <button className="bg-[#2563eb] cursor-pointer text-[white] p-[10px] rounded-[8px] hover:bg-[#1d4ed8] transition-colors font-semibold text-[16px] leading-[24px]">
                 Contact
               </button>
             </Link>
@@ -70,7 +70,7 @@ export function Navigation() {
           {/* Mobile Menu Button */}
           <button
             onClick={toggleMobileMenu}
-            className="md:hidden p-2 text-[#48484A] hover:text-gray-900 transition-colors"
+            className="md:hidden p-2 text-[#1e3a5f] hover:text-[#2563eb] transition-colors"
             aria-label="Toggle menu"
           >
             {isMobileMenuOpen ? (
@@ -97,7 +97,7 @@ export function Navigation() {
                   key={item.href}
                   href={item.href}
                   onClick={() => setIsMobileMenuOpen(false)}
-                  className={`block text-[16px] text-[#48484A] leading-[24px] transition-colors py-2 ${
+                  className={`block text-[16px] text-[#1e3a5f] leading-[24px] transition-colors py-2 ${
                     isActive ? "font-semibold" : "font-normal"
                   }`}
                 >

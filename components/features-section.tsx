@@ -5,8 +5,8 @@ import Image from "next/image";
 
 export function FeaturesSection() {
   return (
-    <section className="bg-slate-100 py-[20px] sm:py-[30px] md:py-[40px] lg:py-[50px]">
-      <div className="container mx-auto max-w-7xl px-4 lg:px-0 space-y-[32px]">
+    <section className="bg-slate-100 py-[20px] sm:py-[35px] md:py-[50px] lg:py-[64px] xl:py-[80px]">
+      <div className="container mx-auto max-w-7xl px-4 sm:px-6 md:px-8 lg:px-12 xl:px-16 2xl:px-20 space-y-[32px]">
         <div className="text-center space-y-[32px]">
           <motion.div
             initial={{ opacity: 0, y: -10 }}
@@ -15,7 +15,7 @@ export function FeaturesSection() {
             transition={{ duration: 0.5 }}
             className="inline-block mb-4 sm:mb-6"
           >
-            <span className="text-[#48484A] font-semibold text-[20px] bg-white p-[10px] sm:p-[15px] rounded-full">
+            <span className="text-[#1e3a5f] font-semibold text-[20px] bg-white p-[10px] sm:p-[15px] rounded-full">
               Built for reliability
             </span>
           </motion.div>
@@ -25,7 +25,7 @@ export function FeaturesSection() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.1 }}
-            className="text-[28px] sm:text-[36px] md:text-[44px] lg:text-[48px] xl:text-[56px] font-normal text-[#48484A] leading-[36px] sm:leading-[44px] md:leading-[56px] lg:leading-[70px] max-w-[650px] mx-auto"
+            className="text-[28px] sm:text-[36px] md:text-[44px] lg:text-[48px] xl:text-[56px] font-normal text-[#1e3a5f] leading-[36px] sm:leading-[44px] md:leading-[56px] lg:leading-[70px] max-w-[650px] mx-auto"
           >
             Don&apos;t let database issues slow down your business
           </motion.h2>
@@ -51,13 +51,13 @@ export function FeaturesSection() {
               />
             </div>
             <div className=" space-y-[16px]">
-              <h3 className="text-[20px] sm:text-[24px] font-semibold text-[#48484A] leading-[32px]">
+              <h3 className="text-[20px] sm:text-[24px] font-semibold text-[#1e3a5f] leading-[32px]">
                 Proactive Monitoring
               </h3>
-              <p className="text-[#48484A] text-[14px] sm:text-[16px] font-normal leading-[24px]">
+              <p className="text-[#1e3a5f] text-[14px] sm:text-[16px] font-normal leading-[24px]">
                 We watch your databases around the clock, catching issues before
                 they become problems. Get instant alerts and detailed insights
-                into what's happening with your data.
+                into what&apos;s happening with your data.
               </p>
             </div>
           </motion.div>
@@ -81,11 +81,11 @@ export function FeaturesSection() {
               />
             </div>
             <div className=" space-y-[16px]">
-              <h3 className="text-[20px] sm:text-[24px] font-semibold text-[#48484A] leading-[32px]">
+              <h3 className="text-[20px] sm:text-[24px] font-semibold text-[#1e3a5f] leading-[32px]">
                 Performance Optimization
               </h3>
-              <p className="text-[#48484A] text-[14px] sm:text-[16px] font-normal leading-[24px]">
-                We find what's slowing you down and fix it. From query
+              <p className="text-[#1e3a5f] text-[14px] sm:text-[16px] font-normal leading-[24px]">
+                We find what&apos;s slowing you down and fix it. From query
                 optimization to scaling your infrastructure, we make sure
                 everything runs at peak speed.
               </p>
@@ -111,13 +111,13 @@ export function FeaturesSection() {
               />
             </div>
             <div className=" space-y-[16px]">
-              <h3 className="text-[20px] sm:text-[24px] font-semibold text-[#48484A] leading-[32px]">
+              <h3 className="text-[20px] sm:text-[24px] font-semibold text-[#1e3a5f] leading-[32px]">
                 Enterprise-Grade Security
               </h3>
-              <p className="text-[#48484A] text-[14px] sm:text-[16px] font-normal leading-[24px]">
+              <p className="text-[#1e3a5f] text-[14px] sm:text-[16px] font-normal leading-[24px]">
                 Your data stays protected with automated backups, encryption,
-                and security monitoring. We've got your back, so you can sleep
-                easy.
+                and security monitoring. We&apos;ve got your back, so you can
+                sleep easy.
               </p>
             </div>
           </motion.div>

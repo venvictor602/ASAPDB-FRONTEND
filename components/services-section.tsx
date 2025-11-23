@@ -44,15 +44,15 @@ const services = [
 
 export function ServicesSection() {
   return (
-    <section className="bg-slate-100 py-[40px] sm:py-[60px] md:py-[80px] lg:py-[100px]">
-      <div className="container mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+    <section className="bg-slate-100 py-[20px] sm:py-[35px] md:py-[50px] lg:py-[64px] xl:py-[80px]">
+      <div className="container mx-auto max-w-7xl px-4 sm:px-6 md:px-8 lg:px-12 xl:px-16 2xl:px-20">
         {/* Heading */}
         <motion.h2
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="text-[28px] sm:text-[36px] md:text-[44px] lg:text-[48px] font-semibold text-[#48484A] text-center mb-[40px] sm:mb-[50px] md:mb-[60px] leading-[36px] sm:leading-[44px] md:leading-[56px] lg:leading-[64px]"
+          className="text-[28px] sm:text-[36px] md:text-[44px] lg:text-[48px] font-semibold text-[#1e3a5f] text-center mb-[40px] sm:mb-[50px] md:mb-[60px] leading-[36px] sm:leading-[44px] md:leading-[56px] lg:leading-[64px]"
         >
           Why ASAP DBA?
         </motion.h2>
@@ -77,7 +77,7 @@ export function ServicesSection() {
                     viewBox="0 0 24 24"
                     fill="none"
                     xmlns="http://www.w3.org/2000/svg"
-                    className="text-[#48484A]"
+                    className="text-[#2563eb]"
                   >
                     <path
                       d="M12 2L2 7L12 12L22 7L12 2Z"

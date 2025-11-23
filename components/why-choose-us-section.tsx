@@ -33,9 +33,9 @@ const technologies = [
 
 export function WhyChooseUsSection() {
   return (
-    <section className="bg-slate-100 py-[40px] sm:py-[60px] md:py-[80px] lg:py-[100px]">
-      <div className="container mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <div className="grid md:grid-cols-2 gap-8 md:gap-12 lg:gap-16 items-center">
+    <section className="bg-slate-100 py-[20px] sm:py-[35px] md:py-[50px] lg:py-[64px] xl:py-[80px]">
+      <div className="container mx-auto max-w-7xl px-4 sm:px-6 md:px-8 lg:px-12 xl:px-16 2xl:px-20">
+        <div className="grid md:grid-cols-2 gap-8 md:gap-12 lg:gap-16 xl:gap-20 items-center">
           {/* Left Column - Text Content */}
           <motion.div
             initial={{ opacity: 0, x: -20 }}
@@ -50,7 +50,7 @@ export function WhyChooseUsSection() {
             </h2>
 
             {/* Description */}
-            <p className="text-[14px] md:text-[16px] font-normal text-[#48484A] leading-[24px] sm:leading-[28px] md:leading-[32px]">
+            <p className="text-[14px] md:text-[16px] font-normal text-[#1e3a5f] leading-[24px] sm:leading-[28px] md:leading-[32px]">
               We&apos;re not just here to fix problems—we&apos;re your long-term
               partners. When you succeed, we succeed. That&apos;s why we&apos;re
               invested in your growth every step of the way.

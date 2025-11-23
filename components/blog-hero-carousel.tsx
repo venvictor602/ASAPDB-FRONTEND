@@ -75,14 +75,14 @@ export function BlogHeroCarousel({ posts }: BlogHeroCarouselProps) {
   }, [emblaApi, isHovered]);
 
   return (
-    <section className="relative bg-[#101010] py-[40px] sm:py-[60px] md:py-[80px] lg:py-[100px] overflow-hidden">
-      <div className="container mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+    <section className="relative bg-[#1e3a5f] py-[20px] sm:py-[35px] md:py-[50px] lg:py-[64px] xl:py-[80px] overflow-hidden">
+      <div className="container mx-auto max-w-7xl px-4 sm:px-6 md:px-8 lg:px-12 xl:px-16 2xl:px-20">
         {/* Header */}
         <div className="text-center mb-8 sm:mb-12 space-y-4">
           <h1 className="text-[32px] sm:text-[40px] md:text-[48px] lg:text-[56px] font-semibold text-white leading-[40px] sm:leading-[48px] md:leading-[56px] lg:leading-[64px]">
             Our Blog
           </h1>
-          <p className="text-gray-300 text-base sm:text-lg md:text-xl font-normal leading-relaxed max-w-2xl mx-auto">
+          <p className="text-[#bfdbfe] text-base sm:text-lg md:text-xl font-normal leading-relaxed max-w-2xl mx-auto">
             Stay updated with database management insights, best practices, and
             industry trends
           </p>
@@ -114,7 +114,7 @@ export function BlogHeroCarousel({ posts }: BlogHeroCarouselProps) {
                         quality={90}
                       />
                       {/* Overlay Gradient */}
-                      <div className="absolute inset-0 bg-linear-to-t from-[#101010] via-[#101010]/80 to-transparent" />
+                      <div className="absolute inset-0 bg-linear-to-t from-[#1e3a5f] via-[#1e3a5f]/80 to-transparent" />
 
                       {/* Content */}
                       <div className="absolute bottom-0 left-0 right-0 p-6 sm:p-8 md:p-12 text-white">
@@ -132,12 +132,12 @@ export function BlogHeroCarousel({ posts }: BlogHeroCarouselProps) {
                           </h2>
 
                           {/* Excerpt */}
-                          <p className="text-gray-200 text-base sm:text-lg md:text-xl font-normal leading-relaxed mb-6 sm:mb-8 max-w-3xl">
+                          <p className="text-white text-base sm:text-lg md:text-xl font-normal leading-relaxed mb-6 sm:mb-8 max-w-3xl">
                             {post.excerpt}
                           </p>
 
                           {/* Meta Information */}
-                          <div className="flex flex-wrap items-center gap-4 sm:gap-6 text-sm sm:text-base text-gray-300">
+                          <div className="flex flex-wrap items-center gap-4 sm:gap-6 text-sm sm:text-base text-[#bfdbfe]">
                             <div className="flex items-center gap-2">
                               <User className="w-4 h-4 sm:w-5 sm:h-5" />
                               <span className="font-medium">{post.author}</span>
@@ -154,7 +154,7 @@ export function BlogHeroCarousel({ posts }: BlogHeroCarouselProps) {
 
                           {/* Read More Button */}
                           <div className="mt-6 sm:mt-8">
-                            <span className="inline-flex items-center gap-2 bg-white text-[#101010] px-6 py-3 rounded-[8px] font-semibold text-sm sm:text-base hover:bg-gray-100 transition-colors">
+                            <span className="inline-flex items-center gap-2 bg-white text-[#2563eb] px-6 py-3 rounded-[8px] font-semibold text-sm sm:text-base hover:bg-gray-100 transition-colors">
                               Read Article
                               <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5" />
                             </span>
@@ -171,14 +171,14 @@ export function BlogHeroCarousel({ posts }: BlogHeroCarouselProps) {
           {/* Navigation Buttons */}
           <button
             onClick={scrollPrev}
-            className="absolute left-4 sm:left-6 top-1/2 -translate-y-1/2 z-10 bg-white/90 hover:bg-white text-[#101010] p-3 rounded-full shadow-lg transition-all hover:scale-110"
+            className="absolute left-4 sm:left-6 top-1/2 -translate-y-1/2 z-10 bg-white/90 hover:bg-white text-[#2563eb] p-3 rounded-full shadow-lg transition-all hover:scale-110"
             aria-label="Previous slide"
           >
             <ArrowLeft className="w-5 h-5 sm:w-6 sm:h-6" />
           </button>
           <button
             onClick={scrollNext}
-            className="absolute right-4 sm:right-6 top-1/2 -translate-y-1/2 z-10 bg-white/90 hover:bg-white text-[#101010] p-3 rounded-full shadow-lg transition-all hover:scale-110"
+            className="absolute right-4 sm:right-6 top-1/2 -translate-y-1/2 z-10 bg-white/90 hover:bg-white text-[#2563eb] p-3 rounded-full shadow-lg transition-all hover:scale-110"
             aria-label="Next slide"
           >
             <ArrowRight className="w-5 h-5 sm:w-6 sm:h-6" />

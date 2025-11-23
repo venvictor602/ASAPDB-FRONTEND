@@ -36,7 +36,7 @@ export function ScrollIndicator() {
       {/* Scroll Progress Bar */}
       <div className="fixed top-0 left-0 right-0 h-1 bg-gray-200 z-50">
         <motion.div
-          className="h-full bg-[#101010]"
+          className="h-full bg-[#2563eb]"
           style={{ width: `${scrollProgress}%` }}
           initial={{ width: 0 }}
           animate={{ width: `${scrollProgress}%` }}
@@ -52,7 +52,7 @@ export function ScrollIndicator() {
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.8, y: 20 }}
             onClick={scrollToTop}
-            className="fixed bottom-8 right-8 z-50 w-12 h-12 sm:w-14 sm:h-14 bg-[#101010] text-white rounded-full shadow-lg hover:bg-[#262626] transition-colors flex items-center justify-center group"
+            className="fixed bottom-8 right-8 z-50 w-12 h-12 sm:w-14 sm:h-14 bg-[#2563eb] text-white rounded-full shadow-lg hover:bg-[#1d4ed8] transition-colors flex items-center justify-center group"
             aria-label="Scroll to top"
           >
             <ArrowUp className="w-5 h-5 sm:w-6 sm:h-6 group-hover:-translate-y-1 transition-transform" />

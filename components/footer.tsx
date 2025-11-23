@@ -22,9 +22,9 @@ export function Footer() {
   };
 
   return (
-    <footer className="bg-[#101010] text-white py-[40px] md:py-[80px] space-y-[40px] md:space-y-[80px]">
+    <footer className="bg-[#1e3a5f] text-white py-[40px] md:py-[80px] space-y-[40px] md:space-y-[80px]">
       {/* Top Section */}
-      <div className=" bg-[#262626] rounded-[16px] max-w-7xl sm:mx-auto mx-2 p-4 sm:p-6 lg:p-[45px]">
+      <div className=" bg-[#2563eb] rounded-[16px] max-w-7xl sm:mx-auto mx-2 p-4 sm:p-6 lg:p-[45px]">
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 items-start gap-8 sm:gap-12">
           {/* Quick Links */}
           <div className=" space-y-[16px]">
@@ -191,7 +191,7 @@ export function Footer() {
             </div>
 
             {/* Newsletter Signup */}
-            <div className="bg-[#262626] rounded-[24px] p-[20px] sm:p-[24px] space-y-[24px] col-span-2">
+            <div className="bg-[#2563eb] rounded-[24px] p-[20px] sm:p-[24px] space-y-[24px] col-span-2">
               <p className="text-white text-sm sm:text-base font-normal leading-relaxed">
                 Sign up for our newsletter and join the growing ASAP DBA
                 community.
@@ -205,7 +205,7 @@ export function Footer() {
                   placeholder="First name"
                   value={firstName}
                   onChange={(e) => setFirstName(e.target.value)}
-                  className="bg-[#1A1A1A] border border-[#48484A] rounded-[8px] px-4 py-3 text-white placeholder-gray-400 text-sm sm:text-base focus:outline-none focus:border-white transition-colors flex-1"
+                  className="bg-white border border-[#93c5fd] rounded-[8px] px-4 py-3 text-[#1e3a5f] placeholder-[#93c5fd] text-sm sm:text-base focus:outline-none focus:border-[#2563eb] transition-colors flex-1"
                   required
                 />
                 <input
@@ -213,13 +213,13 @@ export function Footer() {
                   placeholder="Email"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
-                  className="bg-[#1A1A1A] border border-[#48484A] rounded-[8px] px-4 py-3 text-white placeholder-gray-400 text-sm sm:text-base focus:outline-none focus:border-white transition-colors flex-1"
+                  className="bg-white border border-[#93c5fd] rounded-[8px] px-4 py-3 text-[#1e3a5f] placeholder-[#93c5fd] text-sm sm:text-base focus:outline-none focus:border-[#2563eb] transition-colors flex-1"
                   required
                 />
                 <button
                   type="submit"
                   disabled={!isFormValid}
-                  className="bg-white text-[#101010] px-6 py-3 rounded-[8px] font-semibold text-sm sm:text-base hover:bg-gray-100 transition-colors whitespace-nowrap disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:bg-white"
+                  className="bg-white text-[#2563eb] px-6 py-3 rounded-[8px] font-semibold text-sm sm:text-base hover:bg-[#f0f5ff] transition-colors whitespace-nowrap disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:bg-white"
                 >
                   Subscribe
                 </button>
@@ -228,7 +228,7 @@ export function Footer() {
           </div>
 
           {/* Copyright */}
-          <div className="mt-8 sm:mt-12 pt-6 sm:pt-8 border-t border-[#262626] flex flex-col sm:flex-row items-center justify-between gap-4 text-[12px] text-[#F5F6F7] font-normal">
+          <div className="mt-8 sm:mt-12 pt-6 sm:pt-8 border-t border-[#3b82f6] flex flex-col sm:flex-row items-center justify-between gap-4 text-[12px] text-white font-normal">
             <p>© 2024 ASAP DBA. All rights reserved.</p>
             <div className="flex items-center gap-4 sm:gap-6">
               <Link

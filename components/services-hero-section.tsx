@@ -6,15 +6,15 @@ import Link from "next/link";
 
 export function ServicesHeroSection() {
   return (
-    <section className="bg-white py-[40px] sm:py-[60px] md:py-[80px] lg:py-[100px]">
-      <div className="container mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+    <section className="bg-white py-[20px] sm:py-[35px] md:py-[50px] lg:py-[64px] xl:py-[80px]">
+      <div className="container mx-auto max-w-7xl px-4 sm:px-6 md:px-8 lg:px-12 xl:px-16 2xl:px-20">
         <div className="max-w-4xl mx-auto text-center space-y-8 sm:space-y-10 md:space-y-12">
           {/* Main Heading */}
           <motion.h1
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
-            className="text-[32px] sm:text-[40px] md:text-[48px] lg:text-[56px] font-semibold text-[#48484A] leading-[40px] sm:leading-[48px] md:leading-[56px] lg:leading-[64px]"
+            className="text-[32px] sm:text-[40px] md:text-[48px] lg:text-[56px] font-semibold text-[#1e3a5f] leading-[40px] sm:leading-[48px] md:leading-[56px] lg:leading-[64px]"
           >
             Expert Database & Cloud Solutions for a Reliable, High-Performing
             Business
@@ -42,7 +42,7 @@ export function ServicesHeroSection() {
               <motion.button
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
-                className="bg-[#101010] text-white px-6 py-[12px] sm:px-8 sm:py-[14px] md:px-10 md:py-[16px] rounded-[8px] font-semibold text-[14px] sm:text-[16px] md:text-[18px] leading-[20px] sm:leading-[24px] hover:bg-[#202020] transition-colors cursor-pointer"
+                className="bg-[#2563eb] text-white px-6 py-[12px] sm:px-8 sm:py-[14px] md:px-10 md:py-[16px] rounded-[8px] font-semibold text-[14px] sm:text-[16px] md:text-[18px] leading-[20px] sm:leading-[24px] hover:bg-[#1d4ed8] transition-colors cursor-pointer"
               >
                 Speak With an Expert
               </motion.button>
