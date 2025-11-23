@@ -22,9 +22,9 @@ export function Footer() {
   };
 
   return (
-    <footer className="bg-[#1e3a5f] text-white py-[40px] md:py-[80px] space-y-[40px] md:space-y-[80px]">
+    <footer className="bg-[#262626] text-white py-[40px] md:py-[80px] space-y-[40px] md:space-y-[80px]">
       {/* Top Section */}
-      <div className="bg-[#2563eb] rounded-[16px] max-w-7xl sm:mx-auto mx-2 p-4 sm:p-6 lg:p-[45px] shadow-lg">
+      <div className="bg-[#1e3a5f] rounded-[16px] max-w-7xl sm:mx-auto mx-2 p-4 sm:p-6 lg:p-[45px] shadow-lg">
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 items-start gap-8 sm:gap-12">
           {/* Quick Links */}
           <div className=" space-y-[16px]">
@@ -191,7 +191,7 @@ export function Footer() {
             </div>
 
             {/* Newsletter Signup */}
-            <div className="bg-[#2563eb] rounded-[24px] p-[20px] sm:p-[24px] space-y-[24px] col-span-2 shadow-lg border border-[#3b82f6]">
+            <div className="bg-[#1e3a5f] rounded-[24px] p-[20px] sm:p-[24px] space-y-[24px] col-span-2 shadow-lg border border-[#2563eb]">
               <p className="text-white text-sm sm:text-base font-normal leading-relaxed">
                 Sign up for our newsletter and join the growing ASAP DBA
                 community.
@@ -228,7 +228,7 @@ export function Footer() {
           </div>
 
           {/* Copyright */}
-          <div className="mt-8 sm:mt-12 pt-6 sm:pt-8 border-t border-[#3b82f6] flex flex-col sm:flex-row items-center justify-between gap-4 text-[12px] text-white font-normal">
+          <div className="mt-8 sm:mt-12 pt-6 sm:pt-8 border-t border-[#2563eb] flex flex-col sm:flex-row items-center justify-between gap-4 text-[12px] text-white font-normal">
             <p>© 2024 ASAP DBA. All rights reserved.</p>
             <div className="flex items-center gap-4 sm:gap-6">
               <Link
