@@ -70,45 +70,29 @@ export function HeroSection() {
       <section
         className="relative py-[20px] sm:py-[35px] md:py-[50px] lg:py-[64px] xl:py-[80px] overflow-hidden"
         style={{
-          background: `linear-gradient(to bottom right, var(--hero-bg-start), var(--hero-bg-mid), var(--hero-bg-end))`,
+          background: `
+            linear-gradient(to bottom right, var(--hero-bg-start), var(--hero-bg-mid), var(--hero-bg-end)),
+            url("data:image/svg+xml,%3Csvg width='100' height='100' xmlns='http://www.w3.org/2000/svg'%3E%3Cdefs%3E%3Cpattern id='grid' width='100' height='100' patternUnits='userSpaceOnUse'%3E%3Cpath d='M 100 0 L 0 0 0 100' fill='none' stroke='%232563eb' stroke-width='0.5' opacity='0.08'/%3E%3C/pattern%3E%3C/defs%3E%3Crect width='100%25' height='100%25' fill='url(%23grid)'/%3E%3C/svg%3E"),
+            linear-gradient(90deg, transparent 0%, rgba(37, 99, 235, 0.06) 50%, transparent 100%),
+            linear-gradient(0deg, transparent 0%, rgba(37, 99, 235, 0.04) 50%, transparent 100%),
+            linear-gradient(to right, rgba(37, 99, 235, 0.05) 1px, transparent 1px),
+            linear-gradient(to bottom, rgba(37, 99, 235, 0.05) 1px, transparent 1px),
+            radial-gradient(ellipse at top right, rgba(91, 141, 239, 0.06) 0%, transparent 50%),
+            radial-gradient(ellipse at bottom left, rgba(139, 92, 246, 0.04) 0%, transparent 50%)
+          `,
+          backgroundSize: `
+            cover,
+            60px 60px,
+            200px 200px,
+            200px 200px,
+            80px 80px,
+            80px 80px,
+            cover,
+            cover
+          `,
+          backgroundPosition: "center",
         }}
       >
-        {/* Workstation-style background pattern */}
-        <div
-          className="absolute inset-0 opacity-[0.03]"
-          style={{
-            backgroundImage: `url("data:image/svg+xml,%3Csvg width='100' height='100' xmlns='http://www.w3.org/2000/svg'%3E%3Cdefs%3E%3Cpattern id='grid' width='100' height='100' patternUnits='userSpaceOnUse'%3E%3Cpath d='M 100 0 L 0 0 0 100' fill='none' stroke='%232d3748' stroke-width='1'/%3E%3C/pattern%3E%3C/defs%3E%3Crect width='100%25' height='100%25' fill='url(%23grid)'/%3E%3C/svg%3E")`,
-            backgroundSize: "60px 60px",
-          }}
-        ></div>
-
-        {/* Subtle code/terminal lines pattern */}
-        <div
-          className="absolute inset-0 opacity-[0.02]"
-          style={{
-            backgroundImage: `linear-gradient(90deg, transparent 0%, rgba(45, 55, 72, 0.1) 50%, transparent 100%), linear-gradient(0deg, transparent 0%, rgba(45, 55, 72, 0.05) 50%, transparent 100%)`,
-            backgroundSize: "200px 200px, 200px 200px",
-          }}
-        ></div>
-
-        {/* Soft radial gradient overlay for depth */}
-        <div
-          className="absolute inset-0"
-          style={{
-            background: `radial-gradient(ellipse at top right, rgba(91, 141, 239, 0.06) 0%, transparent 50%), radial-gradient(ellipse at bottom left, rgba(139, 92, 246, 0.04) 0%, transparent 50%)`,
-          }}
-        ></div>
-
-        {/* Subtle grid overlay */}
-        <div
-          className="absolute inset-0 opacity-[0.015]"
-          style={{
-            backgroundImage:
-              "linear-gradient(to right, rgba(45, 55, 72, 0.1) 1px, transparent 1px), linear-gradient(to bottom, rgba(45, 55, 72, 0.1) 1px, transparent 1px)",
-            backgroundSize: "80px 80px",
-          }}
-        ></div>
-
         <div className="container relative z-10 mx-auto max-w-7xl px-4 sm:px-6 md:px-8 lg:px-12 xl:px-16 2xl:px-20">
           <div className="grid md:grid-cols-2 gap-8 md:gap-12 lg:gap-16 xl:gap-20 items-center">
             {/* Left Content */}

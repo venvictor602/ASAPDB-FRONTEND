@@ -24,18 +24,18 @@ export function Footer() {
   return (
     <footer className="bg-[#1e3a5f] text-white py-[40px] md:py-[80px] space-y-[40px] md:space-y-[80px]">
       {/* Top Section */}
-      <div className=" bg-[#2563eb] rounded-[16px] max-w-7xl sm:mx-auto mx-2 p-4 sm:p-6 lg:p-[45px]">
+      <div className="bg-white rounded-[16px] max-w-7xl sm:mx-auto mx-2 p-4 sm:p-6 lg:p-[45px] shadow-lg">
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 items-start gap-8 sm:gap-12">
           {/* Quick Links */}
           <div className=" space-y-[16px]">
-            <h3 className="text-white text-lg sm:text-xl font-semibold">
+            <h3 className="text-[#1e3a5f] text-lg sm:text-xl font-semibold">
               Quick Links
             </h3>
             <ul className="space-y-3 sm:space-y-[16px] font-normal">
               <li>
                 <Link
                   href="/services"
-                  className="text-[#FFFFFF] transition-colors text-sm sm:text-base"
+                  className="text-[#3b82f6] hover:text-[#2563eb] transition-colors text-sm sm:text-base"
                 >
                   Services
                 </Link>
@@ -43,7 +43,7 @@ export function Footer() {
               <li>
                 <Link
                   href="/portfolio"
-                  className="text-[#FFFFFF] transition-colors text-sm sm:text-base"
+                  className="text-[#3b82f6] hover:text-[#2563eb] transition-colors text-sm sm:text-base"
                 >
                   Portfolio
                 </Link>
@@ -51,7 +51,7 @@ export function Footer() {
               <li>
                 <Link
                   href="/blog"
-                  className="text-[#FFFFFF] transition-colors text-sm sm:text-base"
+                  className="text-[#3b82f6] hover:text-[#2563eb] transition-colors text-sm sm:text-base"
                 >
                   Blog
                 </Link>
@@ -60,7 +60,7 @@ export function Footer() {
               <li>
                 <Link
                   href="/contact"
-                  className="text-[#FFFFFF] transition-colors text-sm sm:text-base"
+                  className="text-[#3b82f6] hover:text-[#2563eb] transition-colors text-sm sm:text-base"
                 >
                   Contact Us
                 </Link>
@@ -70,10 +70,10 @@ export function Footer() {
 
           {/* Support & Contact */}
           <div className=" space-y-[16px] font-normal">
-            <h3 className="text-white text-lg sm:text-xl font-semibold">
+            <h3 className="text-[#1e3a5f] text-lg sm:text-xl font-semibold">
               Support & Contact
             </h3>
-            <ul className="space-y-3 sm:space-y-4 text-[#FFFFFF] text-sm sm:text-base font-normal">
+            <ul className="space-y-3 sm:space-y-4 text-[#1e3a5f] text-sm sm:text-base font-normal">
               <li className="">Opening Hours: Sun - Sat, 24/7</li>
               <li>
                 <a href="tel:+2349072211222" className=" transition-colors">
@@ -191,8 +191,8 @@ export function Footer() {
             </div>
 
             {/* Newsletter Signup */}
-            <div className="bg-[#2563eb] rounded-[24px] p-[20px] sm:p-[24px] space-y-[24px] col-span-2">
-              <p className="text-white text-sm sm:text-base font-normal leading-relaxed">
+            <div className="bg-white rounded-[24px] p-[20px] sm:p-[24px] space-y-[24px] col-span-2 shadow-lg border border-[#dbeafe]">
+              <p className="text-[#1e3a5f] text-sm sm:text-base font-normal leading-relaxed">
                 Sign up for our newsletter and join the growing ASAP DBA
                 community.
               </p>
@@ -219,7 +219,7 @@ export function Footer() {
                 <button
                   type="submit"
                   disabled={!isFormValid}
-                  className="bg-white text-[#2563eb] px-6 py-3 rounded-[8px] font-semibold text-sm sm:text-base hover:bg-[#f0f5ff] transition-colors whitespace-nowrap disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:bg-white"
+                  className="bg-[#2563eb] text-white px-6 py-3 rounded-[8px] font-semibold text-sm sm:text-base hover:bg-[#1d4ed8] transition-colors whitespace-nowrap disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:bg-[#2563eb]"
                 >
                   Subscribe
                 </button>
