@@ -136,7 +136,7 @@ export function BlogInteractions({ postId }: BlogInteractionsProps) {
           className={`flex items-center gap-2 px-6 py-3 rounded-[8px] font-semibold text-sm sm:text-base transition-colors ${
             liked
               ? "bg-red-50 text-red-600 border-2 border-red-200"
-              : "bg-[#f0f5ff] text-[#2563eb] border-2 border-transparent hover:bg-[#dbeafe]"
+              : "bg-[#f0f5ff] text-black border-2 border-transparent hover:bg-[#dbeafe]"
           }`}
         >
           <Heart className={`w-5 h-5 ${liked ? "fill-current" : ""}`} />
@@ -150,8 +150,8 @@ export function BlogInteractions({ postId }: BlogInteractionsProps) {
       {/* Comments Section */}
       <div className="space-y-6">
         <div className="flex items-center gap-2">
-          <MessageCircle className="w-5 h-5 sm:w-6 sm:h-6 text-[#2563eb]" />
-          <h3 className="text-[24px] sm:text-[28px] md:text-[32px] font-semibold text-[#1e3a5f]">
+          <MessageCircle className="w-5 h-5 sm:w-6 sm:h-6 text-black" />
+          <h3 className="text-[24px] sm:text-[28px] md:text-[32px] font-semibold text-black">
             Comments ({comments.length})
           </h3>
         </div>
@@ -164,7 +164,7 @@ export function BlogInteractions({ postId }: BlogInteractionsProps) {
               placeholder="Your name"
               value={commentAuthor}
               onChange={(e) => setCommentAuthor(e.target.value)}
-              className="w-full px-4 py-3 border border-[#93c5fd] rounded-[8px] bg-white text-[#1e3a5f] placeholder-[#93c5fd] focus:outline-none focus:border-[#2563eb] transition-colors text-sm sm:text-base"
+              className="w-full px-4 py-3 border border-[#93c5fd] rounded-[8px] bg-white text-black placeholder-[#93c5fd] focus:outline-none focus:border-[#2563eb] transition-colors text-sm sm:text-base"
               required
             />
           </div>
@@ -174,7 +174,7 @@ export function BlogInteractions({ postId }: BlogInteractionsProps) {
               value={newComment}
               onChange={(e) => setNewComment(e.target.value)}
               rows={4}
-              className="flex-1 px-4 py-3 border border-[#93c5fd] rounded-[8px] bg-white text-[#1e3a5f] placeholder-[#93c5fd] focus:outline-none focus:border-[#2563eb] transition-colors resize-none text-sm sm:text-base"
+              className="flex-1 px-4 py-3 border border-[#93c5fd] rounded-[8px] bg-white text-black placeholder-[#93c5fd] focus:outline-none focus:border-[#2563eb] transition-colors resize-none text-sm sm:text-base"
               required
             />
             <motion.button
@@ -192,7 +192,7 @@ export function BlogInteractions({ postId }: BlogInteractionsProps) {
         {/* Comments List */}
         <div className="space-y-6">
           {comments.length === 0 ? (
-            <p className="text-[#3b82f6] text-sm sm:text-base">
+            <p className="text-black text-sm sm:text-base">
               No comments yet. Be the first to comment!
             </p>
           ) : (
@@ -258,18 +258,18 @@ function CommentItem({
             {comment.author.charAt(0).toUpperCase()}
           </div>
           <div>
-            <p className="font-semibold text-[#1e3a5f] text-sm sm:text-base">
+            <p className="font-semibold text-black text-sm sm:text-base">
               {comment.author}
             </p>
             <p className="text-[#93c5fd] text-xs sm:text-sm">{comment.date}</p>
           </div>
         </div>
-        <p className="text-[#1e3a5f] text-sm sm:text-base leading-relaxed">
+        <p className="text-black text-sm sm:text-base leading-relaxed">
           {comment.content}
         </p>
         <button
           onClick={() => onReply(comment.id)}
-          className="text-[#3b82f6] cursor-pointer hover:text-[#2563eb] text-xs sm:text-sm font-medium transition-colors"
+          className="text-black cursor-pointer hover:text-[#2563eb] text-xs sm:text-sm font-medium transition-colors"
         >
           Reply
         </button>
@@ -289,7 +289,7 @@ function CommentItem({
             placeholder="Your name"
             value={replyAuthor}
             onChange={(e) => onReplyAuthorChange(e.target.value)}
-            className="w-full px-4 py-2 border border-[#93c5fd] rounded-[8px] bg-white text-[#1e3a5f] placeholder-[#93c5fd] focus:outline-none focus:border-[#2563eb] transition-colors text-sm sm:text-base"
+            className="w-full px-4 py-2 border border-[#93c5fd] rounded-[8px] bg-white text-black placeholder-[#93c5fd] focus:outline-none focus:border-[#2563eb] transition-colors text-sm sm:text-base"
             required
           />
           <div className="flex gap-3">
@@ -298,7 +298,7 @@ function CommentItem({
               value={replyContent}
               onChange={(e) => onReplyContentChange(e.target.value)}
               rows={3}
-              className="flex-1 px-4 py-2 border border-[#93c5fd] rounded-[8px] bg-white text-[#1e3a5f] placeholder-[#93c5fd] focus:outline-none focus:border-[#2563eb] transition-colors resize-none text-sm sm:text-base"
+              className="flex-1 px-4 py-2 border border-[#93c5fd] rounded-[8px] bg-white text-black placeholder-[#93c5fd] focus:outline-none focus:border-[#2563eb] transition-colors resize-none text-sm sm:text-base"
               required
             />
             <div className="flex flex-col gap-2">
@@ -314,7 +314,7 @@ function CommentItem({
               <button
                 type="button"
                 onClick={onCancelReply}
-                className="px-4 py-2 border border-[#93c5fd] rounded-[8px] text-[#2563eb] hover:bg-[#f0f5ff] transition-colors text-sm font-medium"
+                className="px-4 py-2 border border-[#93c5fd] rounded-[8px] text-black hover:bg-[#f0f5ff] transition-colors text-sm font-medium"
               >
                 Cancel
               </button>
@@ -336,13 +336,13 @@ function CommentItem({
                   {reply.author.charAt(0).toUpperCase()}
                 </div>
                 <div>
-                  <p className="font-semibold text-[#1e3a5f] text-xs sm:text-sm">
+                  <p className="font-semibold text-black text-xs sm:text-sm">
                     {reply.author}
                   </p>
                   <p className="text-[#93c5fd] text-xs">{reply.date}</p>
                 </div>
               </div>
-              <p className="text-[#1e3a5f] text-sm leading-relaxed">
+              <p className="text-black text-sm leading-relaxed">
                 {reply.content}
               </p>
             </div>

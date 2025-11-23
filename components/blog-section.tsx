@@ -20,10 +20,10 @@ export function BlogSection() {
           transition={{ duration: 0.6 }}
           className="text-center mb-12 sm:mb-16 md:mb-20 space-y-4"
         >
-          <h2 className="text-[28px] sm:text-[36px] md:text-[44px] lg:text-[48px] font-semibold text-[#1e3a5f] leading-[36px] sm:leading-[44px] md:leading-[56px] lg:leading-[64px]">
+          <h2 className="text-[28px] sm:text-[36px] md:text-[44px] lg:text-[48px] font-semibold text-black leading-[36px] sm:leading-[44px] md:leading-[56px] lg:leading-[64px]">
             Latest from Our Blog
           </h2>
-          <p className="text-[#3b82f6] text-base sm:text-lg md:text-xl font-normal leading-relaxed max-w-2xl mx-auto">
+          <p className="text-black text-base sm:text-lg md:text-xl font-normal leading-relaxed max-w-2xl mx-auto">
             Stay updated with database management insights, best practices, and
             industry trends
           </p>
@@ -57,7 +57,7 @@ export function BlogSection() {
               <div className="p-4 sm:p-5 md:p-6 flex flex-col flex-grow space-y-4">
                 {/* Category & Date */}
                 <div className="flex items-center justify-between text-xs sm:text-sm text-[#93c5fd]">
-                  <span className="px-2 py-1 bg-[#f0f5ff] rounded text-[#2563eb] font-medium">
+                  <span className="px-2 py-1 bg-[#f0f5ff] rounded text-black font-medium">
                     {post.category}
                   </span>
                   <div className="flex items-center gap-1">
@@ -67,12 +67,12 @@ export function BlogSection() {
                 </div>
 
                 {/* Title */}
-                <h3 className="text-[#1e3a5f] text-lg sm:text-xl md:text-2xl font-semibold leading-tight">
+                <h3 className="text-black text-lg sm:text-xl md:text-2xl font-semibold leading-tight">
                   {post.title}
                 </h3>
 
                 {/* Excerpt */}
-                <p className="text-[#3b82f6] text-sm sm:text-base font-normal leading-relaxed flex-grow">
+                <p className="text-black text-sm sm:text-base font-normal leading-relaxed flex-grow">
                   {post.excerpt}
                 </p>
 
@@ -84,7 +84,7 @@ export function BlogSection() {
                 {/* Read More Link */}
                 <Link
                   href={`/blog/${post.id}`}
-                  className="inline-flex items-center gap-2 text-[#2563eb] font-semibold text-sm sm:text-base hover:text-[#1d4ed8] transition-colors group"
+                  className="inline-flex items-center gap-2 text-black font-semibold text-sm sm:text-base hover:text-[#2563eb] transition-colors group"
                 >
                   Read more
                   <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />

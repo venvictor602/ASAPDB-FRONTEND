@@ -90,17 +90,11 @@ export function HeroSection() {
               transition={{ duration: 0.6 }}
               className="space-y-6 sm:space-y-7 md:space-y-8"
             >
-              <h1
-                className="text-[44px] lg:text-[50px] xl:text-[56px] font-semibold leading-[56px] lg:leading-[64px] xl:leading-[70px]"
-                style={{ color: "var(--hero-text-primary)" }}
-              >
+              <h1 className="text-[44px] lg:text-[50px] xl:text-[56px] font-semibold text-black leading-[56px] lg:leading-[64px] xl:leading-[70px]">
                 {displayedText}
               </h1>
 
-              <p
-                className="text-base sm:text-lg md:text-xl font-normal leading-[24px] sm:leading-[28px] md:leading-[32px]"
-                style={{ color: "var(--hero-text-secondary)" }}
-              >
+              <p className="text-base sm:text-lg md:text-xl font-normal text-black leading-[24px] sm:leading-[28px] md:leading-[32px]">
                 Keep your databases running smoothly while you focus on what
                 matters most. We handle monitoring, optimization, and
                 migrations—so you don&apos;t have to worry about downtime or
@@ -140,10 +134,7 @@ export function HeroSection() {
 
               {/* Compatible With Section */}
               <div className="space-y-3 sm:space-y-[12px] pt-2 sm:pt-4">
-                <p
-                  className="text-sm sm:text-base md:text-[16px] font-normal"
-                  style={{ color: "var(--text-tertiary)" }}
-                >
+                <p className="text-sm sm:text-base md:text-[16px] font-normal text-black">
                   Compatible with
                 </p>
                 <div className="flex items-center gap-3 sm:gap-4 md:gap-5 lg:gap-6 flex-wrap">

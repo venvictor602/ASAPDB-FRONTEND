@@ -122,10 +122,10 @@ export function TestimonialsSection() {
           transition={{ duration: 0.6 }}
           className="text-center space-y-4"
         >
-          <p className="text-[#1e3a5f] text-sm sm:text-base md:text-[20px] font-normal">
+          <p className="text-black text-sm sm:text-base md:text-[20px] font-normal">
             2,157 people have said how good Asap DBA
           </p>
-          <h2 className="text-[28px] sm:text-[36px] md:text-[44px] lg:text-[48px] font-semibold text-[#1e3a5f] leading-[36px] sm:leading-[44px] md:leading-[56px] lg:leading-[64px]">
+          <h2 className="text-[28px] sm:text-[36px] md:text-[44px] lg:text-[48px] font-semibold text-black leading-[36px] sm:leading-[44px] md:leading-[56px] lg:leading-[64px]">
             Our happy clients say about us
           </h2>
         </motion.div>
@@ -182,7 +182,7 @@ export function TestimonialsSection() {
                     </div>
 
                     {/* Testimonial Text */}
-                    <p className="text-[#1e3a5f] text-sm sm:text-base font-normal leading-relaxed mb-6 sm:mb-8 grow">
+                    <p className="text-black text-sm sm:text-base font-normal leading-relaxed mb-6 sm:mb-8 grow">
                       {testimonial.text}
                     </p>
 
@@ -200,10 +200,10 @@ export function TestimonialsSection() {
                         />
                       </div>
                       <div>
-                        <h4 className="text-[#1e3a5f] text-sm sm:text-lg font-semibold">
+                        <h4 className="text-black text-sm sm:text-lg font-semibold">
                           {testimonial.name}
                         </h4>
-                        <p className="text-[#3b82f6] text-xs sm:text-base font-normal">
+                        <p className="text-black text-xs sm:text-base font-normal">
                           {testimonial.role}
                         </p>
                       </div>

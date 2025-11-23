@@ -57,10 +57,10 @@ export function FaqSection() {
             transition={{ duration: 0.6 }}
             className="text-center mb-12 sm:mb-16 md:mb-20 space-y-4"
           >
-            <h2 className="text-[28px] sm:text-[36px] md:text-[44px] lg:text-[48px] font-semibold text-[#1e3a5f] leading-[36px] sm:leading-[44px] md:leading-[56px] lg:leading-[64px]">
+            <h2 className="text-[28px] sm:text-[36px] md:text-[44px] lg:text-[48px] font-semibold text-black leading-[36px] sm:leading-[44px] md:leading-[56px] lg:leading-[64px]">
               Frequently Asked Questions
             </h2>
-            <p className="text-[#3b82f6] text-base sm:text-lg md:text-xl font-normal leading-relaxed max-w-2xl mx-auto">
+            <p className="text-black text-base sm:text-lg md:text-xl font-normal leading-relaxed max-w-2xl mx-auto">
               Find answers to common questions about our database management
               services
             </p>
@@ -81,11 +81,11 @@ export function FaqSection() {
                   onClick={() => toggleFaq(index)}
                   className="w-full px-4 sm:px-6 py-4 sm:py-5 flex items-center justify-between text-left gap-4 hover:bg-gray-50 transition-colors"
                 >
-                  <h3 className="text-[#1e3a5f] text-base sm:text-lg md:text-xl font-semibold leading-relaxed pr-4">
+                  <h3 className="text-black text-base sm:text-lg md:text-xl font-semibold leading-relaxed pr-4">
                     {faq.question}
                   </h3>
                   <ChevronDown
-                    className={`w-5 h-5 sm:w-6 sm:h-6 text-[#2563eb] shrink-0 transition-transform duration-300 ${
+                    className={`w-5 h-5 sm:w-6 sm:h-6 text-black shrink-0 transition-transform duration-300 ${
                       openIndex === index ? "rotate-180" : ""
                     }`}
                   />
@@ -98,7 +98,7 @@ export function FaqSection() {
                   }`}
                 >
                   <div className="px-4 sm:px-6 pb-4 sm:pb-5">
-                    <p className="text-[#3b82f6] text-sm sm:text-base font-normal leading-relaxed">
+                    <p className="text-black text-sm sm:text-base font-normal leading-relaxed">
                       {faq.answer}
                     </p>
                   </div>
@@ -115,7 +115,7 @@ export function FaqSection() {
             transition={{ duration: 0.6, delay: 0.6 }}
             className="text-center mt-12 sm:mt-16"
           >
-            <p className="text-[#3b82f6] text-sm sm:text-base mb-4 sm:mb-6">
+            <p className="text-black text-sm sm:text-base mb-4 sm:mb-6">
               Still have questions?
             </p>
             <Link href="/contact">

@@ -154,7 +154,7 @@ export function BlogHeroCarousel({ posts }: BlogHeroCarouselProps) {
 
                           {/* Read More Button */}
                           <div className="mt-6 sm:mt-8">
-                            <span className="inline-flex items-center gap-2 bg-white text-[#2563eb] px-6 py-3 rounded-[8px] font-semibold text-sm sm:text-base hover:bg-gray-100 transition-colors">
+                            <span className="inline-flex items-center gap-2 bg-white text-black px-6 py-3 rounded-[8px] font-semibold text-sm sm:text-base hover:bg-gray-100 transition-colors">
                               Read Article
                               <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5" />
                             </span>
@@ -171,14 +171,14 @@ export function BlogHeroCarousel({ posts }: BlogHeroCarouselProps) {
           {/* Navigation Buttons */}
           <button
             onClick={scrollPrev}
-            className="absolute left-4 sm:left-6 top-1/2 -translate-y-1/2 z-10 bg-white/90 hover:bg-white text-[#2563eb] p-3 rounded-full shadow-lg transition-all hover:scale-110"
+            className="absolute left-4 sm:left-6 top-1/2 -translate-y-1/2 z-10 bg-white/90 hover:bg-white text-black p-3 rounded-full shadow-lg transition-all hover:scale-110"
             aria-label="Previous slide"
           >
             <ArrowLeft className="w-5 h-5 sm:w-6 sm:h-6" />
           </button>
           <button
             onClick={scrollNext}
-            className="absolute right-4 sm:right-6 top-1/2 -translate-y-1/2 z-10 bg-white/90 hover:bg-white text-[#2563eb] p-3 rounded-full shadow-lg transition-all hover:scale-110"
+            className="absolute right-4 sm:right-6 top-1/2 -translate-y-1/2 z-10 bg-white/90 hover:bg-white text-black p-3 rounded-full shadow-lg transition-all hover:scale-110"
             aria-label="Next slide"
           >
             <ArrowRight className="w-5 h-5 sm:w-6 sm:h-6" />

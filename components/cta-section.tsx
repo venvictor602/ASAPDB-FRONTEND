@@ -14,7 +14,7 @@ export function CtaSection() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="text-[24px] sm:text-[30px] md:text-[35px] lg:text-[40px] font-semibold text-[#1e3a5f] text-start mb-[20px] sm:mb-[30px] md:mb-[40px] leading-[30px] sm:leading-[36px] md:leading-[40px] lg:leading-[48px]"
+          className="text-[24px] sm:text-[30px] md:text-[35px] lg:text-[40px] font-semibold text-black text-start mb-[20px] sm:mb-[30px] md:mb-[40px] leading-[30px] sm:leading-[36px] md:leading-[40px] lg:leading-[48px]"
         >
           Ready to go for a spin?
         </motion.h2>
@@ -33,7 +33,7 @@ export function CtaSection() {
               <h3 className="text-[#1e293b] text-xl sm:text-2xl font-semibold">
                 Schedule a call
               </h3>
-              <p className="text-[#3b82f6] text-sm sm:text-base font-normal leading-relaxed">
+              <p className="text-black text-sm sm:text-base font-normal leading-relaxed">
                 Let&apos;s talk about how we can help your business. Schedule a
                 call and we&apos;ll discuss your database needs.
               </p>
@@ -62,7 +62,7 @@ export function CtaSection() {
               <h3 className="text-[#1e293b] text-xl sm:text-2xl font-semibold">
                 Browse our Services
               </h3>
-              <p className="text-[#3b82f6] text-sm sm:text-base font-normal leading-relaxed">
+              <p className="text-black text-sm sm:text-base font-normal leading-relaxed">
                 Explore our services and see how we can help your business.
                 Getting started is simple.
               </p>

@@ -53,11 +53,11 @@ export function PortfolioSection() {
                   transition={{ duration: 0.6, delay: 0.2 }}
                   className={`space-y-6 sm:space-y-8 ${isEven ? "md:order-2" : ""}`}
                 >
-                  <h2 className="text-[32px] sm:text-[40px] md:text-[48px] font-semibold text-[#1e3a5f] leading-[40px] sm:leading-[48px] md:leading-[56px]">
+                  <h2 className="text-[32px] sm:text-[40px] md:text-[48px] font-semibold text-black leading-[40px] sm:leading-[48px] md:leading-[56px]">
                     {project.title}
                   </h2>
 
-                  <p className="text-[16px] sm:text-[18px] md:text-[20px] font-normal text-[#1e3a5f] leading-[24px] sm:leading-[28px] md:leading-[32px]">
+                  <p className="text-[16px] sm:text-[18px] md:text-[20px] font-normal text-black leading-[24px] sm:leading-[28px] md:leading-[32px]">
                     {project.description}
                   </p>
 
@@ -94,7 +94,7 @@ export function PortfolioSection() {
                             <div className="w-3 h-3 rounded-full bg-green-500"></div>
                           </div>
                           <div className="bg-white rounded-b-lg p-4 h-48 flex items-center justify-center">
-                            <p className="text-[#1e3a5f] text-sm font-medium text-center">
+                            <p className="text-black text-sm font-medium text-center">
                               {project.imageAlt}
                             </p>
                           </div>

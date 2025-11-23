@@ -52,7 +52,7 @@ export function ServicesSection() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="text-[28px] sm:text-[36px] md:text-[44px] lg:text-[48px] font-semibold text-[#1e3a5f] text-center mb-[40px] sm:mb-[50px] md:mb-[60px] leading-[36px] sm:leading-[44px] md:leading-[56px] lg:leading-[64px]"
+          className="text-[28px] sm:text-[36px] md:text-[44px] lg:text-[48px] font-semibold text-black text-center mb-[40px] sm:mb-[50px] md:mb-[60px] leading-[36px] sm:leading-[44px] md:leading-[56px] lg:leading-[64px]"
         >
           Why ASAP DBA?
         </motion.h2>
@@ -77,7 +77,7 @@ export function ServicesSection() {
                     viewBox="0 0 24 24"
                     fill="none"
                     xmlns="http://www.w3.org/2000/svg"
-                    className="text-[#2563eb]"
+                    className="text-black"
                   >
                     <path
                       d="M12 2L2 7L12 12L22 7L12 2Z"

@@ -50,7 +50,7 @@ export function WhyChooseUsSection() {
             </h2>
 
             {/* Description */}
-            <p className="text-[14px] md:text-[16px] font-normal text-[#1e3a5f] leading-[24px] sm:leading-[28px] md:leading-[32px]">
+            <p className="text-[14px] md:text-[16px] font-normal text-black leading-[24px] sm:leading-[28px] md:leading-[32px]">
               We&apos;re not just here to fix problems—we&apos;re your long-term
               partners. When you succeed, we succeed. That&apos;s why we&apos;re
               invested in your growth every step of the way.

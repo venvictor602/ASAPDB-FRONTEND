@@ -12,7 +12,7 @@ export function PortfolioHeroSection() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
-            className="text-[32px] sm:text-[40px] md:text-[48px] lg:text-[56px] font-semibold text-[#1e3a5f] leading-[40px] sm:leading-[48px] md:leading-[56px] lg:leading-[70px]"
+            className="text-[32px] sm:text-[40px] md:text-[48px] lg:text-[56px] font-semibold text-black leading-[40px] sm:leading-[48px] md:leading-[56px] lg:leading-[70px]"
           >
             Showcasing Our Expertise Through Real Business Impact
           </motion.h1>
