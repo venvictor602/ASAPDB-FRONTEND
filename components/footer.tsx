@@ -22,9 +22,9 @@ export function Footer() {
   };
 
   return (
-    <footer className="bg-[#262626] text-white py-[40px] md:py-[80px] space-y-[40px] md:space-y-[80px]">
+    <footer className="bg-[#122453] text-white py-[40px] md:py-[80px] space-y-[40px] md:space-y-[80px]">
       {/* Top Section */}
-      <div className="bg-[#1e3a5f] rounded-[16px] max-w-7xl sm:mx-auto mx-2 p-4 sm:p-6 lg:p-[45px] shadow-lg">
+      <div className="bg-[#132B6C] rounded-[16px] max-w-7xl sm:mx-auto mx-2 p-4 sm:p-6 lg:p-[45px] shadow-lg">
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 items-start gap-8 sm:gap-12">
           {/* Quick Links */}
           <div className=" space-y-[16px]">
@@ -178,7 +178,7 @@ export function Footer() {
                   aria-label="Slack"
                 >
                   <Image
-                    src="/assets/Insta.svg"
+                    src="/assets/Instagram.svg"
                     alt="Instagram"
                     width={20}
                     height={20}
@@ -191,8 +191,8 @@ export function Footer() {
             </div>
 
             {/* Newsletter Signup */}
-            <div className="bg-[#1e3a5f] rounded-[24px] p-[20px] sm:p-[24px] space-y-[24px] col-span-2 shadow-lg border border-[#2563eb]">
-              <p className="text-white text-sm sm:text-base font-normal leading-relaxed">
+            <div className="bg-[#FFFFFF] rounded-[24px] p-[20px] sm:p-[24px] space-y-[24px] col-span-2 shadow-lg">
+              <p className="text-[#48484A] text-sm sm:text-base font-normal leading-relaxed">
                 Sign up for our newsletter and join the growing ASAP DBA
                 community.
               </p>
@@ -205,7 +205,7 @@ export function Footer() {
                   placeholder="First name"
                   value={firstName}
                   onChange={(e) => setFirstName(e.target.value)}
-                  className="bg-white border border-[#93c5fd] rounded-[8px] px-4 py-3 text-black placeholder-[#93c5fd] text-sm sm:text-base focus:outline-none focus:border-[#2563eb] transition-colors flex-1"
+                  className="bg-white border border-[#3267ED] rounded-[8px] px-4 py-3 text-black placeholder-[#3267ED] text-sm sm:text-base focus:outline-none focus:border-[#2563eb] transition-colors flex-1"
                   required
                 />
                 <input
@@ -213,13 +213,13 @@ export function Footer() {
                   placeholder="Email"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
-                  className="bg-white border border-[#93c5fd] rounded-[8px] px-4 py-3 text-black placeholder-[#93c5fd] text-sm sm:text-base focus:outline-none focus:border-[#2563eb] transition-colors flex-1"
+                  className="bg-white border border-[#3267ED] rounded-[8px] px-4 py-3 text-black placeholder-[#3267ED] text-sm sm:text-base focus:outline-none focus:border-[#2563eb] transition-colors flex-1"
                   required
                 />
                 <button
                   type="submit"
                   disabled={!isFormValid}
-                  className="bg-white text-black px-6 py-3 rounded-[8px] font-semibold text-sm sm:text-base hover:bg-[#2563eb] hover:text-white transition-colors whitespace-nowrap disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:bg-white disabled:hover:text-black"
+                  className="bg-[#3267ED] text-[#FFFFFF] px-6 py-3 rounded-[8px] font-semibold text-sm sm:text-base hover:bg-[#2563eb] hover:text-white transition-colors whitespace-nowrap disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:bg-white disabled:hover:text-black"
                 >
                   Subscribe
                 </button>
@@ -228,7 +228,7 @@ export function Footer() {
           </div>
 
           {/* Copyright */}
-          <div className="mt-8 sm:mt-12 pt-6 sm:pt-8 border-t border-[#2563eb] flex flex-col sm:flex-row items-center justify-between gap-4 text-[12px] text-white font-normal">
+          <div className="mt-8 sm:mt-12 pt-6 sm:pt-8 border-t border-[#3267ED] flex flex-col sm:flex-row items-center justify-between gap-4 text-[12px] text-white font-normal">
             <p>© 2024 ASAP DBA. All rights reserved.</p>
             <div className="flex items-center gap-4 sm:gap-6">
               <Link
