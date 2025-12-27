@@ -180,4 +180,3 @@ export function ServiceDetailPage({ service }: ServiceDetailPageProps) {
     </div>
   );
 }
-

@@ -78,8 +78,8 @@ export function IndustryDetailPage({ industry }: IndustryDetailPageProps) {
               Common Challenges
             </h2>
             <p className="text-[18px] text-gray-700 max-w-3xl mx-auto">
-              Understanding the unique database challenges in the {industry.title.toLowerCase()}{" "}
-              industry
+              Understanding the unique database challenges in the{" "}
+              {industry.title.toLowerCase()} industry
             </p>
           </motion.div>
 
@@ -182,4 +182,3 @@ export function IndustryDetailPage({ industry }: IndustryDetailPageProps) {
     </div>
   );
 }
-

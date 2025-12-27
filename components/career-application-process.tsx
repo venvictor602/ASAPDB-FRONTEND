@@ -7,22 +7,26 @@ const steps = [
   {
     icon: FileText,
     title: "Apply",
-    description: "Submit your application and resume through our portal or email.",
+    description:
+      "Submit your application and resume through our portal or email.",
   },
   {
     icon: MessageSquare,
     title: "Initial Screening",
-    description: "We'll review your application and may reach out for a brief phone call.",
+    description:
+      "We'll review your application and may reach out for a brief phone call.",
   },
   {
     icon: Users,
     title: "Interview",
-    description: "Meet with our team to discuss your experience and learn about the role.",
+    description:
+      "Meet with our team to discuss your experience and learn about the role.",
   },
   {
     icon: CheckCircle2,
     title: "Offer",
-    description: "If it's a good fit, we'll extend an offer and welcome you to the team!",
+    description:
+      "If it's a good fit, we'll extend an offer and welcome you to the team!",
   },
 ];
 
@@ -85,4 +89,3 @@ export function CareerApplicationProcess() {
     </section>
   );
 }
-

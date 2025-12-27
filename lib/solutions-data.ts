@@ -207,4 +207,3 @@ export function getSolutionBySlug(slug: string): Solution | undefined {
 export function getAllSolutions(): Solution[] {
   return solutions;
 }
-

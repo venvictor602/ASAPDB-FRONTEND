@@ -320,4 +320,3 @@ export function SolutionDetailPage({ solution }: SolutionDetailPageProps) {
     </div>
   );
 }
-

@@ -114,42 +114,49 @@ export const benefits: Benefit[] = [
   {
     icon: "💰",
     title: "Competitive Salary",
-    description: "We offer competitive compensation packages that reflect your skills and experience.",
+    description:
+      "We offer competitive compensation packages that reflect your skills and experience.",
   },
   {
     icon: "🏥",
     title: "Health Insurance",
-    description: "Comprehensive health, dental, and vision insurance for you and your family.",
+    description:
+      "Comprehensive health, dental, and vision insurance for you and your family.",
   },
   {
     icon: "🏖️",
     title: "Flexible PTO",
-    description: "Take time off when you need it. We believe in work-life balance.",
+    description:
+      "Take time off when you need it. We believe in work-life balance.",
   },
   {
     icon: "💻",
     title: "Remote Work",
-    description: "Work from anywhere. We support fully remote and hybrid work arrangements.",
+    description:
+      "Work from anywhere. We support fully remote and hybrid work arrangements.",
   },
   {
     icon: "📚",
     title: "Learning & Development",
-    description: "Annual learning budget for courses, conferences, and certifications.",
+    description:
+      "Annual learning budget for courses, conferences, and certifications.",
   },
   {
     icon: "🎯",
     title: "Career Growth",
-    description: "Clear career paths and opportunities for advancement within the company.",
+    description:
+      "Clear career paths and opportunities for advancement within the company.",
   },
   {
     icon: "⚡",
     title: "Latest Tools",
-    description: "Access to the latest tools, technologies, and resources you need to excel.",
+    description:
+      "Access to the latest tools, technologies, and resources you need to excel.",
   },
   {
     icon: "🤝",
     title: "Team Culture",
-    description: "Join a supportive, collaborative team that values diversity and inclusion.",
+    description:
+      "Join a supportive, collaborative team that values diversity and inclusion.",
   },
 ];
-

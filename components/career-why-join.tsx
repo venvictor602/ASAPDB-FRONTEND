@@ -79,4 +79,3 @@ export function CareerWhyJoin() {
     </section>
   );
 }
-

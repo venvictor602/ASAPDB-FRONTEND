@@ -1,22 +1,27 @@
 "use client";
 
 import { motion } from "framer-motion";
-import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 
 export function CareerHero() {
   return (
-    <section className="relative py-[80px] sm:py-[100px] md:py-[120px] lg:py-[140px] overflow-hidden bg-[#0a1628]">
+    <section
+      className="relative py-[80px] sm:py-[100px] md:py-[120px] lg:py-[140px] overflow-hidden"
+      style={{
+        backgroundImage: "url('/assets/image-section.png')",
+        backgroundSize: "cover",
+        backgroundPosition: "center",
+        backgroundRepeat: "no-repeat",
+      }}
+    >
       {/* Dark Background with Grid Pattern */}
       <div
         className="absolute inset-0"
         style={{
-          background: `
-            linear-gradient(to bottom, #0a1628 0%, #1e293b 50%, #0f172a 100%),
-            url("data:image/svg+xml,%3Csvg width='100' height='100' xmlns='http://www.w3.org/2000/svg'%3E%3Cdefs%3E%3Cpattern id='grid' width='100' height='100' patternUnits='userSpaceOnUse'%3E%3Cpath d='M 100 0 L 0 0 0 100' fill='none' stroke='%232563eb' stroke-width='0.5' opacity='0.1'/%3E%3C/pattern%3E%3C/defs%3E%3Crect width='100%25' height='100%25' fill='url(%23grid)'/%3E%3C/svg%3E")
-          `,
-          backgroundSize: "cover, 80px 80px",
+          backgroundImage: "url('/assets/image-section.png')",
+          backgroundSize: "cover",
           backgroundPosition: "center",
+          backgroundRepeat: "no-repeat",
         }}
       />
 
@@ -81,4 +86,3 @@ export function CareerHero() {
     </section>
   );
 }
-

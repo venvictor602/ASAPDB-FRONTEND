@@ -2,7 +2,13 @@
 
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { MapPin, Briefcase, ChevronDown, ChevronUp, ExternalLink } from "lucide-react";
+import {
+  MapPin,
+  Briefcase,
+  ChevronDown,
+  ChevronUp,
+  ExternalLink,
+} from "lucide-react";
 import type { JobPosition } from "@/lib/career-data";
 import { jobPositions } from "@/lib/career-data";
 
@@ -14,7 +20,10 @@ export function CareerOpenPositions() {
   };
 
   return (
-    <section id="open-positions" className="py-[60px] sm:py-[80px] md:py-[100px] bg-gray-50">
+    <section
+      id="open-positions"
+      className="py-[60px] sm:py-[80px] md:py-[100px] bg-gray-50"
+    >
       <div className="container mx-auto max-w-7xl px-4 sm:px-6 md:px-8 lg:px-12 xl:px-16 2xl:px-20">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -57,7 +66,9 @@ export function CareerOpenPositions() {
                   <div className="flex flex-wrap items-center gap-4 text-gray-600">
                     <div className="flex items-center gap-2">
                       <MapPin className="w-4 h-4" />
-                      <span className="text-sm sm:text-base">{job.location}</span>
+                      <span className="text-sm sm:text-base">
+                        {job.location}
+                      </span>
                     </div>
                     <div className="flex items-center gap-2">
                       <Briefcase className="w-4 h-4" />
@@ -103,7 +114,9 @@ export function CareerOpenPositions() {
                               key={idx}
                               className="flex items-start gap-3 text-gray-700"
                             >
-                              <span className="text-blue-600 mt-1.5 shrink-0">•</span>
+                              <span className="text-blue-600 mt-1.5 shrink-0">
+                                •
+                              </span>
                               <span className="text-[15px] sm:text-[16px]">
                                 {responsibility}
                               </span>
@@ -121,7 +134,9 @@ export function CareerOpenPositions() {
                               key={idx}
                               className="flex items-start gap-3 text-gray-700"
                             >
-                              <span className="text-blue-600 mt-1.5 shrink-0">•</span>
+                              <span className="text-blue-600 mt-1.5 shrink-0">
+                                •
+                              </span>
                               <span className="text-[15px] sm:text-[16px]">
                                 {requirement}
                               </span>
@@ -168,4 +183,3 @@ export function CareerOpenPositions() {
     </section>
   );
 }
-

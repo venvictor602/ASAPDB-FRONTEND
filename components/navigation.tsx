@@ -137,7 +137,7 @@ export function Navigation({
   };
 
   return (
-    <div className="w-full sticky top-0 z-50" style={{ position: 'sticky' }}>
+    <div className="w-full sticky top-0 z-50" style={{ position: "sticky" }}>
       {/* Navigation Bar */}
       <nav
         className={`relative w-full border ${getBorderColor()} ${getBackgroundClass()}`}

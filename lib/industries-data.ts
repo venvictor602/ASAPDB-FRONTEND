@@ -86,8 +86,7 @@ export const industries: Industry[] = [
     id: "legaltech",
     slug: "legaltech",
     title: "LegalTech",
-    description:
-      "Secure database management for legal technology platforms.",
+    description: "Secure database management for legal technology platforms.",
     longDescription:
       "LegalTech platforms require secure, compliant databases to manage sensitive legal documents, case files, and client information. We provide database solutions that ensure data security, confidentiality, and compliance with legal industry standards while maintaining high performance and availability.",
     image: "/assets/image1.png",
@@ -139,4 +138,3 @@ export function getIndustryBySlug(slug: string): Industry | undefined {
 export function getAllIndustries(): Industry[] {
   return industries;
 }
-

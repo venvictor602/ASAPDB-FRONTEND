@@ -134,8 +134,7 @@ export const services: Service[] = [
     id: "security",
     slug: "security",
     title: "Security",
-    description:
-      "Enterprise-level security solutions to protect your data.",
+    description: "Enterprise-level security solutions to protect your data.",
     longDescription:
       "We implement comprehensive security measures to protect your databases from threats and vulnerabilities. Our security services include encryption, access control, compliance management, and regular security audits. We help you meet regulatory requirements and protect sensitive data with industry-standard security practices.",
     image: "/assets/image3.png",
@@ -163,4 +162,3 @@ export function getServiceBySlug(slug: string): Service | undefined {
 export function getAllServices(): Service[] {
   return services;
 }
-

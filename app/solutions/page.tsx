@@ -29,7 +29,8 @@ export const metadata: Metadata = {
     locale: "en_US",
     url: `${siteUrl}/solutions`,
     siteName: "ASAP DBA",
-    title: "Database Solutions - Performance, Security & Scalability | ASAP DBA",
+    title:
+      "Database Solutions - Performance, Security & Scalability | ASAP DBA",
     description:
       "Comprehensive database solutions including performance optimization, 24/7 monitoring, automated backups, cloud management, security, and scalability.",
     images: [
@@ -45,7 +46,8 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     site: "@asapdba",
     creator: "@asapdba",
-    title: "Database Solutions - Performance, Security & Scalability | ASAP DBA",
+    title:
+      "Database Solutions - Performance, Security & Scalability | ASAP DBA",
     description:
       "Comprehensive database solutions for modern businesses. Performance, security, and scalability.",
     images: [`${siteUrl}/assets/Asap-DBA_Logo.png`],
@@ -75,4 +77,3 @@ export default function SolutionsPage() {
     </>
   );
 }
-
