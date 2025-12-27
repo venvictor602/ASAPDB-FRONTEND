@@ -1,12 +1,12 @@
 import type { Metadata } from "next";
 import { HeroSection } from "@/components/hero-section";
-import { FeaturesSection } from "@/components/features-section";
-import { DatabaseManagementSection } from "@/components/database-management-section";
-import { BlogSection } from "@/components/blog-section";
+import { ChoosingDatabaseSection } from "@/components/choosing-database-section";
+import { WhyAsapDbaSection } from "@/components/why-asap-dba-section";
+import { PartnersLogosSection } from "@/components/partners-logos-section";
 import { TestimonialsSection } from "@/components/testimonials-section";
-import { FaqSection } from "@/components/faq-section";
 import { CtaSection } from "@/components/cta-section";
 import { Footer } from "@/components/footer";
+import { OurSolutionsSection } from "@/components/our-solutions-section";
 
 const siteUrl =
   process.env.NEXT_PUBLIC_SITE_URL || "https://asapdba.netlify.app";
@@ -81,11 +81,11 @@ export default function Home() {
   return (
     <div className="min-h-screen bg-white">
       <HeroSection />
-      <FeaturesSection />
-      <DatabaseManagementSection />
-      <BlogSection />
+      <ChoosingDatabaseSection />
+      <WhyAsapDbaSection />
+      <PartnersLogosSection />
+      <OurSolutionsSection />
       <TestimonialsSection />
-      <FaqSection />
       <CtaSection />
       <Footer />
     </div>

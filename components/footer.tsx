@@ -3,247 +3,203 @@
 import { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
+import {
+  Phone,
+  Mail,
+  Facebook,
+  Twitter,
+  Linkedin,
+  Instagram,
+} from "lucide-react";
 
 export function Footer() {
-  const [firstName, setFirstName] = useState("");
   const [email, setEmail] = useState("");
-
-  // Check if form is valid
-  const isFormValid = firstName.trim() !== "" && email.trim() !== "";
 
   const handleSubscribe = (e: React.FormEvent) => {
     e.preventDefault();
-    if (!isFormValid) return;
-
-    // Handle newsletter subscription
-    console.log("Subscribe:", { firstName, email });
-    setFirstName("");
+    console.log("Subscribe:", email);
     setEmail("");
   };
 
   return (
-    <footer className="bg-[#122453] text-white py-[40px] md:py-[80px] space-y-[40px] md:space-y-[80px]">
-      {/* Top Section */}
-      <div className="bg-[#132B6C] rounded-[16px] max-w-7xl sm:mx-auto mx-2 p-4 sm:p-6 lg:p-[45px] shadow-lg">
-        <div className="grid sm:grid-cols-2 lg:grid-cols-3 items-start gap-8 sm:gap-12">
-          {/* Quick Links */}
-          <div className=" space-y-[16px]">
-            <h3 className="text-white text-lg sm:text-xl font-semibold">
-              Quick Links
-            </h3>
-            <ul className="space-y-3 sm:space-y-[16px] font-normal">
-              <li>
-                <Link
-                  href="/services"
-                  className="text-white hover:text-gray-200 transition-colors text-sm sm:text-base"
-                >
-                  Services
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="/portfolio"
-                  className="text-white hover:text-gray-200 transition-colors text-sm sm:text-base"
-                >
-                  Portfolio
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="/blog"
-                  className="text-white hover:text-gray-200 transition-colors text-sm sm:text-base"
-                >
-                  Blog
-                </Link>
-              </li>
+    <footer className="bg-[#122453] text-white pt-20 pb-10">
+      <div className="container mx-auto max-w-7xl px-6 lg:px-12">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-[1.2fr_0.8fr_1fr_1.2fr_1.8fr] gap-12 lg:gap-8 items-start mb-20">
+          {/* Column 1: Logo & Description */}
+          <div className="lg:col-span-1 space-y-6">
+            <Link href="/" className="flex items-center">
+              <Image
+                src="/assets/Asap-Logo White.svg"
+                alt="ASAP DBA Logo"
+                width={131}
+                height={32}
+                priority
+                quality={90}
+                className="h-8 w-auto"
+              />
+            </Link>
+            <p className="text-[#FFFFFF] text-sm leading-relaxed max-w-xs">
+              ASAP DBA is a premier database management platform that connects
+              businesses with expert support and high-performance solutions.
+            </p>
+          </div>
 
-              <li>
-                <Link
-                  href="/contact"
-                  className="text-white hover:text-gray-200 transition-colors text-sm sm:text-base"
-                >
-                  Contact Us
-                </Link>
-              </li>
+          {/* Column 2: Quick Links */}
+          <div className="space-y-6">
+            <h3 className="text-lg font-semibold">Quick Links</h3>
+            <ul className="space-y-4">
+              {["Service", "Industries", "Blog", "Career"].map((item) => (
+                <li key={item}>
+                  <Link
+                    href={`/${item.toLowerCase()}`}
+                    className="text-[#FFFFFF] hover:text-white transition-colors text-sm"
+                  >
+                    {item}
+                  </Link>
+                </li>
+              ))}
             </ul>
           </div>
 
-          {/* Support & Contact */}
-          <div className=" space-y-[16px] font-normal">
-            <h3 className="text-white text-lg sm:text-xl font-semibold">
-              Support & Contact
-            </h3>
-            <ul className="space-y-3 sm:space-y-4 text-white text-sm sm:text-base font-normal">
-              <li className="">Opening Hours: Sun - Sat, 24/7</li>
-              <li>
-                <a href="tel:+2349072211222" className=" transition-colors">
-                  +234 907 221 1222
-                </a>
-              </li>
-              <li>
+          {/* Column 3: Industries */}
+          <div className="space-y-6">
+            <h3 className="text-lg font-semibold">Industries</h3>
+            <ul className="space-y-4">
+              {["Health Care", "FinTech", "EdTech", "LegalTech", "Retail"].map(
+                (item) => (
+                  <li key={item}>
+                    <Link
+                      href={`/industries/${item.toLowerCase()}`}
+                      className="text-[#FFFFFF] hover:text-white transition-colors text-sm"
+                    >
+                      {item}
+                    </Link>
+                  </li>
+                )
+              )}
+            </ul>
+          </div>
+
+          {/* Column 4: Contact Us */}
+          <div className="space-y-6">
+            <h3 className="text-lg font-semibold">Contact Us</h3>
+            <ul className="space-y-6">
+              <li className="flex items-center gap-3">
+                <div className="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center">
+                  <Phone className="w-5 h-5 text-[#FFFFFF]" />
+                </div>
                 <a
-                  href="mailto:contact@asapdba.com"
-                  className=" transition-colors"
+                  href="tel:08167000077"
+                  className="text-[#FFFFFF] hover:text-white text-sm transition-colors"
                 >
-                  contact@asapdba.com
+                  08167000077
+                </a>
+              </li>
+              <li className="flex items-center gap-3">
+                <div className="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center">
+                  <Mail className="w-5 h-5 text-[#FFFFFF]" />
+                </div>
+                <a
+                  href="mailto:Contact@asapdba.com"
+                  className="text-[#FFFFFF] hover:text-white text-sm transition-colors"
+                >
+                  Contact@asapdba.com
+                </a>
+              </li>
+              <li className="flex items-center gap-3">
+                <div className="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center">
+                  <Phone className="w-5 h-5 text-[#FFFFFF]" />
+                </div>
+                <a
+                  href="tel:08167000077"
+                  className="text-[#FFFFFF] hover:text-white text-sm transition-colors"
+                >
+                  08167000077
                 </a>
               </li>
             </ul>
           </div>
 
-          {/* Illustration Placeholder */}
-          <div className="hidden md:block">
-            <Image
-              src="/assets/one 1.png"
-              alt="ASAP DBA"
-              width={500}
-              height={500}
-              className="w-full h-full object-cover"
-              loading="lazy"
-              quality={90}
-            />
+          {/* Column 5: Newsletter */}
+          <div className="space-y-6">
+            <p className="text-[#FFFFFF] text-sm leading-relaxed">
+              Sign up for our newsletter and join the growing ASAP DBA
+              community.
+            </p>
+            <form onSubmit={handleSubscribe} className="space-y-3">
+              <input
+                type="email"
+                placeholder="Enter your email address here ..."
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                className="w-full bg-[#E5E7EB] border-none rounded-lg px-4 py-3 text-gray-900 placeholder-gray-500 text-sm focus:ring-2 focus:ring-blue-500 transition-all"
+                required
+              />
+              <button
+                type="submit"
+                className="bg-[#3B82F6] hover:bg-blue-600 text-white px-8 py-3 rounded-lg font-semibold text-sm transition-all shadow-lg shadow-blue-500/20"
+              >
+                Subscribe
+              </button>
+            </form>
           </div>
         </div>
-      </div>
 
-      {/* Bottom Section */}
-      <div className="">
-        <div className="container mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="grid sm:grid-cols-1 lg:grid-cols-3 gap-8 sm:gap-12 items-start">
-            {/* Logo and Social Media */}
-            <div className="space-y-[20px] sm:space-y-[24px]">
-              <div className="">
-                <Image
-                  src="/assets/Asap-Logo White.svg"
-                  alt="ASAP DBA Logo"
-                  width={100}
-                  height={100}
-                  loading="lazy"
-                  quality={90}
-                />
-              </div>
-              <div className="flex items-center gap-[5px] sm:gap-[8px]">
-                <a
-                  href="https://github.com"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  aria-label="GitHub"
-                >
-                  <Image
-                    src="/assets/Facebook.svg"
-                    alt="Facebook"
-                    width={20}
-                    height={20}
-                    loading="lazy"
-                    className="max-w-[50px] w-full max-h-[50px] "
-                    quality={90}
-                  />
-                </a>
-                <a
-                  href="https://twitter.com"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  aria-label="Twitter"
-                >
-                  <Image
-                    src="/assets/X.svg"
-                    alt="Twitter"
-                    width={20}
-                    height={20}
-                    loading="lazy"
-                    quality={90}
-                    className="max-w-[50px] w-full max-h-[50px] "
-                  />
-                </a>
-                <a
-                  href="https://linkedin.com"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  aria-label="LinkedIn"
-                >
-                  <Image
-                    src="/assets/Linkedin.svg"
-                    alt="LinkedIn"
-                    width={20}
-                    height={20}
-                    loading="lazy"
-                    quality={90}
-                    className="max-w-[50px] w-full max-h-[50px] "
-                  />
-                </a>
-                <a
-                  href="https://instagram.com"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  aria-label="Slack"
-                >
-                  <Image
-                    src="/assets/Instagram.svg"
-                    alt="Instagram"
-                    width={20}
-                    height={20}
-                    loading="lazy"
-                    quality={90}
-                    className="max-w-[50px] w-full max-h-[50px] "
-                  />
-                </a>
-              </div>
-            </div>
+        {/* Divider */}
+        <div className="h-px bg-white mb-10" />
 
-            {/* Newsletter Signup */}
-            <div className="bg-[#FFFFFF] rounded-[24px] p-[20px] sm:p-[24px] space-y-[24px] col-span-2 shadow-lg">
-              <p className="text-[#48484A] text-sm sm:text-base font-normal leading-relaxed">
-                Sign up for our newsletter and join the growing ASAP DBA
-                community.
-              </p>
-              <form
-                onSubmit={handleSubscribe}
-                className="flex flex-col md:flex-row gap-3 sm:gap-4"
-              >
-                <input
-                  type="text"
-                  placeholder="First name"
-                  value={firstName}
-                  onChange={(e) => setFirstName(e.target.value)}
-                  className="bg-white border border-[#3267ED] rounded-[8px] px-4 py-3 text-black placeholder-[#3267ED] text-sm sm:text-base focus:outline-none focus:border-[#2563eb] transition-colors flex-1"
-                  required
-                />
-                <input
-                  type="email"
-                  placeholder="Email"
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                  className="bg-white border border-[#3267ED] rounded-[8px] px-4 py-3 text-black placeholder-[#3267ED] text-sm sm:text-base focus:outline-none focus:border-[#2563eb] transition-colors flex-1"
-                  required
-                />
-                <button
-                  type="submit"
-                  disabled={!isFormValid}
-                  className="bg-[#3267ED] text-[#FFFFFF] px-6 py-3 rounded-[8px] font-semibold text-sm sm:text-base hover:bg-[#2563eb] hover:text-white transition-colors whitespace-nowrap disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:bg-white disabled:hover:text-black"
-                >
-                  Subscribe
-                </button>
-              </form>
-            </div>
+        {/* Bottom Bar */}
+        <div className="flex flex-col md:flex-row items-center justify-between gap-8">
+          <div className="flex flex-wrap items-center justify-center gap-6 text-xs text-gray-500">
+            <span className="text-[#FFFFFF]">© 2023 asap dba</span>
+            <Link
+              href="/terms"
+              className="text-[#FFFFFF] hover:text-white transition-colors"
+            >
+              Terms of Service
+            </Link>
+            <Link
+              href="/privacy"
+              className="text-[#FFFFFF] hover:text-white transition-colors"
+            >
+              Privacy & Cookies policy
+            </Link>
           </div>
 
-          {/* Copyright */}
-          <div className="mt-8 sm:mt-12 pt-6 sm:pt-8 border-t border-[#3267ED] flex flex-col sm:flex-row items-center justify-between gap-4 text-[12px] text-white font-normal">
-            <p>© 2024 ASAP DBA. All rights reserved.</p>
-            <div className="flex items-center gap-4 sm:gap-6">
-              <Link
-                href="/terms"
-                className="hover:text-white transition-colors"
+          <div className="flex items-center gap-3">
+            {[
+              { Icon: Facebook, href: "#", label: "Facebook" },
+              {
+                Icon: (props: any) => (
+                  <svg
+                    width="20"
+                    height="20"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    {...props}
+                  >
+                    <path d="M4 4l11.733 16h4.267l-11.733-16zM4 20l6.768-6.133m1.442-1.306L20 4" />
+                  </svg>
+                ),
+                href: "#",
+                label: "X",
+              },
+              { Icon: Linkedin, href: "#", label: "LinkedIn" },
+              { Icon: Instagram, href: "#", label: "Instagram" },
+            ].map(({ Icon, href, label }) => (
+              <a
+                key={label}
+                href={href}
+                className="w-10 h-10 rounded-lg bg-[#3B82F6] flex items-center justify-center hover:bg-blue-600 transition-all border border-blue-400/20"
+                aria-label={label}
               >
-                Terms of Service
-              </Link>
-              <Link
-                href="/privacy"
-                className="hover:text-white transition-colors"
-              >
-                Privacy & Cookies policy
-              </Link>
-            </div>
+                <Icon className="w-5 h-5 text-white" />
+              </a>
+            ))}
           </div>
         </div>
       </div>

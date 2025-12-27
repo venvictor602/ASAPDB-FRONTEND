@@ -6,7 +6,7 @@ import Link from "next/link";
 
 export function CtaSection() {
   return (
-    <section className="bg-slate-100 py-[20px] sm:py-[35px] md:py-[50px] lg:py-[64px] xl:py-[80px]">
+    <section className=" py-[20px] sm:py-[35px] md:py-[50px] lg:py-[64px] xl:py-[80px]">
       <div className="container mx-auto max-w-7xl px-4 sm:px-6 md:px-8 lg:px-12 xl:px-16 2xl:px-20">
         {/* Heading */}
         <motion.h2

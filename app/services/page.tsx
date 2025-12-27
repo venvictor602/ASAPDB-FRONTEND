@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { ServicesSection } from "@/components/services-section";
+import { ServicesOverviewSection } from "@/components/services-overview-section";
 import { ServicesHeroSection } from "@/components/services-hero-section";
 import { WhyChooseUsSection } from "@/components/why-choose-us-section";
 import { Navigation } from "@/components/navigation";
@@ -76,9 +76,9 @@ export default function ServicesPage() {
   return (
     <>
       <Navigation />
-      <div className="min-h-screen  bg-white">
+      <div className="min-h-screen bg-white">
         <ServicesHeroSection />
-        <ServicesSection />
+        <ServicesOverviewSection />
         <WhyChooseUsSection />
         <Footer />
       </div>
