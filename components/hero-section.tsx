@@ -25,9 +25,9 @@ interface HeroSlide {
 const heroSlides: HeroSlide[] = [
   {
     id: 1,
-    title: "The smarter way to manage your databases 24/7",
+    title: "Smarter database management 24/7",
     description:
-      "We ensure your databases stay fast, secure, and always available. From daily monitoring to complex migrations, we handle the backend so your business can focus on growth.",
+      "Keep your databases fast, secure, and always available. We handle monitoring, migrations, and maintenance so you can focus on growth.",
     image:
       "https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=1920&h=1080&fit=crop&q=80",
     ctaPrimary: {
@@ -41,9 +41,9 @@ const heroSlides: HeroSlide[] = [
   },
   {
     id: 2,
-    title: "Cloud Database Solutions for Modern Businesses",
+    title: "Cloud Database Solutions",
     description:
-      "Migrate to the cloud with confidence. Our expert team handles AWS, Azure, and Google Cloud database setups, ensuring seamless transitions and optimal performance.",
+      "Migrate to the cloud with confidence. Expert AWS, Azure, and Google Cloud setups with seamless transitions.",
     image:
       "https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=1920&h=1080&fit=crop&q=80",
     ctaPrimary: {
@@ -57,9 +57,9 @@ const heroSlides: HeroSlide[] = [
   },
   {
     id: 3,
-    title: "24/7 Monitoring & Proactive Support",
+    title: "24/7 Monitoring & Support",
     description:
-      "Never worry about database issues again. Our round-the-clock monitoring detects problems before they impact your business, with expert intervention when you need it most.",
+      "Round-the-clock monitoring detects issues before they impact your business. Expert intervention when you need it.",
     image:
       "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?w=1920&h=1080&fit=crop&q=80",
     ctaPrimary: {
@@ -73,9 +73,9 @@ const heroSlides: HeroSlide[] = [
   },
   {
     id: 4,
-    title: "Enterprise-Grade Security & Compliance",
+    title: "Enterprise Security & Compliance",
     description:
-      "Protect your sensitive data with industry-standard security measures. We implement encryption, access controls, and compliance frameworks to keep your databases secure.",
+      "Industry-standard security with encryption, access controls, and compliance frameworks to keep your databases secure.",
     image:
       "https://images.unsplash.com/photo-1563013544-824ae1b704d3?w=1920&h=1080&fit=crop&q=80",
     ctaPrimary: {
