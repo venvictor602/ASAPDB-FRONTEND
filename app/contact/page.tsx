@@ -128,7 +128,7 @@ export default function ContactPage() {
 
   return (
     <div className="min-h-screen bg-white">
-      <Navigation />
+      <Navigation backgroundColor="white" />
 
       {/* Hero Section */}
       <section className="bg-white py-[40px] sm:py-[60px] md:py-[80px] lg:py-[100px]">

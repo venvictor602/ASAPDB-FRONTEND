@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { FaqSection } from "@/components/faq-section";
 import { Navigation } from "@/components/navigation";
+import { Footer } from "@/components/footer";
 
 const siteUrl =
   process.env.NEXT_PUBLIC_SITE_URL || "https://asapdba.netlify.app";
@@ -71,8 +72,9 @@ export const metadata: Metadata = {
 export default function FaqPage() {
   return (
     <div className="min-h-screen bg-white">
-      <Navigation />
+      <Navigation backgroundColor="white" />
       <FaqSection />
+      <Footer />
     </div>
   );
 }

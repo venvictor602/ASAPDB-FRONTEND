@@ -9,7 +9,7 @@ import { Footer } from "@/components/footer";
 export default function NotFound() {
   return (
     <div className="min-h-screen bg-[#0a1628] flex flex-col">
-      <Navigation backgroundColor="transparent" />
+      <Navigation backgroundColor="white" />
 
       {/* Main Content */}
       <main className="grow relative overflow-hidden">
@@ -123,12 +123,18 @@ export default function NotFound() {
                 >
                   Contact
                 </Link>
-                {/* <Link
-                  href="/portfolio"
+                <Link
+                  href="/career"
                   className="text-blue-400 hover:text-blue-300 text-sm font-medium transition-colors"
                 >
-                  Portfolio
-                </Link> */}
+                  Career
+                </Link>
+                <Link
+                  href="/projects"
+                  className="text-blue-400 hover:text-blue-300 text-sm font-medium transition-colors"
+                >
+                  Projects
+                </Link>
               </div>
             </motion.div>
           </div>

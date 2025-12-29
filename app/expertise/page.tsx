@@ -70,7 +70,7 @@ export const metadata: Metadata = {
 export default function ExpertisePage() {
   return (
     <main className="min-h-screen bg-white">
-      <Navigation backgroundColor="transparent" />
+      <Navigation backgroundColor="white" />
       <ExpertiseHero />
       <ExpertiseServicesTabs />
       <ExpertiseWhyAsapDba />
