@@ -51,8 +51,8 @@ const heroSlides: HeroSlide[] = [
       href: "/services/cloud",
     },
     ctaSecondary: {
-      text: "Learn More",
-      href: "/solutions/cloud-management",
+      text: "View Projects",
+      href: "/projects",
     },
   },
   {
@@ -67,8 +67,8 @@ const heroSlides: HeroSlide[] = [
       href: "/contact",
     },
     ctaSecondary: {
-      text: "View Solutions",
-      href: "/solutions/monitoring-support",
+      text: "View Projects",
+      href: "/projects",
     },
   },
   {
@@ -83,8 +83,8 @@ const heroSlides: HeroSlide[] = [
       href: "/services/security",
     },
     ctaSecondary: {
-      text: "Learn About Security",
-      href: "/solutions/security-compliance",
+      text: "View Projects",
+      href: "/projects",
     },
   },
 ];

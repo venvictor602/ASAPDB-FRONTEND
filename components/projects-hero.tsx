@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 
-export function SolutionsHero() {
+export function ProjectsHero() {
   return (
     <section
       className="relative py-[80px] sm:py-[100px] md:py-[120px] lg:py-[140px] overflow-hidden"
@@ -34,7 +34,7 @@ export function SolutionsHero() {
             className="inline-block"
           >
             <span className="bg-white/10 backdrop-blur-md text-white/80 px-4 py-1.5 rounded-full text-sm font-medium border border-white/10">
-              Expert Solutions · Proven Results
+              Real Projects · Proven Results
             </span>
           </motion.div>
 
@@ -44,7 +44,7 @@ export function SolutionsHero() {
             transition={{ duration: 0.6, delay: 0.1 }}
             className="text-[40px] sm:text-[48px] md:text-[56px] lg:text-[64px] font-bold text-white leading-tight"
           >
-            Database Solutions That Drive Success
+            Our Projects & Success Stories
           </motion.h1>
 
           <motion.p
@@ -53,8 +53,9 @@ export function SolutionsHero() {
             transition={{ duration: 0.6, delay: 0.2 }}
             className="text-[18px] sm:text-[20px] md:text-[22px] text-white/90 max-w-3xl mx-auto leading-relaxed"
           >
-            Accelerate your transformation and achieve the business outcomes
-            that will modernize and scale your business to success.
+            Explore real-world database solutions we&apos;ve delivered for
+            clients across industries. Each project showcases our expertise in
+            solving complex database challenges.
           </motion.p>
 
           <motion.div
@@ -69,7 +70,7 @@ export function SolutionsHero() {
                 whileTap={{ scale: 0.95 }}
                 className="inline-flex cursor-pointer items-center gap-2 bg-[#2563eb] text-white px-8 py-4 rounded-lg font-semibold text-base hover:bg-[#1d4ed8] transition-colors shadow-lg shadow-blue-500/20"
               >
-                Get Started
+                Start Your Project
                 <ArrowRight className="w-5 h-5" />
               </motion.button>
             </Link>

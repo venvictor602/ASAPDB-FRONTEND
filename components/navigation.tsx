@@ -53,7 +53,7 @@ const menuItems = [
   },
   { label: "Blog", href: "/blog" },
   { label: "Career", href: "/career" },
-  { label: "Solutions", href: "/solutions" },
+  { label: "Projects", href: "/projects" },
 ];
 
 export function Navigation({

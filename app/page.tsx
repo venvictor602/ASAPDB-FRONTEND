@@ -7,6 +7,7 @@ import { TestimonialsSection } from "@/components/testimonials-section";
 import { CtaSection } from "@/components/cta-section";
 import { Footer } from "@/components/footer";
 import { OurSolutionsSection } from "@/components/our-solutions-section";
+import { VideoCarouselSection } from "@/components/video-carousel-section";
 
 const siteUrl =
   process.env.NEXT_PUBLIC_SITE_URL || "https://asapdba.netlify.app";
@@ -86,6 +87,7 @@ export default function Home() {
       <PartnersLogosSection />
       <OurSolutionsSection />
       <TestimonialsSection />
+      <VideoCarouselSection />
       <CtaSection />
       <Footer />
     </div>
