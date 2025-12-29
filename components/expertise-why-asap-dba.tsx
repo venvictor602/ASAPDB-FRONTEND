@@ -1,6 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
+import Link from "next/link";
 
 const serviceCards = [
   {
@@ -116,6 +117,25 @@ export function ExpertiseWhyAsapDba() {
             </motion.div>
           ))}
         </div>
+
+        {/* Book Our Services Button */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6, delay: 0.6 }}
+          className="flex justify-center mt-10 sm:mt-12 md:mt-16"
+        >
+          <Link href="/contact">
+            <motion.button
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              className="px-8 py-4 sm:px-10 sm:py-4 rounded-[8px] font-semibold text-[16px] sm:text-[18px] leading-[24px] sm:leading-[28px] transition-all cursor-pointer bg-[#2563eb] text-white hover:bg-[#1d4ed8] shadow-lg hover:shadow-xl"
+            >
+              Book Our Services
+            </motion.button>
+          </Link>
+        </motion.div>
       </div>
     </section>
   );
