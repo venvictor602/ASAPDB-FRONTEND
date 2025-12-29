@@ -158,11 +158,11 @@ export function HeroSection() {
       onMouseLeave={() => setIsHovered(false)}
     >
       <div className="sticky top-0 z-50">
-        <Navigation backgroundColor="transparent" />
+        <Navigation backgroundColor="white" />
       </div>
 
       {/* Hero Slider */}
-      <section className="relative h-full ">
+      <section className="relative h-full">
         <div className="embla overflow-hidden h-full" ref={emblaRef}>
           <div className="embla__container flex h-full">
             {heroSlides.map((slide) => (
@@ -279,7 +279,7 @@ export function HeroSection() {
 
         {/* Pagination Dots */}
       </section>
-      <div className="absolute  bottom-8 left-1/2 transform -translate-x-1/2 z-20 flex justify-center items-center gap-2">
+      <div className="absolute bottom-2 left-1/2 transform -translate-x-1/2 z-20 flex justify-center items-center gap-2">
         {scrollSnaps.map((_, index) => (
           <button
             key={index}
