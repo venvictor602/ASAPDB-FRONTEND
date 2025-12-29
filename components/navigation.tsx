@@ -72,9 +72,14 @@ export function Navigation({
     setOpenDropdown(openDropdown === label ? null : label);
   };
 
-  // Close dropdowns when clicking outside
+  // Close dropdowns when clicking outside (desktop only)
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
+      // Don't handle clicks outside when mobile menu is open
+      if (isMobileMenuOpen) {
+        return;
+      }
+
       const target = event.target as Node;
       let clickedInsideDropdown = false;
 
@@ -97,7 +102,7 @@ export function Navigation({
     return () => {
       document.removeEventListener("mousedown", handleClickOutside);
     };
-  }, []);
+  }, [isMobileMenuOpen]);
 
   // Close dropdowns and mobile menu when pathname changes
   useEffect(() => {
@@ -316,19 +321,28 @@ export function Navigation({
                     {hasDropdown ? (
                       <div>
                         <button
-                          onClick={() => toggleDropdown(item.label)}
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            toggleDropdown(item.label);
+                          }}
                           className={`w-full flex items-center justify-between text-[16px] ${getTextColor()} leading-[24px] transition-colors py-2 ${
                             isActive ? "font-semibold" : "font-normal"
                           }`}
                         >
                           {item.label}
                           <ChevronDown
-                            className={`w-4 h-4 transition-transform ${
+                            className={`w-4 h-4 transition-transform duration-200 ${
                               openDropdown === item.label ? "rotate-180" : ""
                             }`}
                           />
                         </button>
-                        {openDropdown === item.label && (
+                        <div
+                          className={`overflow-hidden transition-all duration-300 ease-in-out ${
+                            openDropdown === item.label
+                              ? "max-h-[500px] opacity-100"
+                              : "max-h-0 opacity-0"
+                          }`}
+                        >
                           <div className="pl-4 space-y-2 mt-2">
                             {item.dropdownItems?.map((dropdownItem) => (
                               <Link
@@ -338,13 +352,13 @@ export function Navigation({
                                   setOpenDropdown(null);
                                   setIsMobileMenuOpen(false);
                                 }}
-                                className={`block text-[14px] ${getTextColor()} opacity-80 leading-[20px] transition-colors py-1`}
+                                className={`block text-[14px] ${getTextColor()} opacity-80 leading-[20px] transition-colors py-1 hover:opacity-100`}
                               >
                                 {dropdownItem.label}
                               </Link>
                             ))}
                           </div>
-                        )}
+                        </div>
                       </div>
                     ) : (
                       <Link
