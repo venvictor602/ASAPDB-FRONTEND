@@ -204,7 +204,7 @@ export function HeroSection() {
                 </div>
 
                 {/* Content */}
-                <div className="container relative z-10 mx-auto max-w-7xl px-4 sm:px-6 md:px-8 lg:px-12 xl:px-16 2xl:px-20 h-full flex items-center pt-[10px] pb-[20px] sm:pt-[30px] sm:pb-[30px] md:pt-[40px] md:pb-[40px]">
+                <div className="container relative z-10 mx-auto max-w-7xl px-4 sm:px-6 md:px-8 lg:px-12 xl:px-16 2xl:px-20 h-full flex items-center pt-[10px] pb-[20px] md:pt-[40px] md:pb-[40px]">
                   <AnimatePresence mode="wait">
                     <motion.div
                       key={slide.id}
