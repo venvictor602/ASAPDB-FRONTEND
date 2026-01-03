@@ -1,128 +1,95 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { Heart, MessageCircle, Send } from "lucide-react";
+import { Heart, MessageCircle, Send, Loader2 } from "lucide-react";
 import { motion } from "framer-motion";
-
-interface Comment {
-  id: string;
-  author: string;
-  content: string;
-  date: string;
-  replies: Comment[];
-}
+import {
+  useGetPostCommentsQuery,
+  useCreateCommentMutation,
+  useLikePostMutation,
+} from "@/lib/api/blog-api";
 
 interface BlogInteractionsProps {
   postId: number;
+  initialLikesCount?: number;
 }
 
-export function BlogInteractions({ postId }: BlogInteractionsProps) {
+export function BlogInteractions({
+  postId,
+  initialLikesCount = 0,
+}: BlogInteractionsProps) {
   const [liked, setLiked] = useState(false);
-  const [likeCount, setLikeCount] = useState(0);
-  const [comments, setComments] = useState<Comment[]>([]);
+  const [likeCount, setLikeCount] = useState(initialLikesCount);
   const [newComment, setNewComment] = useState("");
-  const [commentAuthor, setCommentAuthor] = useState("");
-  const [replyingTo, setReplyingTo] = useState<string | null>(null);
-  const [replyContent, setReplyContent] = useState("");
-  const [replyAuthor, setReplyAuthor] = useState("");
+  const [commentName, setCommentName] = useState("");
+  const [commentEmail, setCommentEmail] = useState("");
+  const [page, setPage] = useState(1);
 
-  // Load likes and comments from localStorage
+  const { data: commentsData, isLoading: loading } = useGetPostCommentsQuery({
+    postId,
+    page,
+  });
+  const [createComment, { isLoading: submitting }] = useCreateCommentMutation();
+  const [likePost] = useLikePostMutation();
+
+  const comments = commentsData?.comments || [];
+  const hasMoreComments = commentsData?.hasNext || false;
+
+  // Check if user has liked this post (from localStorage)
   useEffect(() => {
-    const storageKey = `blog_${postId}`;
+    const storageKey = `blog_liked_${postId}`;
     const stored = localStorage.getItem(storageKey);
-    if (stored) {
-      const data = JSON.parse(stored);
-      setTimeout(() => {
-        setLiked(data.liked || false);
-      }, 0);
-      setTimeout(() => {
-        setLikeCount(data.likeCount || 0);
-      }, 0);
-      setTimeout(() => {
-        setComments(data.comments || []);
-      }, 0);
+    if (stored === "true") {
+      setLiked(true);
     }
   }, [postId]);
 
-  // Save to localStorage
-  const saveToStorage = (updates: {
-    liked?: boolean;
-    likeCount?: number;
-    comments?: Comment[];
-  }) => {
-    const storageKey = `blog_${postId}`;
-    const current = localStorage.getItem(storageKey);
-    const data = current ? JSON.parse(current) : {};
-    const updated = { ...data, ...updates };
-    localStorage.setItem(storageKey, JSON.stringify(updated));
-  };
-
-  const handleLike = () => {
-    const newLiked = !liked;
-    const newCount = newLiked ? likeCount + 1 : Math.max(0, likeCount - 1);
-    setLiked(newLiked);
-    setLikeCount(newCount);
-    saveToStorage({ liked: newLiked, likeCount: newCount });
+  const handleLike = async () => {
+    if (liked) {
+      // Already liked, just update local state
+      setLiked(false);
+      setLikeCount((prev) => Math.max(0, prev - 1));
+      localStorage.setItem(`blog_liked_${postId}`, "false");
+    } else {
+      // Like the post via API
+      try {
+        await likePost(postId).unwrap();
+        setLiked(true);
+        setLikeCount((prev) => prev + 1);
+        localStorage.setItem(`blog_liked_${postId}`, "true");
+      } catch (error) {
+        console.error("Failed to like post:", error);
+      }
+    }
   };
 
   // Check if comment form is valid
   const isCommentFormValid =
-    newComment.trim() !== "" && commentAuthor.trim() !== "";
+    newComment.trim() !== "" &&
+    commentName.trim() !== "" &&
+    commentEmail.trim() !== "" &&
+    commentEmail.includes("@");
 
-  const handleSubmitComment = (e: React.FormEvent) => {
+  const handleSubmitComment = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!isCommentFormValid) return;
+    if (!isCommentFormValid || submitting) return;
 
-    const comment: Comment = {
-      id: Date.now().toString(),
-      author: commentAuthor,
-      content: newComment,
-      date: new Date().toLocaleDateString("en-US", {
-        year: "numeric",
-        month: "long",
-        day: "numeric",
-      }),
-      replies: [],
-    };
-
-    const updatedComments = [...comments, comment];
-    setComments(updatedComments);
-    setNewComment("");
-    setCommentAuthor("");
-    saveToStorage({ comments: updatedComments });
-  };
-
-  const handleSubmitReply = (parentId: string, e: React.FormEvent) => {
-    e.preventDefault();
-    if (!replyContent.trim() || !replyAuthor.trim()) return;
-
-    const reply: Comment = {
-      id: crypto.randomUUID(),
-      author: replyAuthor,
-      content: replyContent,
-      date: new Date().toLocaleDateString("en-US", {
-        year: "numeric",
-        month: "long",
-        day: "numeric",
-      }),
-      replies: [],
-    };
-
-    const updateComments = (comments: Comment[]): Comment[] => {
-      return comments.map((comment) => {
-        if (comment.id === parentId) {
-          return { ...comment, replies: [...comment.replies, reply] };
-        }
-        return { ...comment, replies: updateComments(comment.replies) };
-      });
-    };
-
-    const updatedComments = updateComments(comments);
-    setComments(updatedComments);
-    setReplyingTo(null);
-    setReplyContent("");
-    setReplyAuthor("");
-    saveToStorage({ comments: updatedComments });
+    try {
+      await createComment({
+        postId,
+        data: {
+          name: commentName,
+          email: commentEmail,
+          content: newComment,
+        },
+      }).unwrap();
+      setNewComment("");
+      setCommentName("");
+      setCommentEmail("");
+      setPage(1);
+    } catch (error) {
+      console.error("Failed to create comment:", error);
+    }
   };
 
   return (
@@ -158,12 +125,20 @@ export function BlogInteractions({ postId }: BlogInteractionsProps) {
 
         {/* Comment Form */}
         <form onSubmit={handleSubmitComment} className="space-y-4">
-          <div>
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <input
               type="text"
               placeholder="Your name"
-              value={commentAuthor}
-              onChange={(e) => setCommentAuthor(e.target.value)}
+              value={commentName}
+              onChange={(e) => setCommentName(e.target.value)}
+              className="w-full px-4 py-3 border border-[#93c5fd] rounded-[8px] bg-white text-black placeholder-[#93c5fd] focus:outline-none focus:border-[#2563eb] transition-colors text-sm sm:text-base"
+              required
+            />
+            <input
+              type="email"
+              placeholder="Your email"
+              value={commentEmail}
+              onChange={(e) => setCommentEmail(e.target.value)}
               className="w-full px-4 py-3 border border-[#93c5fd] rounded-[8px] bg-white text-black placeholder-[#93c5fd] focus:outline-none focus:border-[#2563eb] transition-colors text-sm sm:text-base"
               required
             />
@@ -179,41 +154,58 @@ export function BlogInteractions({ postId }: BlogInteractionsProps) {
             />
             <motion.button
               type="submit"
-              disabled={!isCommentFormValid}
-              whileHover={isCommentFormValid ? { scale: 1.05 } : {}}
-              whileTap={isCommentFormValid ? { scale: 0.95 } : {}}
+              disabled={!isCommentFormValid || submitting}
+              whileHover={
+                isCommentFormValid && !submitting ? { scale: 1.05 } : {}
+              }
+              whileTap={
+                isCommentFormValid && !submitting ? { scale: 0.95 } : {}
+              }
               className="bg-[#2563eb] text-white px-6 py-3 rounded-[8px] font-semibold hover:bg-[#1d4ed8] transition-colors self-end disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:bg-[#2563eb]"
             >
-              <Send className="w-5 h-5" />
+              {submitting ? (
+                <Loader2 className="w-5 h-5 animate-spin" />
+              ) : (
+                <Send className="w-5 h-5" />
+              )}
             </motion.button>
           </div>
         </form>
 
         {/* Comments List */}
         <div className="space-y-6">
-          {comments.length === 0 ? (
+          {loading && comments.length === 0 ? (
+            <div className="space-y-4">
+              {[1, 2].map((i) => (
+                <div
+                  key={i}
+                  className="border-l-2 border-[#E8E8E8] pl-4 sm:pl-6 space-y-2 animate-pulse"
+                >
+                  <div className="h-4 bg-gray-200 rounded w-24" />
+                  <div className="h-4 bg-gray-200 rounded w-full" />
+                  <div className="h-4 bg-gray-200 rounded w-3/4" />
+                </div>
+              ))}
+            </div>
+          ) : comments.length === 0 ? (
             <p className="text-black text-sm sm:text-base">
               No comments yet. Be the first to comment!
             </p>
           ) : (
-            comments.map((comment) => (
-              <CommentItem
-                key={comment.id}
-                comment={comment}
-                onReply={(id) => setReplyingTo(id)}
-                replyingTo={replyingTo}
-                replyContent={replyContent}
-                replyAuthor={replyAuthor}
-                onReplyContentChange={setReplyContent}
-                onReplyAuthorChange={setReplyAuthor}
-                onSubmitReply={(e) => handleSubmitReply(comment.id, e)}
-                onCancelReply={() => {
-                  setReplyingTo(null);
-                  setReplyContent("");
-                  setReplyAuthor("");
-                }}
-              />
-            ))
+            <>
+              {comments.map((comment) => (
+                <CommentItem key={comment.id} comment={comment} />
+              ))}
+              {hasMoreComments && (
+                <button
+                  onClick={() => setPage((p) => p + 1)}
+                  disabled={loading}
+                  className="w-full px-4 py-2 border border-[#93c5fd] rounded-[8px] text-black hover:bg-[#f0f5ff] transition-colors text-sm font-medium disabled:opacity-50"
+                >
+                  {loading ? "Loading..." : "Load More Comments"}
+                </button>
+              )}
+            </>
           )}
         </div>
       </div>
@@ -222,32 +214,24 @@ export function BlogInteractions({ postId }: BlogInteractionsProps) {
 }
 
 interface CommentItemProps {
-  comment: Comment;
-  onReply: (id: string) => void;
-  replyingTo: string | null;
-  replyContent: string;
-  replyAuthor: string;
-  onReplyContentChange: (value: string) => void;
-  onReplyAuthorChange: (value: string) => void;
-  onSubmitReply: (e: React.FormEvent) => void;
-  onCancelReply: () => void;
+  comment: {
+    id: number;
+    name: string;
+    email: string;
+    content: string;
+    created_at: string;
+  };
 }
 
-function CommentItem({
-  comment,
-  onReply,
-  replyingTo,
-  replyContent,
-  replyAuthor,
-  onReplyContentChange,
-  onReplyAuthorChange,
-  onSubmitReply,
-  onCancelReply,
-}: CommentItemProps) {
-  const isReplying = replyingTo === comment.id;
-  // Check if reply form is valid
-  const isReplyFormValid =
-    replyContent.trim() !== "" && replyAuthor.trim() !== "";
+function CommentItem({ comment }: CommentItemProps) {
+  const formattedDate = new Date(comment.created_at).toLocaleDateString(
+    "en-US",
+    {
+      year: "numeric",
+      month: "long",
+      day: "numeric",
+    }
+  );
 
   return (
     <div className="border-l-2 border-[#E8E8E8] pl-4 sm:pl-6 space-y-4">
@@ -255,100 +239,19 @@ function CommentItem({
       <div className="space-y-2">
         <div className="flex items-center gap-3">
           <div className="w-8 h-8 sm:w-10 sm:h-10 rounded-full bg-[#2563eb] flex items-center justify-center text-white font-semibold text-sm sm:text-base">
-            {comment.author.charAt(0).toUpperCase()}
+            {comment.name.charAt(0).toUpperCase()}
           </div>
           <div>
             <p className="font-semibold text-black text-sm sm:text-base">
-              {comment.author}
+              {comment.name}
             </p>
-            <p className="text-[#93c5fd] text-xs sm:text-sm">{comment.date}</p>
+            <p className="text-[#93c5fd] text-xs sm:text-sm">{formattedDate}</p>
           </div>
         </div>
         <p className="text-black text-sm sm:text-base leading-relaxed">
           {comment.content}
         </p>
-        <button
-          onClick={() => onReply(comment.id)}
-          className="text-black cursor-pointer hover:text-[#2563eb] text-xs sm:text-sm font-medium transition-colors"
-        >
-          Reply
-        </button>
       </div>
-
-      {/* Reply Form */}
-      {isReplying && (
-        <motion.form
-          initial={{ opacity: 0, height: 0 }}
-          animate={{ opacity: 1, height: "auto" }}
-          exit={{ opacity: 0, height: 0 }}
-          onSubmit={onSubmitReply}
-          className="ml-4 sm:ml-8 space-y-3 pt-2"
-        >
-          <input
-            type="text"
-            placeholder="Your name"
-            value={replyAuthor}
-            onChange={(e) => onReplyAuthorChange(e.target.value)}
-            className="w-full px-4 py-2 border border-[#93c5fd] rounded-[8px] bg-white text-black placeholder-[#93c5fd] focus:outline-none focus:border-[#2563eb] transition-colors text-sm sm:text-base"
-            required
-          />
-          <div className="flex gap-3">
-            <textarea
-              placeholder="Write a reply..."
-              value={replyContent}
-              onChange={(e) => onReplyContentChange(e.target.value)}
-              rows={3}
-              className="flex-1 px-4 py-2 border border-[#93c5fd] rounded-[8px] bg-white text-black placeholder-[#93c5fd] focus:outline-none focus:border-[#2563eb] transition-colors resize-none text-sm sm:text-base"
-              required
-            />
-            <div className="flex flex-col gap-2">
-              <motion.button
-                type="submit"
-                disabled={!isReplyFormValid}
-                whileHover={isReplyFormValid ? { scale: 1.05 } : {}}
-                whileTap={isReplyFormValid ? { scale: 0.95 } : {}}
-                className="bg-[#2563eb] text-white px-4 py-2 rounded-[8px] font-semibold hover:bg-[#1d4ed8] transition-colors text-sm disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:bg-[#2563eb]"
-              >
-                <Send className="w-4 h-4" />
-              </motion.button>
-              <button
-                type="button"
-                onClick={onCancelReply}
-                className="px-4 py-2 border border-[#93c5fd] rounded-[8px] text-black hover:bg-[#f0f5ff] transition-colors text-sm font-medium"
-              >
-                Cancel
-              </button>
-            </div>
-          </div>
-        </motion.form>
-      )}
-
-      {/* Replies */}
-      {comment.replies.length > 0 && (
-        <div className="ml-4 sm:ml-8 space-y-4 mt-4">
-          {comment.replies.map((reply) => (
-            <div
-              key={reply.id}
-              className="border-l-2 border-[#E8E8E8] pl-4 sm:pl-6 space-y-2"
-            >
-              <div className="flex items-center gap-3">
-                <div className="w-7 h-7 sm:w-9 sm:h-9 rounded-full bg-[#2563eb] flex items-center justify-center text-white font-semibold text-xs sm:text-sm">
-                  {reply.author.charAt(0).toUpperCase()}
-                </div>
-                <div>
-                  <p className="font-semibold text-black text-xs sm:text-sm">
-                    {reply.author}
-                  </p>
-                  <p className="text-[#93c5fd] text-xs">{reply.date}</p>
-                </div>
-              </div>
-              <p className="text-black text-sm leading-relaxed">
-                {reply.content}
-              </p>
-            </div>
-          ))}
-        </div>
-      )}
     </div>
   );
 }

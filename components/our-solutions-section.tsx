@@ -235,7 +235,17 @@ export function OurSolutionsSection() {
   );
 }
 
-function SolutionCard({ solution, index }: { solution: any; index: number }) {
+interface SolutionCardProps {
+  solution: {
+    title: string;
+    description: string;
+    icon: string;
+    href: string;
+  };
+  index: number;
+}
+
+function SolutionCard({ solution, index }: SolutionCardProps) {
   return (
     <motion.div
       initial={{ opacity: 0, y: 30 }}

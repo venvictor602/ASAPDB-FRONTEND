@@ -7,24 +7,34 @@ import {
   Phone,
   Mail,
   Facebook,
-  Twitter,
   Linkedin,
   Instagram,
+  Loader2,
 } from "lucide-react";
+import { useSubscribeMutation } from "@/lib/api/contact-api";
+import { toast } from "sonner";
 
 export function Footer() {
   const [email, setEmail] = useState("");
+  const [subscribe, { isLoading: isSubmitting }] = useSubscribeMutation();
 
-  const handleSubscribe = (e: React.FormEvent) => {
+  const handleSubscribe = async (e: React.FormEvent) => {
     e.preventDefault();
-    console.log("Subscribe:", email);
-    setEmail("");
+    if (!email.trim()) return;
+
+    try {
+      await subscribe({ email }).unwrap();
+      toast.success("Successfully subscribed to our newsletter!");
+      setEmail("");
+    } catch {
+      toast.error("Failed to subscribe. Please try again.");
+    }
   };
 
   return (
     <footer className="bg-[#122453] text-white pt-20 pb-10">
       <div className="container mx-auto max-w-7xl px-6 lg:px-12">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-[1.2fr_0.8fr_1fr_1.2fr_1.8fr] gap-12 lg:gap-8 items-start mb-20">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-[1.2fr_0.8fr_1fr_1.8fr] gap-12 lg:gap-8 items-start mb-20">
           {/* Column 1: Logo & Description */}
           <div className="lg:col-span-1 space-y-6">
             <Link href="/" className="flex items-center">
@@ -48,7 +58,7 @@ export function Footer() {
           <div className="space-y-6">
             <h3 className="text-lg font-semibold">Quick Links</h3>
             <ul className="space-y-4">
-              {["Service", "Industries", "Blog", "Career"].map((item) => (
+              {["Blog", "Career", "Projects", "FAQ"].map((item) => (
                 <li key={item}>
                   <Link
                     href={`/${item.toLowerCase()}`}
@@ -58,25 +68,6 @@ export function Footer() {
                   </Link>
                 </li>
               ))}
-            </ul>
-          </div>
-
-          {/* Column 3: Industries */}
-          <div className="space-y-6">
-            <h3 className="text-lg font-semibold">Industries</h3>
-            <ul className="space-y-4">
-              {["Health Care", "FinTech", "EdTech", "LegalTech", "Retail"].map(
-                (item) => (
-                  <li key={item}>
-                    <Link
-                      href={`/industries/${item.toLowerCase()}`}
-                      className="text-[#FFFFFF] hover:text-white transition-colors text-sm"
-                    >
-                      {item}
-                    </Link>
-                  </li>
-                )
-              )}
             </ul>
           </div>
 
@@ -132,14 +123,23 @@ export function Footer() {
                 placeholder="Enter your email address here ..."
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
-                className="w-full bg-[#E5E7EB] border-none rounded-lg px-4 py-3 text-gray-900 placeholder-gray-500 text-sm focus:ring-2 focus:ring-blue-500 transition-all"
+                disabled={isSubmitting}
+                className="w-full bg-[#E5E7EB] border-none rounded-lg px-4 py-3 text-gray-900 placeholder-gray-500 text-sm focus:ring-2 focus:ring-blue-500 transition-all disabled:opacity-50"
                 required
               />
               <button
                 type="submit"
-                className="bg-[#3B82F6] hover:bg-blue-600 text-white px-8 py-3 rounded-lg font-semibold text-sm transition-all shadow-lg shadow-blue-500/20"
+                disabled={isSubmitting}
+                className="bg-[#3B82F6] cursor-pointer hover:bg-blue-600 text-white px-8 py-3 rounded-lg font-semibold text-sm transition-all shadow-lg shadow-blue-500/20 disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
               >
-                Subscribe
+                {isSubmitting ? (
+                  <>
+                    <Loader2 className="w-4 h-4 animate-spin" />
+                    Subscribing...
+                  </>
+                ) : (
+                  "Subscribe"
+                )}
               </button>
             </form>
           </div>
@@ -170,7 +170,7 @@ export function Footer() {
             {[
               { Icon: Facebook, href: "#", label: "Facebook" },
               {
-                Icon: (props: any) => (
+                Icon: (props: React.SVGProps<SVGSVGElement>) => (
                   <svg
                     width="20"
                     height="20"

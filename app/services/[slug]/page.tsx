@@ -3,15 +3,16 @@ import { notFound } from "next/navigation";
 import { Navigation } from "@/components/navigation";
 import { Footer } from "@/components/footer";
 import { ServiceDetailPage } from "@/components/service-detail-page";
-import { getServiceBySlug, getAllServices } from "@/lib/services-data";
+import { fetchAllServices, transformService } from "@/lib/api/server-helpers";
+import type { ServiceAPI } from "@/lib/api/services-api";
 
 const siteUrl =
   process.env.NEXT_PUBLIC_SITE_URL || "https://asapdba.netlify.app";
 
 export async function generateStaticParams() {
-  const services = getAllServices();
-  return services.map((service) => ({
-    slug: service.slug,
+  const services = await fetchAllServices();
+  return services.map((service: ServiceAPI) => ({
+    slug: service.id.toString(),
   }));
 }
 
@@ -21,42 +22,53 @@ export async function generateMetadata({
   params: Promise<{ slug: string }> | { slug: string };
 }): Promise<Metadata> {
   const resolvedParams = await Promise.resolve(params);
-  const service = getServiceBySlug(resolvedParams.slug);
+  const serviceId = parseInt(resolvedParams.slug);
 
-  if (!service) {
+  if (isNaN(serviceId)) {
     return {
       title: "Service Not Found | ASAP DBA",
     };
   }
 
+  const response = await fetch(
+    `https://asapdb.vercel.app/api/services/${serviceId}/`,
+    { next: { revalidate: 60 } }
+  );
+
+  if (!response.ok) {
+    return {
+      title: "Service Not Found | ASAP DBA",
+    };
+  }
+
+  const apiService = await response.json();
+  const service = transformService(apiService);
+
   return {
-    title: `${service.title} | ASAP DBA`,
-    description: service.longDescription,
+    title: `${service.name} | ASAP DBA`,
+    description: service.description,
     keywords: [
-      service.title.toLowerCase(),
-      ...service.features.map((f) => f.toLowerCase()),
-      ...service.benefits.map((b) => b.toLowerCase()),
+      service.name.toLowerCase(),
       "database management",
       "database administration",
       "database services",
-      service.slug,
     ],
     alternates: {
-      canonical: `${siteUrl}/services/${service.slug}`,
+      canonical: `${siteUrl}/services/${serviceId}`,
     },
     openGraph: {
       type: "website",
       locale: "en_US",
-      url: `${siteUrl}/services/${service.slug}`,
+      url: `${siteUrl}/services/${serviceId}`,
       siteName: "ASAP DBA",
-      title: `${service.title} | ASAP DBA`,
-      description: service.longDescription,
+      title: `${service.name} | ASAP DBA`,
+      description: service.description,
       images: [
         {
-          url: `${siteUrl}${service.image}`,
+          url: service.image || `${siteUrl}/assets/Asap-DBA_Logo.png`,
           width: 1200,
           height: 630,
-          alt: service.title,
+          alt: service.name,
         },
       ],
     },
@@ -64,9 +76,9 @@ export async function generateMetadata({
       card: "summary_large_image",
       site: "@asapdba",
       creator: "@asapdba",
-      title: `${service.title} | ASAP DBA`,
-      description: service.longDescription,
-      images: [`${siteUrl}${service.image}`],
+      title: `${service.name} | ASAP DBA`,
+      description: service.description,
+      images: [service.image || `${siteUrl}/assets/Asap-DBA_Logo.png`],
     },
     robots: {
       index: true,
@@ -88,16 +100,44 @@ export default async function ServicePage({
   params: Promise<{ slug: string }> | { slug: string };
 }) {
   const resolvedParams = await Promise.resolve(params);
-  const service = getServiceBySlug(resolvedParams.slug);
+  const serviceId = parseInt(resolvedParams.slug);
 
-  if (!service) {
+  if (isNaN(serviceId)) {
     notFound();
   }
+
+  const response = await fetch(
+    `https://asapdb.vercel.app/api/services/${serviceId}/`,
+    { next: { revalidate: 60 } }
+  );
+
+  if (!response.ok) {
+    notFound();
+  }
+
+  const apiService = await response.json();
+  const service = transformService(apiService);
+
+  // Transform to match component interface
+  const serviceForComponent = {
+    id: service.id.toString(),
+    slug: serviceId.toString(),
+    title: service.name,
+    description: service.description,
+    longDescription: service.description,
+    image: service.image || "/assets/image1.png",
+    features: service.keyFeatures
+      ? service.keyFeatures.split("\n").filter((f: string) => f.trim())
+      : [],
+    benefits: service.benefits
+      ? service.benefits.split("\n").filter((b: string) => b.trim())
+      : [],
+  };
 
   return (
     <>
       <Navigation backgroundColor="white" />
-      <ServiceDetailPage service={service} />
+      <ServiceDetailPage service={serviceForComponent} />
       <Footer />
     </>
   );

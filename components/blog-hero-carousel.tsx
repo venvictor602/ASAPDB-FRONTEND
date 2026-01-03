@@ -5,7 +5,7 @@ import useEmblaCarousel from "embla-carousel-react";
 import { ArrowLeft, ArrowRight, Calendar, Clock, User } from "lucide-react";
 import Link from "next/link";
 import Image from "next/image";
-import { BlogPost } from "@/lib/blog-data";
+import { BlogPost } from "@/lib/api/blog-api";
 
 interface BlogHeroCarouselProps {
   posts: BlogPost[];
@@ -101,7 +101,7 @@ export function BlogHeroCarousel({ posts }: BlogHeroCarouselProps) {
                   key={post.id}
                   className="flex-[0_0_100%] min-w-0 relative group"
                 >
-                  <Link href={`/blog/${post.id}`}>
+                  <Link href={`/blog/${post.slug}`}>
                     <div className="relative h-[400px] sm:h-[500px] md:h-[600px] rounded-[16px] overflow-hidden">
                       {/* Background Image */}
                       <Image

@@ -11,18 +11,12 @@ import {
   X,
   ChevronDown,
   Check,
+  Loader2,
 } from "lucide-react";
 import { Navigation } from "@/components/navigation";
 import { Footer } from "@/components/footer";
-
-const servicesList = [
-  "Database Administration Services",
-  "Data Migration & Upgrades",
-  "Cloud Infrastructure Services",
-  "Security & Compliance",
-  "Performance Optimization",
-  "Managed Services",
-];
+import { useSubmitContactMutation } from "@/lib/api/contact-api";
+import { useGetServicesQuery } from "@/lib/api/services-api";
 
 export default function ContactPage() {
   const [formData, setFormData] = useState({
@@ -31,10 +25,14 @@ export default function ContactPage() {
     phone: "",
     company: "",
     subject: "Other",
-    services: [] as string[],
+    address: "",
+    services: [] as number[],
     message: "",
   });
-  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitContact, { isLoading: isSubmitting }] =
+    useSubmitContactMutation();
+  const { data: servicesData } = useGetServicesQuery({ page: 1 });
+  const servicesList = servicesData?.services || [];
   const [submitStatus, setSubmitStatus] = useState<
     "idle" | "success" | "error"
   >("idle");
@@ -53,24 +51,24 @@ export default function ContactPage() {
   const [isServicesOpen, setIsServicesOpen] = useState(false);
   const servicesDropdownRef = useRef<HTMLDivElement>(null);
 
-  const toggleService = (service: string) => {
-    if (formData.services.includes(service)) {
+  const toggleService = (serviceId: number) => {
+    if (formData.services.includes(serviceId)) {
       setFormData({
         ...formData,
-        services: formData.services.filter((s) => s !== service),
+        services: formData.services.filter((s) => s !== serviceId),
       });
     } else {
       setFormData({
         ...formData,
-        services: [...formData.services, service],
+        services: [...formData.services, serviceId],
       });
     }
   };
 
-  const removeService = (serviceToRemove: string) => {
+  const removeService = (serviceIdToRemove: number) => {
     setFormData({
       ...formData,
-      services: formData.services.filter((s) => s !== serviceToRemove),
+      services: formData.services.filter((s) => s !== serviceIdToRemove),
     });
   };
 
@@ -102,12 +100,19 @@ export default function ContactPage() {
     e.preventDefault();
     if (!isFormValid) return;
 
-    setIsSubmitting(true);
     setSubmitStatus("idle");
 
-    // Simulate form submission
-    setTimeout(() => {
-      setIsSubmitting(false);
+    try {
+      await submitContact({
+        full_name: formData.name,
+        email: formData.email,
+        address: formData.address || formData.company,
+        company_name: formData.company,
+        subject: formData.subject,
+        services: formData.services,
+        message: formData.message,
+      }).unwrap();
+
       setSubmitStatus("success");
       setFormData({
         name: "",
@@ -115,6 +120,7 @@ export default function ContactPage() {
         phone: "",
         company: "",
         subject: "Other",
+        address: "",
         services: [],
         message: "",
       });
@@ -123,7 +129,12 @@ export default function ContactPage() {
       setTimeout(() => {
         setSubmitStatus("idle");
       }, 5000);
-    }, 1000);
+    } catch (error) {
+      setSubmitStatus("error");
+      setTimeout(() => {
+        setSubmitStatus("idle");
+      }, 5000);
+    }
   };
 
   return (
@@ -358,11 +369,10 @@ export default function ContactPage() {
                       required
                       className="w-full bg-white border border-[#E8E8E8] rounded-[8px] px-4 py-3 text-[#48484A] text-sm sm:text-base focus:outline-none focus:border-[#101010] transition-colors"
                     >
-                      {servicesList.map((service) => (
-                        <option key={service} value={service}>
-                          {service}
-                        </option>
-                      ))}
+                      <option value="General Inquiry">General Inquiry</option>
+                      <option value="Support">Support</option>
+                      <option value="Sales">Sales</option>
+                      <option value="Partnership">Partnership</option>
                       <option value="Other">Other</option>
                     </select>
                   </div>
@@ -395,13 +405,14 @@ export default function ContactPage() {
                     {isServicesOpen && (
                       <div className="absolute z-10 w-full mt-2 bg-white border border-[#E8E8E8] rounded-[8px] shadow-lg max-h-[240px] overflow-y-auto">
                         {servicesList.map((service) => {
-                          const isSelected =
-                            formData.services.includes(service);
+                          const isSelected = formData.services.includes(
+                            service.id
+                          );
                           return (
                             <button
-                              key={service}
+                              key={service.id}
                               type="button"
-                              onClick={() => toggleService(service)}
+                              onClick={() => toggleService(service.id)}
                               className={`w-full px-4 py-3 text-left text-sm sm:text-base transition-colors flex items-center gap-3 hover:bg-gray-50 ${
                                 isSelected
                                   ? "bg-gray-50 text-[#101010]"
@@ -419,7 +430,7 @@ export default function ContactPage() {
                                   <Check className="w-3 h-3 text-white" />
                                 )}
                               </div>
-                              <span className="flex-1">{service}</span>
+                              <span className="flex-1">{service.name}</span>
                             </button>
                           );
                         })}
@@ -427,22 +438,27 @@ export default function ContactPage() {
                     )}
                     {formData.services.length > 0 && (
                       <div className="mt-3 flex flex-wrap gap-2">
-                        {formData.services.map((service) => (
-                          <span
-                            key={service}
-                            className="inline-flex items-center gap-1.5 bg-[#101010] text-white px-3 py-1.5 rounded-[6px] text-xs sm:text-sm font-medium"
-                          >
-                            {service}
-                            <button
-                              type="button"
-                              onClick={() => removeService(service)}
-                              className="hover:bg-white/20 rounded-full p-0.5 transition-colors"
-                              aria-label={`Remove ${service}`}
+                        {formData.services.map((serviceId) => {
+                          const service = servicesList.find(
+                            (s) => s.id === serviceId
+                          );
+                          return (
+                            <span
+                              key={serviceId}
+                              className="inline-flex items-center gap-1.5 bg-[#101010] text-white px-3 py-1.5 rounded-[6px] text-xs sm:text-sm font-medium"
                             >
-                              <X className="w-3 h-3" />
-                            </button>
-                          </span>
-                        ))}
+                              {service?.name || `Service ${serviceId}`}
+                              <button
+                                type="button"
+                                onClick={() => removeService(serviceId)}
+                                className="hover:bg-white/20 rounded-full p-0.5 transition-colors"
+                                aria-label={`Remove ${service?.name || serviceId}`}
+                              >
+                                <X className="w-3 h-3" />
+                              </button>
+                            </span>
+                          );
+                        })}
                       </div>
                     )}
                   </div>
@@ -479,7 +495,7 @@ export default function ContactPage() {
                   >
                     {isSubmitting ? (
                       <>
-                        <div className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin" />
+                        <Loader2 className="w-5 h-5 animate-spin" />
                         Sending...
                       </>
                     ) : (

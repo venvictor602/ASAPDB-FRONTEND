@@ -1,5 +1,9 @@
 import { configureStore, createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { useDispatch, useSelector, TypedUseSelectorHook } from "react-redux";
+import { blogApi } from "./api/blog-api";
+import { careersApi } from "./api/careers-api";
+import { contactApi } from "./api/contact-api";
+import { servicesApi } from "./api/services-api";
 
 // Example slice - replace with your actual slices
 interface ExampleState {
@@ -31,7 +35,18 @@ export const { increment, decrement, reset } = exampleSlice.actions;
 export const store = configureStore({
   reducer: {
     example: exampleSlice.reducer,
+    [blogApi.reducerPath]: blogApi.reducer,
+    [careersApi.reducerPath]: careersApi.reducer,
+    [contactApi.reducerPath]: contactApi.reducer,
+    [servicesApi.reducerPath]: servicesApi.reducer,
   },
+  middleware: (getDefaultMiddleware) =>
+    getDefaultMiddleware().concat(
+      blogApi.middleware,
+      careersApi.middleware,
+      contactApi.middleware,
+      servicesApi.middleware
+    ),
 });
 
 export type RootState = ReturnType<typeof store.getState>;

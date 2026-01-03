@@ -5,12 +5,14 @@ import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { Menu, X, ChevronDown } from "lucide-react";
+import { useGetServicesQuery } from "@/lib/api/services-api";
+import { useGetIndustriesQuery } from "@/lib/api/services-api";
 
 interface NavigationProps {
   backgroundColor?: "transparent" | "white" | string;
 }
 
-const menuItems = [
+const staticMenuItems = [
   { label: "Home", href: "/" },
   {
     label: "About Us",
@@ -19,36 +21,6 @@ const menuItems = [
     dropdownItems: [
       { label: "Why ASAP DBA", href: "/about/why-asap-dba" },
       { label: "Our Mission & Vision", href: "/about/mission-vision" },
-    ],
-  },
-  {
-    label: "Service",
-    href: "/services",
-    hasDropdown: true,
-    hasTwoColumns: true,
-    dropdownItems: [
-      { label: "Cloud Services & Solution", href: "/services/cloud" },
-      {
-        label: "Enterprise Software & Application",
-        href: "/services/enterprise",
-      },
-      { label: "Low code/ No Code Development", href: "/services/low-code" },
-      { label: "Advisory & Consulting", href: "/services/consulting" },
-      { label: "Managed Services", href: "/services/managed" },
-      { label: "Security", href: "/services/security" },
-    ],
-  },
-  {
-    label: "Industries",
-    href: "#",
-    hasDropdown: true,
-    hasTwoColumns: true,
-    dropdownItems: [
-      { label: "Health Care", href: "/industries/healthcare" },
-      { label: "EdTech", href: "/industries/edtech" },
-      { label: "FinTech", href: "/industries/fintech" },
-      { label: "LegalTech", href: "/industries/legaltech" },
-      { label: "Retail", href: "/industries/retail" },
     ],
   },
   { label: "Blog", href: "/blog" },
@@ -64,6 +36,45 @@ export function Navigation({
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [openDropdown, setOpenDropdown] = useState<string | null>(null);
   const dropdownRefs = useRef<{ [key: string]: HTMLDivElement | null }>({});
+
+  // Fetch services and industries from API
+  const { data: servicesData } = useGetServicesQuery({ page: 1 });
+  const { data: industriesData } = useGetIndustriesQuery({ page: 1 });
+
+  const services = servicesData?.services || [];
+  const industries = industriesData?.industries || [];
+
+  // Build menu items dynamically - ensure it's always defined
+  const menuItems = [
+    ...staticMenuItems.slice(0, 2), // Home, About Us
+    {
+      label: "Service",
+      href: "/services",
+      hasDropdown: true,
+      hasTwoColumns: true,
+      dropdownItems:
+        services.length > 0
+          ? services.map((service) => ({
+              label: service.name,
+              href: `/services/${service.id}`,
+            }))
+          : [],
+    },
+    {
+      label: "Industries",
+      href: "#",
+      hasDropdown: true,
+      hasTwoColumns: true,
+      dropdownItems:
+        industries.length > 0
+          ? industries.map((industry) => ({
+              label: industry.name,
+              href: `/industries/${industry.id}`,
+            }))
+          : [],
+    },
+    ...staticMenuItems.slice(2), // Blog, Career, Projects, FAQ
+  ];
 
   const toggleMobileMenu = () => {
     setIsMobileMenuOpen(!isMobileMenuOpen);

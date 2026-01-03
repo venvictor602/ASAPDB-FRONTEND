@@ -1,6 +1,11 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
-import { getBlogPost, getAllBlogPosts } from "@/lib/blog-data";
+import {
+  fetchBlogPostBySlug,
+  fetchAllBlogPosts,
+  transformBlogPost,
+} from "@/lib/api/server-helpers";
+import type { BlogPostAPI } from "@/lib/api/blog-api";
 import { ArrowLeft, ArrowRight, Calendar, Clock, User } from "lucide-react";
 import Link from "next/link";
 import Image from "next/image";
@@ -9,29 +14,31 @@ import { Footer } from "@/components/footer";
 import { BlogInteractions } from "@/components/blog-interactions";
 
 export async function generateStaticParams() {
-  const posts = getAllBlogPosts();
-  return posts.map((post) => ({
-    id: post.id.toString(),
+  const allPosts = await fetchAllBlogPosts();
+  return allPosts.map((post: BlogPostAPI) => ({
+    slug: post.slug,
   }));
 }
 
 export async function generateMetadata({
   params,
 }: {
-  params: Promise<{ id: string }> | { id: string };
+  params: Promise<{ slug: string }> | { slug: string };
 }): Promise<Metadata> {
   const resolvedParams = params instanceof Promise ? await params : params;
-  const post = getBlogPost(Number(resolvedParams.id));
+  const apiPost = await fetchBlogPostBySlug(resolvedParams.slug);
   const siteUrl =
     process.env.NEXT_PUBLIC_SITE_URL || "https://asapdba.netlify.app";
 
-  if (!post) {
+  if (!apiPost) {
     return {
       title: "Blog Post Not Found | ASAP DBA",
     };
   }
 
-  const postUrl = `${siteUrl}/blog/${post.id}`;
+  const post = transformBlogPost(apiPost);
+
+  const postUrl = `${siteUrl}/blog/${post.slug}`;
 
   return {
     title: `${post.title} | ASAP DBA Blog`,
@@ -45,7 +52,8 @@ export async function generateMetadata({
       "database monitoring",
       "cloud database",
       post.title.split(" ").slice(0, 5).join(" "),
-      ...post.title.split(" ").map((word) => word.toLowerCase()),
+      ...post.title.split(" ").map((word: string) => word.toLowerCase()),
+      ...post.tags,
     ],
     authors: [{ name: post.author }],
     alternates: {
@@ -62,13 +70,7 @@ export async function generateMetadata({
       modifiedTime: new Date(post.date).toISOString(),
       authors: [post.author],
       section: post.category,
-      tags: [
-        post.category,
-        "database management",
-        "database administration",
-        "database optimization",
-        "database security",
-      ],
+      tags: [post.category, ...post.tags],
       images: [
         {
           url: post.imageUrl,
@@ -103,15 +105,17 @@ export async function generateMetadata({
 export default async function BlogPostPage({
   params,
 }: {
-  params: Promise<{ id: string }> | { id: string };
+  params: Promise<{ slug: string }> | { slug: string };
 }) {
   // Handle both sync and async params (Next.js 15+)
   const resolvedParams = params instanceof Promise ? await params : params;
-  const post = getBlogPost(Number(resolvedParams.id));
+  const apiPost = await fetchBlogPostBySlug(resolvedParams.slug);
 
-  if (!post) {
+  if (!apiPost) {
     notFound();
   }
+
+  const post = transformBlogPost(apiPost);
 
   const jsonLd = {
     "@context": "https://schema.org",
@@ -135,7 +139,7 @@ export default async function BlogPostPage({
     },
     mainEntityOfPage: {
       "@type": "WebPage",
-      "@id": `${process.env.NEXT_PUBLIC_SITE_URL || "https://asapdba.netlify.app"}/blog/${post.id}`,
+      "@id": `${process.env.NEXT_PUBLIC_SITE_URL || "https://asapdba.netlify.app"}/blog/${post.slug}`,
     },
   };
 
@@ -187,7 +191,26 @@ export default async function BlogPostPage({
                 <Clock className="w-4 h-4 sm:w-5 sm:h-5" />
                 <span>{post.readTime}</span>
               </div>
+              {post.views > 0 && (
+                <div className="flex items-center gap-2">
+                  <span className="text-[#A1A1A1]">{post.views} views</span>
+                </div>
+              )}
             </div>
+
+            {/* Tags */}
+            {post.tags && post.tags.length > 0 && (
+              <div className="flex flex-wrap gap-2">
+                {post.tags.map((tag: string, index: number) => (
+                  <span
+                    key={index}
+                    className="px-2 py-1 bg-blue-50 text-blue-700 rounded text-xs font-medium"
+                  >
+                    #{tag}
+                  </span>
+                ))}
+              </div>
+            )}
           </header>
 
           {/* Featured Image */}
@@ -202,6 +225,51 @@ export default async function BlogPostPage({
               quality={90}
             />
           </div>
+
+          {/* Additional Images */}
+          {(post.image2 || post.image3) && (
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-8 sm:mb-12">
+              {post.image2 && (
+                <div className="relative w-full h-64 rounded-[16px] overflow-hidden">
+                  <Image
+                    src={post.image2}
+                    alt={`${post.title} - Image 2`}
+                    fill
+                    sizes="(max-width: 768px) 100vw, 50vw"
+                    className="object-cover"
+                    quality={90}
+                  />
+                </div>
+              )}
+              {post.image3 && (
+                <div className="relative w-full h-64 rounded-[16px] overflow-hidden">
+                  <Image
+                    src={post.image3}
+                    alt={`${post.title} - Image 3`}
+                    fill
+                    sizes="(max-width: 768px) 100vw, 50vw"
+                    className="object-cover"
+                    quality={90}
+                  />
+                </div>
+              )}
+            </div>
+          )}
+
+          {/* Video Link */}
+          {post.postVideoLink && (
+            <div className="mb-8 sm:mb-12">
+              <a
+                href={post.postVideoLink}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 bg-red-600 text-white px-6 py-3 rounded-lg font-semibold hover:bg-red-700 transition-colors"
+              >
+                Watch Video
+                <ArrowRight className="w-4 h-4" />
+              </a>
+            </div>
+          )}
 
           {/* Content */}
           <div className="prose prose-lg max-w-none">
@@ -262,7 +330,10 @@ export default async function BlogPostPage({
 
           {/* Blog Interactions - Likes and Comments */}
           <div className="mt-12 sm:mt-16 pt-8 sm:pt-12 border-t border-[#E8E8E8]">
-            <BlogInteractions postId={post.id} />
+            <BlogInteractions
+              postId={post.id}
+              initialLikesCount={post.likesCount}
+            />
           </div>
 
           {/* Footer */}

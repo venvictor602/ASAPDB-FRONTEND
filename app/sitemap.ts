@@ -1,16 +1,18 @@
 import { MetadataRoute } from "next";
-import { getAllBlogPosts } from "@/lib/blog-data";
+import { fetchAllBlogPosts, transformBlogPost } from "@/lib/api/server-helpers";
 
 const siteUrl =
   process.env.NEXT_PUBLIC_SITE_URL || "https://asapdba.netlify.app";
 
-export default function sitemap(): MetadataRoute.Sitemap {
-  const blogPosts = getAllBlogPosts();
+export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
+  // Fetch all blog posts
+  const allApiPosts = await fetchAllBlogPosts();
+  const allPosts = allApiPosts.map(transformBlogPost);
 
-  const blogEntries: MetadataRoute.Sitemap = blogPosts.map((post) => ({
-    url: `${siteUrl}/blog/${post.id}`,
+  const blogEntries: MetadataRoute.Sitemap = allPosts.map((post) => ({
+    url: `${siteUrl}/blog/${post.slug}`,
     lastModified: new Date(post.date),
-    changeFrequency: "weekly",
+    changeFrequency: "weekly" as const,
     priority: 0.8,
   }));
 
