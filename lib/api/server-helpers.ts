@@ -9,7 +9,7 @@ import type {
   IndustryListResponse,
 } from "./services-api";
 
-const API_BASE_URL = "https://asapdb.vercel.app/api";
+const API_BASE_URL = "https://asapdb.vercel.app";
 
 // Blog API Helpers
 export async function fetchBlogPostBySlug(
@@ -19,9 +19,12 @@ export async function fetchBlogPostBySlug(
     // Search through pages to find the post
     let page = 1;
     while (true) {
-      const response = await fetch(`${API_BASE_URL}/blog/posts/?page=${page}`, {
-        next: { revalidate: 60 },
-      });
+      const response = await fetch(
+        `${API_BASE_URL}/api/blog/posts/?page=${page}`,
+        {
+          next: { revalidate: 60 },
+        }
+      );
       if (!response.ok) break;
       const data: BlogPostListResponse = await response.json();
       const post = data.results.find((p: BlogPostAPI) => p.slug === slug);
@@ -43,9 +46,12 @@ export async function fetchAllBlogPosts(): Promise<BlogPostAPI[]> {
     let hasMore = true;
 
     while (hasMore) {
-      const response = await fetch(`${API_BASE_URL}/blog/posts/?page=${page}`, {
-        next: { revalidate: 60 },
-      });
+      const response = await fetch(
+        `${API_BASE_URL}/api/blog/posts/?page=${page}`,
+        {
+          next: { revalidate: 60 },
+        }
+      );
       if (!response.ok) break;
       const data: BlogPostListResponse = await response.json();
       allPosts = [...allPosts, ...data.results];
@@ -63,11 +69,9 @@ export async function fetchAllBlogPosts(): Promise<BlogPostAPI[]> {
 // Services API Helpers
 export async function fetchServiceById(id: number): Promise<ServiceAPI | null> {
   try {
-    const response = await fetch(`${API_BASE_URL}/services/${id}/`, {
-      next: { revalidate: 60 },
-    });
-    if (!response.ok) return null;
-    return await response.json();
+    // Fetch all services and filter by ID
+    const allServices = await fetchAllServices();
+    return allServices.find((service) => service.id === id) || null;
   } catch (error) {
     console.error("Error fetching service:", error);
     return null;
@@ -81,9 +85,12 @@ export async function fetchAllServices(): Promise<ServiceAPI[]> {
     let hasMore = true;
 
     while (hasMore) {
-      const response = await fetch(`${API_BASE_URL}/services/?page=${page}`, {
-        next: { revalidate: 60 },
-      });
+      const response = await fetch(
+        `${API_BASE_URL}/api/services/?page=${page}`,
+        {
+          next: { revalidate: 60 },
+        }
+      );
       if (!response.ok) break;
       const data: ServiceListResponse = await response.json();
       allServices = [...allServices, ...data.results];
@@ -103,9 +110,12 @@ export async function fetchIndustryById(
   id: number
 ): Promise<IndustryAPI | null> {
   try {
-    const response = await fetch(`${API_BASE_URL}/services/industries/${id}/`, {
-      next: { revalidate: 60 },
-    });
+    const response = await fetch(
+      `${API_BASE_URL}/api/services/api/industries/${id}/`,
+      {
+        next: { revalidate: 60 },
+      }
+    );
     if (!response.ok) return null;
     return await response.json();
   } catch (error) {
@@ -122,7 +132,7 @@ export async function fetchAllIndustries(): Promise<IndustryAPI[]> {
 
     while (hasMore) {
       const response = await fetch(
-        `${API_BASE_URL}/services/industries/?page=${page}`,
+        `${API_BASE_URL}/api/services/industries/?page=${page}`,
         { next: { revalidate: 60 } }
       );
       if (!response.ok) break;

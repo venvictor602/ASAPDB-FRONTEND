@@ -1,6 +1,6 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 
-const API_BASE_URL = "https://asapdb.vercel.app/api/services";
+const API_BASE_URL = "https://asapdb.vercel.app";
 
 // API Response Types
 export interface ServiceAPI {
@@ -144,7 +144,7 @@ export const servicesApi = createApi({
       },
       { page?: number }
     >({
-      query: ({ page = 1 }) => `/?page=${page}`,
+      query: ({ page = 1 }) => `/api/services/?page=${page}`,
       transformResponse: (response: ServiceListResponse) => {
         const services = response.results.map(transformService);
         return {
@@ -166,7 +166,7 @@ export const servicesApi = createApi({
       },
       { page?: number }
     >({
-      query: ({ page = 1 }) => `/industries/?page=${page}`,
+      query: ({ page = 1 }) => `/api/services/industries/?page=${page}`,
       transformResponse: (response: IndustryListResponse) => {
         const industries = response.results.map(transformIndustry);
         return {
@@ -179,8 +179,46 @@ export const servicesApi = createApi({
       providesTags: ["Industry"],
     }),
 
+    getServiceById: builder.query<Service, number>({
+      queryFn: async (id) => {
+        // Fetch all services across all pages and filter by ID
+        let allServices: ServiceAPI[] = [];
+        let page = 1;
+        let hasMore = true;
+
+        while (hasMore) {
+          const response = await fetch(
+            `${API_BASE_URL}/api/services/?page=${page}`
+          );
+          if (!response.ok) {
+            return {
+              error: {
+                status: response.status,
+                data: "Failed to fetch services",
+              },
+            };
+          }
+          const data: ServiceListResponse = await response.json();
+          allServices = [...allServices, ...data.results];
+
+          // Check if we found the service
+          const service = allServices.find((s) => s.id === id);
+          if (service) {
+            return { data: transformService(service) };
+          }
+
+          hasMore = !!data.next;
+          if (!hasMore) break;
+          page++;
+        }
+
+        return { error: { status: 404, data: "Service not found" } };
+      },
+      providesTags: (result, _error, id) => [{ type: "Service", id }],
+    }),
+
     getIndustryById: builder.query<Industry, number>({
-      query: (id) => `/industries/${id}/`,
+      query: (id) => `/api/services/api/industries/${id}/`,
       transformResponse: (response: IndustryAPI) => transformIndustry(response),
       providesTags: (result, _error, id) => [{ type: "Industry", id }],
     }),
@@ -189,6 +227,7 @@ export const servicesApi = createApi({
 
 export const {
   useGetServicesQuery,
+  useGetServiceByIdQuery,
   useGetIndustriesQuery,
   useGetIndustryByIdQuery,
 } = servicesApi;

@@ -3,7 +3,11 @@ import { notFound } from "next/navigation";
 import { Navigation } from "@/components/navigation";
 import { Footer } from "@/components/footer";
 import { ServiceDetailPage } from "@/components/service-detail-page";
-import { fetchAllServices, transformService } from "@/lib/api/server-helpers";
+import {
+  fetchAllServices,
+  fetchServiceById,
+  transformService,
+} from "@/lib/api/server-helpers";
 import type { ServiceAPI } from "@/lib/api/services-api";
 
 const siteUrl =
@@ -30,18 +34,14 @@ export async function generateMetadata({
     };
   }
 
-  const response = await fetch(
-    `https://asapdb.vercel.app/api/services/${serviceId}/`,
-    { next: { revalidate: 60 } }
-  );
+  const apiService = await fetchServiceById(serviceId);
 
-  if (!response.ok) {
+  if (!apiService) {
     return {
       title: "Service Not Found | ASAP DBA",
     };
   }
 
-  const apiService = await response.json();
   const service = transformService(apiService);
 
   return {
@@ -106,16 +106,12 @@ export default async function ServicePage({
     notFound();
   }
 
-  const response = await fetch(
-    `https://asapdb.vercel.app/api/services/${serviceId}/`,
-    { next: { revalidate: 60 } }
-  );
+  const apiService = await fetchServiceById(serviceId);
 
-  if (!response.ok) {
+  if (!apiService) {
     notFound();
   }
 
-  const apiService = await response.json();
   const service = transformService(apiService);
 
   // Transform to match component interface
@@ -126,12 +122,16 @@ export default async function ServicePage({
     description: service.description,
     longDescription: service.description,
     image: service.image || "/assets/image1.png",
-    features: service.keyFeatures
-      ? service.keyFeatures.split("\n").filter((f: string) => f.trim())
-      : [],
-    benefits: service.benefits
-      ? service.benefits.split("\n").filter((b: string) => b.trim())
-      : [],
+    features: Array.isArray(service.keyFeatures)
+      ? service.keyFeatures.filter((f: string) => f && f.trim())
+      : typeof service.keyFeatures === "string" && service.keyFeatures
+        ? service.keyFeatures.split("\n").filter((f: string) => f.trim())
+        : [],
+    benefits: Array.isArray(service.benefits)
+      ? service.benefits.filter((b: string) => b && b.trim())
+      : typeof service.benefits === "string" && service.benefits
+        ? service.benefits.split("\n").filter((b: string) => b.trim())
+        : [],
   };
 
   return (

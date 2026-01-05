@@ -9,7 +9,14 @@ const nextConfig: NextConfig = {
         port: "",
         pathname: "/**",
       },
+      {
+        protocol: "https",
+        hostname: "ajgudjvdtsqccvknmeng.supabase.co",
+        port: "",
+        pathname: "/**",
+      },
     ],
+    qualities: [75, 85, 90],
   },
   // Production optimizations
   productionBrowserSourceMaps: false, // Disable source maps in production
