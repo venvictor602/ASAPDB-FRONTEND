@@ -37,43 +37,43 @@ export function Navigation({
   const [openDropdown, setOpenDropdown] = useState<string | null>(null);
   const dropdownRefs = useRef<{ [key: string]: HTMLDivElement | null }>({});
 
-  // Fetch services and industries from API
   const { data: servicesData } = useGetServicesQuery({ page: 1 });
   const { data: industriesData } = useGetIndustriesQuery({ page: 1 });
 
   const services = servicesData?.services || [];
   const industries = industriesData?.industries || [];
 
-  // Build menu items dynamically - ensure it's always defined
   const menuItems = [
-    ...staticMenuItems.slice(0, 2), // Home, About Us
-    {
-      label: "Service",
-      href: "/services",
-      hasDropdown: true,
-      hasTwoColumns: true,
-      dropdownItems:
-        services.length > 0
-          ? services.map((service) => ({
+    ...staticMenuItems.slice(0, 2),
+    ...(services.length > 0
+      ? [
+          {
+            label: "Service",
+            href: "/services",
+            hasDropdown: true,
+            hasTwoColumns: true,
+            dropdownItems: services.map((service) => ({
               label: service.name,
               href: `/services/${service.id}`,
-            }))
-          : [],
-    },
-    {
-      label: "Industries",
-      href: "#",
-      hasDropdown: true,
-      hasTwoColumns: true,
-      dropdownItems:
-        industries.length > 0
-          ? industries.map((industry) => ({
+            })),
+          },
+        ]
+      : []),
+    ...(industries.length > 0
+      ? [
+          {
+            label: "Industries",
+            href: "#",
+            hasDropdown: true,
+            hasTwoColumns: true,
+            dropdownItems: industries.map((industry) => ({
               label: industry.name,
               href: `/industries/${industry.id}`,
-            }))
-          : [],
-    },
-    ...staticMenuItems.slice(2), // Blog, Career, Projects, FAQ
+            })),
+          },
+        ]
+      : []),
+    ...staticMenuItems.slice(2),
   ];
 
   const toggleMobileMenu = () => {
@@ -84,10 +84,8 @@ export function Navigation({
     setOpenDropdown(openDropdown === label ? null : label);
   };
 
-  // Close dropdowns when clicking outside (desktop only)
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
-      // Don't handle clicks outside when mobile menu is open
       if (isMobileMenuOpen) {
         return;
       }
@@ -104,7 +102,6 @@ export function Navigation({
         }
       });
 
-      // Only close if clicking outside all dropdowns
       if (!clickedInsideDropdown) {
         setOpenDropdown(null);
       }
@@ -116,9 +113,7 @@ export function Navigation({
     };
   }, [isMobileMenuOpen]);
 
-  // Close dropdowns and mobile menu when pathname changes
   useEffect(() => {
-    // Defer state updates to avoid cascading renders
     const timeoutId = setTimeout(() => {
       setOpenDropdown(null);
       setIsMobileMenuOpen(false);
@@ -127,7 +122,6 @@ export function Navigation({
     return () => clearTimeout(timeoutId);
   }, [pathname]);
 
-  // Determine background color class
   const getBackgroundClass = () => {
     if (backgroundColor === "transparent") {
       return "bg-transparent";
@@ -137,7 +131,6 @@ export function Navigation({
     return "";
   };
 
-  // Determine text color based on background
   const getTextColor = () => {
     if (backgroundColor === "white") {
       return "text-black";
@@ -145,7 +138,6 @@ export function Navigation({
     return "text-white";
   };
 
-  // Determine border color based on background
   const getBorderColor = () => {
     if (backgroundColor === "white") {
       return "border-[#E8E8E8]";
@@ -153,14 +145,8 @@ export function Navigation({
     return "border-none";
   };
 
-  // Don't render navigation if no services and no industries
-  if (services.length === 0 && industries.length === 0) {
-    return null;
-  }
-
   return (
     <div className="w-full sticky top-0 z-50" style={{ position: "sticky" }}>
-      {/* Navigation Bar */}
       <nav
         className={`relative w-full border ${getBorderColor()} ${getBackgroundClass()}`}
         style={{
@@ -182,7 +168,6 @@ export function Navigation({
       >
         <div className="container mx-auto max-w-7xl px-4 py-3">
           <div className="flex items-center justify-between">
-            {/* Logo */}
             <Link href="/" className="flex items-center">
               <Image
                 src="/assets/Asap DBA blue.svg"
@@ -195,7 +180,6 @@ export function Navigation({
               />
             </Link>
 
-            {/* Desktop Navigation Links */}
             <div className="hidden lg:flex items-center gap-6">
               {menuItems.map((item) => {
                 const isActive = pathname === item.href;
@@ -289,7 +273,6 @@ export function Navigation({
               })}
             </div>
 
-            {/* Desktop Contact Button */}
             <div className="hidden lg:block">
               <Link href="/contact">
                 <button
@@ -304,7 +287,6 @@ export function Navigation({
               </Link>
             </div>
 
-            {/* Mobile Menu Button */}
             <button
               onClick={toggleMobileMenu}
               className={`lg:hidden p-2 ${getTextColor()} hover:opacity-80 transition-colors`}
@@ -318,7 +300,6 @@ export function Navigation({
             </button>
           </div>
 
-          {/* Mobile Menu */}
           <div
             className={`lg:hidden absolute top-full left-0 right-0 ${
               backgroundColor === "white" ? "bg-white" : "bg-[#1e293b]"
