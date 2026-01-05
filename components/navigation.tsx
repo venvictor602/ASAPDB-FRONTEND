@@ -153,6 +153,11 @@ export function Navigation({
     return "border-none";
   };
 
+  // Don't render navigation if no services and no industries
+  if (services.length === 0 && industries.length === 0) {
+    return null;
+  }
+
   return (
     <div className="w-full sticky top-0 z-50" style={{ position: "sticky" }}>
       {/* Navigation Bar */}

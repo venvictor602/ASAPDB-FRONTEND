@@ -12,11 +12,27 @@ import {
   Loader2,
 } from "lucide-react";
 import { useSubscribeMutation } from "@/lib/api/contact-api";
+import {
+  useGetServicesQuery,
+  useGetIndustriesQuery,
+} from "@/lib/api/services-api";
 import { toast } from "sonner";
 
 export function Footer() {
   const [email, setEmail] = useState("");
   const [subscribe, { isLoading: isSubmitting }] = useSubscribeMutation();
+
+  // Fetch services and industries from API
+  const { data: servicesData } = useGetServicesQuery({ page: 1 });
+  const { data: industriesData } = useGetIndustriesQuery({ page: 1 });
+
+  const services = servicesData?.services || [];
+  const industries = industriesData?.industries || [];
+
+  // Don't render footer if no services and no industries
+  if (services.length === 0 && industries.length === 0) {
+    return null;
+  }
 
   const handleSubscribe = async (e: React.FormEvent) => {
     e.preventDefault();
