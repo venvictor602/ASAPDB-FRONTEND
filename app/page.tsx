@@ -84,10 +84,10 @@ export default function Home() {
       <HeroSection />
       <ChoosingDatabaseSection />
       <WhyAsapDbaSection />
+      <VideoCarouselSection />
       <PartnersLogosSection />
       <OurSolutionsSection />
       <TestimonialsSection />
-      <VideoCarouselSection />
       <CtaSection />
       <Footer />
     </div>
