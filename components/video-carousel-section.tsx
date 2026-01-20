@@ -1,13 +1,15 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
+import useEmblaCarousel from "embla-carousel-react";
 import { motion, AnimatePresence } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
-import { Play, ArrowRight, Loader2, X } from "lucide-react";
+import { Play, ArrowRight, Loader2, X, ArrowLeft } from "lucide-react";
 import { useGetVideosQuery, type Video } from "@/lib/api/contact-api";
 
 const TEST_VIDEOS: Video[] = [
+  // ... existing test videos
   {
     id: 1,
     title: "PostgreSQL Performance Tuning Tutorial",
@@ -113,10 +115,64 @@ export function VideoCarouselSection() {
   const apiVideos = data?.videos || [];
 
   const videos = apiVideos.length > 0 ? apiVideos : TEST_VIDEOS;
-
-  const duplicatedCards = [...videos, ...videos];
-  const [isPaused, setIsPaused] = useState(false);
   const [selectedVideo, setSelectedVideo] = useState<Video | null>(null);
+
+  const [emblaRef, emblaApi] = useEmblaCarousel({
+    loop: true,
+    align: "start",
+    slidesToScroll: 1,
+  });
+
+  const [prevBtnDisabled, setPrevBtnDisabled] = useState(true);
+  const [nextBtnDisabled, setNextBtnDisabled] = useState(true);
+  const [selectedIndex, setSelectedIndex] = useState(0);
+  const [scrollSnaps, setScrollSnaps] = useState<number[]>([]);
+
+  const scrollPrev = useCallback(() => {
+    if (emblaApi) emblaApi.scrollPrev();
+  }, [emblaApi]);
+
+  const scrollNext = useCallback(() => {
+    if (emblaApi) emblaApi.scrollNext();
+  }, [emblaApi]);
+
+  const scrollTo = useCallback(
+    (index: number) => emblaApi && emblaApi.scrollTo(index),
+    [emblaApi]
+  );
+
+  const onSelect = useCallback(() => {
+    if (!emblaApi) return;
+    setSelectedIndex(emblaApi.selectedScrollSnap());
+    setPrevBtnDisabled(!emblaApi.canScrollPrev());
+    setNextBtnDisabled(!emblaApi.canScrollNext());
+  }, [emblaApi]);
+
+  useEffect(() => {
+    if (!emblaApi) return;
+    setScrollSnaps(emblaApi.scrollSnapList());
+    onSelect();
+    emblaApi.on("select", onSelect);
+    emblaApi.on("reInit", (api) => {
+      setScrollSnaps(api.scrollSnapList());
+      onSelect();
+    });
+    return () => {
+      emblaApi.off("select", onSelect);
+      emblaApi.off("reInit", onSelect);
+    };
+  }, [emblaApi, onSelect]);
+
+  // Autoplay functionality
+  useEffect(() => {
+    if (!emblaApi) return;
+
+    const autoplay = setInterval(() => {
+      emblaApi.scrollNext();
+    }, 4000); // Change slide every 4 seconds
+
+    return () => clearInterval(autoplay);
+  }, [emblaApi]);
 
   useEffect(() => {
     const handleEscape = (e: KeyboardEvent) => {
@@ -139,24 +195,46 @@ export function VideoCarouselSection() {
   }, [selectedVideo]);
 
   return (
-    <section className="bg-white py-[60px] sm:py-[80px] md:py-[100px]">
+    <section className="bg-white py-[60px] sm:py-[80px] md:py-[100px] overflow-hidden">
       <div className="container mx-auto max-w-7xl px-4 sm:px-6 md:px-8 lg:px-12 xl:px-16 2xl:px-20">
         {/* Section Header */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-          className="text-center mb-12 sm:mb-16"
-        >
-          <h2 className="text-[32px] sm:text-[40px] md:text-[48px] font-bold text-black leading-tight mb-4">
-            Watch Our Videos
-          </h2>
-          <p className="text-[16px] sm:text-[18px] text-gray-700 max-w-3xl mx-auto">
-            Learn from our expert team through detailed tutorials and case
-            studies
-          </p>
-        </motion.div>
+        <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 sm:mb-16 gap-6">
+          <motion.div
+            initial={{ opacity: 0, x: -20 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+            className="text-left"
+          >
+            <h2 className="text-[32px] sm:text-[40px] md:text-[48px] font-bold text-black leading-tight mb-4">
+              Watch Our Videos
+            </h2>
+            <p className="text-[16px] sm:text-[18px] text-gray-700 max-w-2xl">
+              Learn from our expert team through detailed tutorials and case
+              studies. Swipe to explore our video library.
+            </p>
+          </motion.div>
+
+          {/* Navigation Controls */}
+          <div className="flex items-center gap-4">
+            <button
+              onClick={scrollPrev}
+              disabled={prevBtnDisabled}
+              className="w-12 h-12 rounded-full border border-gray-200 flex items-center justify-center transition-all hover:bg-black hover:text-white disabled:opacity-30 disabled:hover:bg-white disabled:hover:text-black shadow-sm"
+              aria-label="Previous videos"
+            >
+              <ArrowLeft className="w-6 h-6" />
+            </button>
+            <button
+              onClick={scrollNext}
+              disabled={nextBtnDisabled}
+              className="w-12 h-12 rounded-full border border-gray-200 flex items-center justify-center transition-all hover:bg-black hover:text-white disabled:opacity-30 disabled:hover:bg-white disabled:hover:text-black shadow-sm"
+              aria-label="Next videos"
+            >
+              <ArrowRight className="w-6 h-6" />
+            </button>
+          </div>
+        </div>
 
         {/* Scrolling Cards Container */}
         {isLoading ? (
@@ -164,87 +242,92 @@ export function VideoCarouselSection() {
             <Loader2 className="w-8 h-8 animate-spin text-blue-600" />
           </div>
         ) : (
-          <div
-            className="overflow-hidden"
-            onMouseEnter={() => setIsPaused(true)}
-            onMouseLeave={() => setIsPaused(false)}
-            onTouchStart={() => setIsPaused(true)}
-            onTouchEnd={() => setIsPaused(false)}
-          >
-            <div
-              className="flex gap-6 sm:gap-8"
-              style={{
-                width: "max-content",
-                animation: "scroll 60s linear infinite",
-                animationPlayState: isPaused ? "paused" : "running",
-              }}
-            >
-              {duplicatedCards.map((card, index) => (
-                <div
-                  key={`${card.id}-${index}`}
-                  className="shrink-0 w-[85vw] sm:w-[45vw] lg:w-[30vw]"
-                >
-                  <motion.div
-                    initial={{ opacity: 0, y: 30 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.6 }}
-                    className="bg-white rounded-xl border border-gray-200 overflow-hidden shadow-sm hover:shadow-lg transition-all group h-full flex flex-col"
+          <>
+            <div className="overflow-hidden" ref={emblaRef}>
+              <div className="flex gap-6 sm:gap-8">
+                {videos.map((card, index) => (
+                  <div
+                    key={`${card.id}-${index}`}
+                    className="flex-[0_0_85vw] sm:flex-[0_0_45vw] lg:flex-[0_0_calc(33.333%-21.33px)] min-w-0"
                   >
-                    <button
-                      onClick={() => setSelectedVideo(card)}
-                      className="relative w-full h-[200px] sm:h-[240px] md:h-[280px] overflow-hidden bg-gray-200 block cursor-pointer"
+                    <motion.div
+                      initial={{ opacity: 0, y: 30 }}
+                      whileInView={{ opacity: 1, y: 0 }}
+                      viewport={{ once: true }}
+                      transition={{ duration: 0.6, delay: (index % 3) * 0.1 }}
+                      className="bg-white rounded-xl border border-gray-200 overflow-hidden shadow-sm hover:shadow-lg transition-all group h-full flex flex-col"
                     >
-                      <Image
-                        src={getYouTubeThumbnail(card.videoLink)}
-                        alt={card.title}
-                        fill
-                        className="object-cover group-hover:scale-105 transition-transform duration-300"
-                        sizes="(max-width: 640px) 85vw, (max-width: 1024px) 45vw, 30vw"
-                      />
-                      <div className="absolute inset-0 bg-black/40 group-hover:bg-black/50 transition-colors flex items-center justify-center">
-                        <div className="w-16 h-16 sm:w-20 sm:h-20 bg-white/90 rounded-full flex items-center justify-center group-hover:scale-110 transition-transform shadow-lg">
-                          <Play
-                            className="w-8 h-8 sm:w-10 sm:h-10 text-blue-600 ml-1"
-                            fill="currentColor"
-                          />
+                      <button
+                        onClick={() => setSelectedVideo(card)}
+                        className="relative w-full h-[200px] sm:h-[240px] md:h-[280px] overflow-hidden bg-gray-200 block cursor-pointer"
+                      >
+                        <Image
+                          src={getYouTubeThumbnail(card.videoLink)}
+                          alt={card.title}
+                          fill
+                          className="object-cover group-hover:scale-105 transition-transform duration-300"
+                          sizes="(max-width: 640px) 85vw, (max-width: 1024px) 45vw, 30vw"
+                        />
+                        <div className="absolute inset-0 bg-black/40 group-hover:bg-black/50 transition-colors flex items-center justify-center">
+                          <div className="w-16 h-16 sm:w-20 sm:h-20 bg-white/90 rounded-full flex items-center justify-center group-hover:scale-110 transition-transform shadow-lg">
+                            <Play
+                              className="w-8 h-8 sm:w-10 sm:h-10 text-blue-600 ml-1"
+                              fill="currentColor"
+                            />
+                          </div>
+                        </div>
+                      </button>
+
+                      {/* Content */}
+                      <div className="p-6 sm:p-8 space-y-4 flex flex-col grow">
+                        <h3 className="text-[20px] sm:text-[22px] font-bold text-black leading-tight line-clamp-2">
+                          {card.title}
+                        </h3>
+                        <p className="text-[15px] sm:text-[16px] font-normal text-gray-700 leading-relaxed grow line-clamp-3">
+                          {card.description || card.caption}
+                        </p>
+                        <div className="flex items-center gap-4 mt-2">
+                          <button
+                            onClick={() => setSelectedVideo(card)}
+                            className="inline-flex items-center gap-2 text-blue-600 font-semibold text-sm sm:text-base hover:text-blue-700 transition-colors group/link"
+                          >
+                            Watch Video
+                            <Play className="w-4 h-4 group-hover/link:scale-110 transition-transform" />
+                          </button>
+                          <Link
+                            href={card.videoLink}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="inline-flex items-center gap-2 text-gray-600 font-medium text-sm sm:text-base hover:text-gray-700 transition-colors group/link"
+                            onClick={(e) => e.stopPropagation()}
+                          >
+                            Open on YouTube
+                            <ArrowRight className="w-4 h-4 group-hover/link:translate-x-1 transition-transform" />
+                          </Link>
                         </div>
                       </div>
-                    </button>
+                    </motion.div>
+                  </div>
+                ))}
+              </div>
+            </div>
 
-                    {/* Content */}
-                    <div className="p-6 sm:p-8 space-y-4 flex flex-col grow">
-                      <h3 className="text-[20px] sm:text-[22px] font-bold text-black leading-tight">
-                        {card.title}
-                      </h3>
-                      <p className="text-[15px] sm:text-[16px] font-normal text-gray-700 leading-relaxed grow">
-                        {card.description || card.caption}
-                      </p>
-                      <div className="flex items-center gap-4 mt-2">
-                        <button
-                          onClick={() => setSelectedVideo(card)}
-                          className="inline-flex items-center gap-2 text-blue-600 font-semibold text-sm sm:text-base hover:text-blue-700 transition-colors group/link"
-                        >
-                          Watch Video
-                          <Play className="w-4 h-4 group-hover/link:scale-110 transition-transform" />
-                        </button>
-                        <Link
-                          href={card.videoLink}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="inline-flex items-center gap-2 text-gray-600 font-medium text-sm sm:text-base hover:text-gray-700 transition-colors group/link"
-                          onClick={(e) => e.stopPropagation()}
-                        >
-                          Open on YouTube
-                          <ArrowRight className="w-4 h-4 group-hover/link:translate-x-1 transition-transform" />
-                        </Link>
-                      </div>
-                    </div>
-                  </motion.div>
-                </div>
+            {/* Pagination Dots */}
+            <div className="flex justify-center gap-2 mt-12">
+              {scrollSnaps.map((_, index) => (
+                <button
+                  key={index}
+                  onClick={() => scrollTo(index)}
+                  className={`h-2 transition-all rounded-full ${
+                    index === selectedIndex
+                      ? "w-8 bg-blue-600"
+                      : "w-2 bg-gray-200 hover:bg-gray-300"
+                  }`}
+                  aria-label={`Go to slide ${index + 1}`}
+                />
               ))}
             </div>
-          </div>
+          </>
         )}
       </div>
 
