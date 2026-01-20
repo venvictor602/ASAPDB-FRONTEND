@@ -10,42 +10,42 @@ const services = [
     title: "Database Administration Services",
     description:
       "Proactive monitoring, tuning, and maintenance to keep your databases running smoothly. We handle everything from backups to high-availability setups—so your business never slows down.",
-    image: "/assets/image1.png",
+    image: "/assets/Image1.png",
   },
   {
     id: "data-migration",
     title: "Data Migration & Upgrades",
     description:
       "Smooth, safe transitions—zero downtime, zero data loss. We migrate your databases or upgrade them to new versions with complete reliability.",
-    image: "/assets/image2.png",
+    image: "/assets/Image2.png",
   },
   {
     id: "cloud-infrastructure",
     title: "Cloud Infrastructure Services",
     description:
       "Accelerate growth with scalable and secure cloud environments. We help you migrate, deploy, and manage cloud solutions across AWS, Azure, and Google Cloud.",
-    image: "/assets/image3.png",
+    image: "/assets/Image3.png",
   },
   {
     id: "security-compliance",
     title: "Security & Compliance",
     description:
       "Protect your data with enterprise-level security solutions. We implement security standards that safeguard your systems from threats and vulnerabilities.",
-    image: "/assets/image1.png",
+    image: "/assets/Image1.png",
   },
   {
     id: "performance-optimization",
     title: "Performance Optimization",
     description:
       "Slow systems? We make them fast again—without disrupting your operations. We analyze your workload, detect bottlenecks, and optimize performance for maximum efficiency.",
-    image: "/assets/image2.png",
+    image: "/assets/Image2.png",
   },
   {
     id: "managed-services",
     title: "Managed Services",
     description:
       "Let us run your database while you run your business. We provide full management support with guaranteed uptime and performance.",
-    image: "/assets/image3.png",
+    image: "/assets/Image3.png",
   },
 ];
 

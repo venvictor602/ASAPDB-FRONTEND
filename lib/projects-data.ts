@@ -15,7 +15,7 @@ export const projects: Project[] = [
     title: "E-Commerce Platform Database Optimization",
     description:
       "Optimized database performance for a high-traffic e-commerce platform, reducing query times by 70% and improving overall system responsiveness.",
-    image: "/assets/image1.png",
+    image: "/assets/Image1.png",
     technologies: ["PostgreSQL", "Redis", "AWS RDS", "Query Optimization"],
     category: "Performance Optimization",
     client: "Major E-Commerce Retailer",
@@ -26,7 +26,7 @@ export const projects: Project[] = [
     title: "Healthcare System Cloud Migration",
     description:
       "Migrated critical healthcare database infrastructure to AWS with zero downtime, ensuring HIPAA compliance and improved scalability.",
-    image: "/assets/image2.png",
+    image: "/assets/Image2.png",
     technologies: ["AWS", "PostgreSQL", "Docker", "Kubernetes"],
     category: "Cloud Migration",
     client: "Healthcare Provider",
@@ -37,7 +37,7 @@ export const projects: Project[] = [
     title: "FinTech 24/7 Database Monitoring",
     description:
       "Implemented comprehensive monitoring and alerting system for a financial services platform, ensuring 99.99% uptime and proactive issue resolution.",
-    image: "/assets/image3.png",
+    image: "/assets/Image3.png",
     technologies: ["MySQL", "Prometheus", "Grafana", "Alerting"],
     category: "Monitoring & Support",
     client: "FinTech Startup",
@@ -48,7 +48,7 @@ export const projects: Project[] = [
     title: "SaaS Platform Backup & Recovery",
     description:
       "Designed and implemented automated backup and disaster recovery solution for a SaaS platform, reducing recovery time from hours to minutes.",
-    image: "/assets/image1.png",
+    image: "/assets/Image1.png",
     technologies: [
       "MongoDB",
       "AWS S3",
@@ -64,7 +64,7 @@ export const projects: Project[] = [
     title: "Enterprise Security Hardening",
     description:
       "Enhanced database security for a Fortune 500 company, implementing encryption, access controls, and compliance frameworks to meet regulatory requirements.",
-    image: "/assets/image2.png",
+    image: "/assets/Image2.png",
     technologies: ["Oracle", "Encryption", "Access Control", "Compliance"],
     category: "Security & Compliance",
     client: "Fortune 500 Company",
@@ -75,7 +75,7 @@ export const projects: Project[] = [
     title: "Startup Database Scaling Solution",
     description:
       "Architected scalable database solution for a rapidly growing startup, enabling seamless horizontal scaling to handle 10x traffic growth.",
-    image: "/assets/image3.png",
+    image: "/assets/Image3.png",
     technologies: ["PostgreSQL", "Sharding", "Load Balancing", "Auto-scaling"],
     category: "Scalability",
     client: "Tech Startup",

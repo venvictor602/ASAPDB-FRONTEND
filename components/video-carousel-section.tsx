@@ -97,7 +97,7 @@ function getYouTubeThumbnail(videoLink: string): string {
   if (videoId) {
     return `https://img.youtube.com/vi/${videoId}/maxresdefault.jpg`;
   }
-  return "/assets/image1.png";
+  return "/assets/Image1.png";
 }
 
 function getYouTubeEmbedUrl(videoLink: string): string | null {

@@ -10,19 +10,19 @@ const services = [
     title: "Database Administration Services",
     description:
       "Proactive monitoring, tuning, and maintenance to keep your databases running smoothly and efficiently.",
-    image: "/assets/image1.png", // Placeholder - replace with actual image
+    image: "/assets/Image1.png", // Placeholder - replace with actual image
   },
   {
     title: "Data Migration & Upgrades",
     description:
       "Smooth, safe transitions—zero downtime, zero data loss. We migrate your databases seamlessly.",
-    image: "/assets/image2.png", // Placeholder - replace with actual image
+    image: "/assets/Image2.png", // Placeholder - replace with actual image
   },
   {
     title: "Cloud Infrastructure Services",
     description:
       "Accelerate growth with scalable and secure cloud environments for better performance and cost efficiency.",
-    image: "/assets/image3.png", // Placeholder - replace with actual image
+    image: "/assets/Image3.png", // Placeholder - replace with actual image
   },
 ];
 

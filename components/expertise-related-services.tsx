@@ -6,15 +6,15 @@ import Image from "next/image";
 const relatedServices = [
   {
     title: "Database Administration Services",
-    image: "/assets/image1.png",
+    image: "/assets/Image1.png",
   },
   {
     title: "Data Migration & Upgrades",
-    image: "/assets/image2.png",
+    image: "/assets/Image2.png",
   },
   {
     title: "Cloud Infrastructure Services",
-    image: "/assets/image3.png",
+    image: "/assets/Image3.png",
   },
 ];
 

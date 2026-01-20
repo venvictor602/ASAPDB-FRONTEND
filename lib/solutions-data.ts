@@ -20,7 +20,7 @@ export const solutions: Solution[] = [
       "Identify slow queries, fix bottlenecks, and fine-tune your database for maximum speed and stability.",
     longDescription:
       "Our performance optimization solutions help you identify and resolve database performance issues before they impact your users. We analyze query patterns, optimize indexes, tune configurations, and implement caching strategies to ensure your database runs at peak efficiency. With our expertise, you'll see significant improvements in response times and overall system performance.",
-    image: "/assets/image1.png",
+    image: "/assets/Image1.png",
     icon: "grid",
     features: [
       "Query performance analysis",
@@ -51,7 +51,7 @@ export const solutions: Solution[] = [
       "Real-time health checks, alerts, and expert intervention the moment an issue arises.",
     longDescription:
       "Never worry about database issues again. Our 24/7 monitoring and support service provides round-the-clock surveillance of your database infrastructure. We use advanced monitoring tools to track performance metrics, detect anomalies, and proactively address issues before they become critical. Our expert team is always ready to intervene and resolve problems quickly.",
-    image: "/assets/image2.png",
+    image: "/assets/Image2.png",
     icon: "cross",
     features: [
       "Real-time monitoring",
@@ -82,7 +82,7 @@ export const solutions: Solution[] = [
       "Scheduled backups, disaster recovery planning, and rapid restoration to keep your business running.",
     longDescription:
       "Protect your data with our comprehensive backup and recovery solutions. We implement automated backup strategies tailored to your business needs, ensuring your data is always protected. Our disaster recovery planning and rapid restoration capabilities mean you can recover from any incident quickly, minimizing downtime and data loss.",
-    image: "/assets/image3.png",
+    image: "/assets/Image3.png",
     icon: "zigzag",
     features: [
       "Automated backups",
@@ -113,7 +113,7 @@ export const solutions: Solution[] = [
       "Full support for AWS, Azure, and Google Cloud — including migrations, setup, and daily operations.",
     longDescription:
       "Leverage the power of cloud computing with our comprehensive cloud database management services. We help you migrate to the cloud, set up cloud-native databases, and manage your cloud infrastructure efficiently. Our expertise spans all major cloud platforms, ensuring you get the best performance, security, and cost optimization for your cloud databases.",
-    image: "/assets/image1.png",
+    image: "/assets/Image1.png",
     icon: "diamonds",
     features: [
       "Multi-cloud support",
@@ -144,7 +144,7 @@ export const solutions: Solution[] = [
       "Enterprise-grade security measures and compliance management to protect your sensitive data.",
     longDescription:
       "Keep your data secure with our comprehensive security and compliance solutions. We implement industry-standard security measures, encryption, access controls, and compliance frameworks to protect your databases from threats. Our security audits and compliance assessments ensure you meet regulatory requirements and industry standards.",
-    image: "/assets/image2.png",
+    image: "/assets/Image2.png",
     icon: "shield",
     features: [
       "Data encryption",
@@ -175,7 +175,7 @@ export const solutions: Solution[] = [
       "Database architectures designed to scale with your business, handling growth seamlessly.",
     longDescription:
       "Plan for growth with our scalability solutions. We design database architectures that can scale horizontally and vertically to accommodate your business growth. Whether you're experiencing rapid user growth or data expansion, our solutions ensure your database infrastructure can handle increased load without performance degradation.",
-    image: "/assets/image3.png",
+    image: "/assets/Image3.png",
     icon: "rocket",
     features: [
       "Horizontal scaling",

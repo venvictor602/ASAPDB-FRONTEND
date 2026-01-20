@@ -18,7 +18,7 @@ export const industries: Industry[] = [
       "HIPAA-compliant database solutions for healthcare organizations.",
     longDescription:
       "Healthcare organizations require secure, compliant, and highly available database systems to manage patient data, medical records, and critical healthcare information. We provide HIPAA-compliant database management services that ensure data security, privacy, and regulatory compliance while maintaining optimal performance.",
-    image: "/assets/image1.png",
+    image: "/assets/Image1.png",
     challenges: [
       "HIPAA compliance requirements",
       "Patient data security",
@@ -42,7 +42,7 @@ export const industries: Industry[] = [
       "Scalable database solutions for educational technology platforms.",
     longDescription:
       "EdTech platforms require databases that can handle large numbers of concurrent users, store educational content efficiently, and scale with growing student populations. We provide database solutions optimized for educational platforms, ensuring fast performance and reliable access to learning resources.",
-    image: "/assets/image2.png",
+    image: "/assets/Image2.png",
     challenges: [
       "High concurrent user loads",
       "Content management",
@@ -66,7 +66,7 @@ export const industries: Industry[] = [
       "Secure, compliant database solutions for financial technology companies.",
     longDescription:
       "FinTech companies need databases that meet strict security and compliance requirements while handling high transaction volumes. We provide secure, compliant database management services that ensure data integrity, transaction reliability, and regulatory compliance for financial applications.",
-    image: "/assets/image3.png",
+    image: "/assets/Image3.png",
     challenges: [
       "Financial data security",
       "Regulatory compliance",
@@ -89,7 +89,7 @@ export const industries: Industry[] = [
     description: "Secure database management for legal technology platforms.",
     longDescription:
       "LegalTech platforms require secure, compliant databases to manage sensitive legal documents, case files, and client information. We provide database solutions that ensure data security, confidentiality, and compliance with legal industry standards while maintaining high performance and availability.",
-    image: "/assets/image1.png",
+    image: "/assets/Image1.png",
     challenges: [
       "Data confidentiality",
       "Document management",
@@ -113,7 +113,7 @@ export const industries: Industry[] = [
       "High-performance database solutions for retail and e-commerce.",
     longDescription:
       "Retail and e-commerce businesses need databases that can handle high traffic, manage inventory, process transactions, and analyze customer data. We provide database solutions optimized for retail operations, ensuring fast performance during peak shopping periods and reliable inventory management.",
-    image: "/assets/image2.png",
+    image: "/assets/Image2.png",
     challenges: [
       "High traffic volumes",
       "Inventory management",
