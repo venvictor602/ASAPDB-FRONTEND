@@ -3,6 +3,7 @@ import { Raleway } from "next/font/google";
 import "./globals.css";
 import { Providers } from "@/components/providers";
 import { ScrollIndicator } from "@/components/scroll-indicator";
+import { CookieConsent } from "@/components/CookieConsent";
 
 const raleway = Raleway({
   variable: "--font-raleway",
@@ -119,6 +120,7 @@ export default function RootLayout({
       <body className={`${raleway.variable} antialiased`}>
         <ScrollIndicator />
         <Providers>{children}</Providers>
+        <CookieConsent />
       </body>
     </html>
   );

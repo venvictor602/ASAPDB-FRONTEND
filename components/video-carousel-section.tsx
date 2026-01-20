@@ -13,8 +13,10 @@ const TEST_VIDEOS: Video[] = [
     title: "PostgreSQL Performance Tuning Tutorial",
     thumbnail: "",
     videoLink: "https://www.youtube.com/watch?v=BhUzXzVUrxg",
-    caption: "Learn how to optimize PostgreSQL databases for better performance",
-    description: "Learn how to optimize PostgreSQL databases for better performance",
+    caption:
+      "Learn how to optimize PostgreSQL databases for better performance",
+    description:
+      "Learn how to optimize PostgreSQL databases for better performance",
     createdAt: new Date().toISOString(),
     updatedAt: new Date().toISOString(),
   },
@@ -23,8 +25,10 @@ const TEST_VIDEOS: Video[] = [
     title: "MySQL Database Administration Best Practices",
     thumbnail: "",
     videoLink: "https://www.youtube.com/watch?v=7S_tz1z_5bA",
-    caption: "Essential MySQL administration techniques for database professionals",
-    description: "Essential MySQL administration techniques for database professionals",
+    caption:
+      "Essential MySQL administration techniques for database professionals",
+    description:
+      "Essential MySQL administration techniques for database professionals",
     createdAt: new Date().toISOString(),
     updatedAt: new Date().toISOString(),
   },
@@ -72,19 +76,19 @@ const TEST_VIDEOS: Video[] = [
 
 function getYouTubeVideoId(videoLink: string): string | null {
   if (!videoLink) return null;
-  
+
   const patterns = [
     /(?:youtube\.com\/watch\?v=|youtu\.be\/|youtube\.com\/embed\/)([^&\n?#]+)/,
     /youtube\.com\/watch\?.*v=([^&\n?#]+)/,
   ];
-  
+
   for (const pattern of patterns) {
     const match = videoLink.match(pattern);
     if (match && match[1]) {
       return match[1];
     }
   }
-  
+
   return null;
 }
 
@@ -107,7 +111,7 @@ function getYouTubeEmbedUrl(videoLink: string): string | null {
 export function VideoCarouselSection() {
   const { data, isLoading } = useGetVideosQuery({ page: 1 });
   const apiVideos = data?.videos || [];
-  
+
   const videos = apiVideos.length > 0 ? apiVideos : TEST_VIDEOS;
 
   const duplicatedCards = [...videos, ...videos];
@@ -275,7 +279,10 @@ export function VideoCarouselSection() {
                 >
                   <X className="w-6 h-6" />
                 </button>
-                <div className="relative w-full" style={{ paddingBottom: "56.25%" }}>
+                <div
+                  className="relative w-full"
+                  style={{ paddingBottom: "56.25%" }}
+                >
                   {getYouTubeEmbedUrl(selectedVideo.videoLink) ? (
                     <iframe
                       src={getYouTubeEmbedUrl(selectedVideo.videoLink) || ""}

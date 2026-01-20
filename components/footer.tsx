@@ -167,15 +167,15 @@ export function Footer() {
         {/* Bottom Bar */}
         <div className="flex flex-col md:flex-row items-center justify-between gap-8">
           <div className="flex flex-wrap items-center justify-center gap-6 text-xs text-gray-500">
-            <span className="text-[#FFFFFF]">© 2023 asap dba</span>
+            <span className="text-[#FFFFFF]">© 2026 ASAP DBA</span>
             <Link
-              href="/terms"
+              href="/terms-of-service"
               className="text-[#FFFFFF] hover:text-white transition-colors"
             >
               Terms of Service
             </Link>
             <Link
-              href="/privacy"
+              href="/privacy-policy"
               className="text-[#FFFFFF] hover:text-white transition-colors"
             >
               Privacy & Cookies policy
