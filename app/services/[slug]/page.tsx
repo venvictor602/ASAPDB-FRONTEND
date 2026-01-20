@@ -121,7 +121,7 @@ export default async function ServicePage({
     title: service.name,
     description: service.description,
     longDescription: service.description,
-    image: service.image || "/assets/image1.png",
+    image: service.image || "/assets/Image1.png",
     features: Array.isArray(service.keyFeatures)
       ? service.keyFeatures.filter((f: string) => f && f.trim())
       : typeof service.keyFeatures === "string" && service.keyFeatures

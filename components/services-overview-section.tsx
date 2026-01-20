@@ -53,7 +53,7 @@ export function ServicesOverviewSection() {
                 {/* Image */}
                 <div className="relative w-full h-[200px] sm:h-[240px] overflow-hidden">
                   <Image
-                    src={service.image || "/assets/image1.png"}
+                    src={service.image || "/assets/Image1.png"}
                     alt={service.name}
                     fill
                     className="object-cover group-hover:scale-105 transition-transform duration-300"

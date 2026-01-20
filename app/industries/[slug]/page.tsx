@@ -127,7 +127,7 @@ export default async function IndustryPage({
     title: industry.name,
     description: industry.description,
     longDescription: industry.description,
-    image: industry.image || "/assets/image1.png",
+    image: industry.image || "/assets/Image1.png",
     challenges: industry.commonChallenges.map(
       (c: { title: string }) => c.title
     ),
