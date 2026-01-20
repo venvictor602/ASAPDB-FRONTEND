@@ -11,6 +11,18 @@ import type {
 
 const API_BASE_URL = "https://asapdb.vercel.app";
 
+// Normalise image paths from the API so they work both locally and in production.
+function normalizeApiImagePath(image: string): string {
+  if (!image) return "";
+
+  if (image.startsWith("http://") || image.startsWith("https://")) {
+    return image;
+  }
+
+  const normalizedPath = image.startsWith("/") ? image : `/${image}`;
+  return `${API_BASE_URL}${normalizedPath}`;
+}
+
 // Blog API Helpers
 export async function fetchBlogPostBySlug(
   slug: string
@@ -93,7 +105,13 @@ export async function fetchAllServices(): Promise<ServiceAPI[]> {
       );
       if (!response.ok) break;
       const data: ServiceListResponse = await response.json();
-      allServices = [...allServices, ...data.results];
+      allServices = [
+        ...allServices,
+        ...data.results.map((service) => ({
+          ...service,
+          image: normalizeApiImagePath(service.image),
+        })),
+      ];
       hasMore = !!data.next;
       if (!hasMore) break;
       page++;
@@ -117,7 +135,11 @@ export async function fetchIndustryById(
       }
     );
     if (!response.ok) return null;
-    return await response.json();
+    const data: IndustryAPI = await response.json();
+    return {
+      ...data,
+      image: normalizeApiImagePath(data.image),
+    };
   } catch (error) {
     console.error("Error fetching industry:", error);
     return null;
@@ -137,7 +159,13 @@ export async function fetchAllIndustries(): Promise<IndustryAPI[]> {
       );
       if (!response.ok) break;
       const data: IndustryListResponse = await response.json();
-      allIndustries = [...allIndustries, ...data.results];
+      allIndustries = [
+        ...allIndustries,
+        ...data.results.map((industry) => ({
+          ...industry,
+          image: normalizeApiImagePath(industry.image),
+        })),
+      ];
       hasMore = !!data.next;
       if (!hasMore) break;
       page++;

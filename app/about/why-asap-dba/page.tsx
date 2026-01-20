@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { Navigation } from "@/components/navigation";
 import { AboutWhyDbaHero } from "@/components/about-why-dba-hero";
 import { AboutWhyDbaCoreValue } from "@/components/about-why-dba-core-value";
-import { PartnersLogosSection } from "@/components/partners-logos-section";
+// import { PartnersLogosSection } from "@/components/partners-logos-section";
 import { AboutWhyDbaInHouseTeam } from "@/components/about-why-dba-in-house-team";
 import { Footer } from "@/components/footer";
 
@@ -73,7 +73,7 @@ export default function WhyAsapDbaPage() {
       <Navigation backgroundColor="white" />
       <AboutWhyDbaHero />
       <AboutWhyDbaCoreValue />
-      <PartnersLogosSection />
+      {/* <PartnersLogosSection /> */}
       <AboutWhyDbaInHouseTeam />
       <Footer />
     </main>

@@ -21,8 +21,14 @@ const nextConfig: NextConfig = {
         port: "",
         pathname: "/**",
       },
+      // API & media assets served from the deployed domain
+      {
+        protocol: "https",
+        hostname: "asapdb.vercel.app",
+        port: "",
+        pathname: "/**",
+      },
     ],
-    qualities: [75, 85, 90],
   },
   // Production optimizations
   productionBrowserSourceMaps: false, // Disable source maps in production

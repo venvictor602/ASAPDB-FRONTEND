@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { HeroSection } from "@/components/hero-section";
 import { ChoosingDatabaseSection } from "@/components/choosing-database-section";
 import { WhyAsapDbaSection } from "@/components/why-asap-dba-section";
-import { PartnersLogosSection } from "@/components/partners-logos-section";
+// import { PartnersLogosSection } from "@/components/partners-logos-section";
 import { TestimonialsSection } from "@/components/testimonials-section";
 import { CtaSection } from "@/components/cta-section";
 import { Footer } from "@/components/footer";
@@ -85,7 +85,7 @@ export default function Home() {
       <ChoosingDatabaseSection />
       <WhyAsapDbaSection />
       <VideoCarouselSection />
-      <PartnersLogosSection />
+      {/* <PartnersLogosSection /> */}
       <OurSolutionsSection />
       <TestimonialsSection />
       <CtaSection />

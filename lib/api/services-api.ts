@@ -91,12 +91,25 @@ export interface Industry {
 }
 
 // Helper functions
+function normalizeApiImagePath(image: string): string {
+  if (!image) return "";
+
+  // If the API already returns a full URL, use it as-is
+  if (image.startsWith("http://") || image.startsWith("https://")) {
+    return image;
+  }
+
+  // Ensure we have a leading slash before joining with the API base URL host
+  const normalizedPath = image.startsWith("/") ? image : `/${image}`;
+  return `${API_BASE_URL}${normalizedPath}`;
+}
+
 function transformService(apiService: ServiceAPI): Service {
   return {
     id: apiService.id,
     name: apiService.name,
     description: apiService.description,
-    image: apiService.image,
+    image: normalizeApiImagePath(apiService.image),
     keyFeatures: apiService.key_features,
     benefits: apiService.benefits,
     isActive: apiService.is_active,
@@ -110,7 +123,7 @@ function transformIndustry(apiIndustry: IndustryAPI): Industry {
     id: apiIndustry.id,
     name: apiIndustry.name,
     description: apiIndustry.description,
-    image: apiIndustry.image,
+    image: normalizeApiImagePath(apiIndustry.image),
     commonChallenges: apiIndustry.common_challenges.map((challenge) => ({
       id: challenge.id,
       title: challenge.title,

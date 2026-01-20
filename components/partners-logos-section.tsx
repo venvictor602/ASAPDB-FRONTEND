@@ -74,6 +74,8 @@ export function PartnersLogosSection() {
                       alt={partner.name}
                       width={120}
                       height={60}
+                      loading="lazy"
+                      decoding="async"
                       className="h-full w-auto object-contain opacity-60 hover:opacity-100 transition-opacity grayscale hover:grayscale-0"
                     />
                   ) : (
