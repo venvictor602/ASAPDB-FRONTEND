@@ -7,6 +7,10 @@ import type {
   ServiceListResponse,
   IndustryAPI,
   IndustryListResponse,
+  FeatureAPI,
+  BenefitAPI,
+  Feature,
+  Benefit,
 } from "./services-api";
 
 const API_BASE_URL = "https://asapdb.vercel.app";
@@ -220,14 +224,32 @@ function transformBlogPost(apiPost: BlogPostAPI) {
   };
 }
 
-function transformService(apiService: ServiceAPI) {
+function transformService(apiService: ServiceAPI): {
+  id: number;
+  name: string;
+  description: string;
+  image: string;
+  keyFeatures: Feature[];
+  benefits: Benefit[];
+  isActive: boolean;
+} {
   return {
     id: apiService.id,
     name: apiService.name,
     description: apiService.description,
-    image: apiService.image,
-    keyFeatures: apiService.key_features || "",
-    benefits: apiService.benefits || "",
+    image: normalizeApiImagePath(apiService.image),
+    keyFeatures: (apiService.key_features || []).map((feature: FeatureAPI) => ({
+      id: feature.id,
+      title: feature.title,
+      description: feature.description,
+      createdAt: feature.created_at,
+    })),
+    benefits: (apiService.benefits || []).map((benefit: BenefitAPI) => ({
+      id: benefit.id,
+      title: benefit.title,
+      description: benefit.description,
+      createdAt: benefit.created_at,
+    })),
     isActive: apiService.is_active,
   };
 }

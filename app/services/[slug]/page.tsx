@@ -122,16 +122,8 @@ export default async function ServicePage({
     description: service.description,
     longDescription: service.description,
     image: service.image || "/assets/Image1.png",
-    features: Array.isArray(service.keyFeatures)
-      ? service.keyFeatures.filter((f: string) => f && f.trim())
-      : typeof service.keyFeatures === "string" && service.keyFeatures
-        ? service.keyFeatures.split("\n").filter((f: string) => f.trim())
-        : [],
-    benefits: Array.isArray(service.benefits)
-      ? service.benefits.filter((b: string) => b && b.trim())
-      : typeof service.benefits === "string" && service.benefits
-        ? service.benefits.split("\n").filter((b: string) => b.trim())
-        : [],
+    features: service.keyFeatures || [],
+    benefits: service.benefits || [],
   };
 
   return (

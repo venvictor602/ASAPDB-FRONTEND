@@ -94,12 +94,78 @@ function getYouTubeVideoId(videoLink: string): string | null {
   return null;
 }
 
-function getYouTubeThumbnail(videoLink: string): string {
+function getYouTubeThumbnail(
+  videoLink: string,
+  quality:
+    | "maxresdefault"
+    | "hqdefault"
+    | "mqdefault"
+    | "default" = "maxresdefault"
+): string {
   const videoId = getYouTubeVideoId(videoLink);
   if (videoId) {
-    return `https://img.youtube.com/vi/${videoId}/maxresdefault.jpg`;
+    return `https://img.youtube.com/vi/${videoId}/${quality}.jpg`;
   }
   return "/assets/Image1.png";
+}
+
+function YouTubeThumbnail({
+  videoLink,
+  alt,
+  className,
+}: {
+  videoLink: string;
+  alt: string;
+  className?: string;
+}) {
+  const videoId = getYouTubeVideoId(videoLink);
+  const [currentQualityIndex, setCurrentQualityIndex] = useState(0);
+  const [useFallback, setUseFallback] = useState(false);
+
+  const fallbackOrder: Array<
+    "maxresdefault" | "hqdefault" | "mqdefault" | "default"
+  > = ["maxresdefault", "hqdefault", "mqdefault", "default"];
+
+  const thumbnailSrc = useFallback
+    ? "/assets/Image1.png"
+    : videoId
+      ? getYouTubeThumbnail(videoLink, fallbackOrder[currentQualityIndex])
+      : "/assets/Image1.png";
+
+  const handleImageError = () => {
+    if (currentQualityIndex < fallbackOrder.length - 1) {
+      setCurrentQualityIndex(currentQualityIndex + 1);
+    } else {
+      setUseFallback(true);
+    }
+  };
+
+  // Use regular img tag for YouTube thumbnails to handle errors properly
+  // Next.js Image optimization doesn't work well with dynamic error handling
+  if (!videoId || useFallback || thumbnailSrc === "/assets/Image1.png") {
+    return (
+      <Image
+        src="/assets/Image1.png"
+        alt={alt}
+        fill
+        className={className}
+        sizes="(max-width: 640px) 85vw, (max-width: 1024px) 45vw, 30vw"
+      />
+    );
+  }
+
+  return (
+    <div className="relative w-full h-full">
+      <img
+        src={thumbnailSrc}
+        alt={alt}
+        className={className}
+        onError={handleImageError}
+        style={{ objectFit: "cover", width: "100%", height: "100%" }}
+        loading="lazy"
+      />
+    </div>
+  );
 }
 
 function getYouTubeEmbedUrl(videoLink: string): string | null {
@@ -261,12 +327,10 @@ export function VideoCarouselSection() {
                         onClick={() => setSelectedVideo(card)}
                         className="relative w-full h-[200px] sm:h-[240px] md:h-[280px] overflow-hidden bg-gray-200 block cursor-pointer"
                       >
-                        <Image
-                          src={getYouTubeThumbnail(card.videoLink)}
+                        <YouTubeThumbnail
+                          videoLink={card.videoLink}
                           alt={card.title}
-                          fill
                           className="object-cover group-hover:scale-105 transition-transform duration-300"
-                          sizes="(max-width: 640px) 85vw, (max-width: 1024px) 45vw, 30vw"
                         />
                         <div className="absolute inset-0 bg-black/40 group-hover:bg-black/50 transition-colors flex items-center justify-center">
                           <div className="w-16 h-16 sm:w-20 sm:h-20 bg-white/90 rounded-full flex items-center justify-center group-hover:scale-110 transition-transform shadow-lg">

@@ -3,13 +3,27 @@ import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 const API_BASE_URL = "https://asapdb.vercel.app";
 
 // API Response Types
+export interface FeatureAPI {
+  id: number;
+  title: string;
+  description: string;
+  created_at: string;
+}
+
+export interface BenefitAPI {
+  id: number;
+  title: string;
+  description: string;
+  created_at: string;
+}
+
 export interface ServiceAPI {
   id: number;
   name: string;
   description: string;
   image: string;
-  key_features: string;
-  benefits: string;
+  key_features: FeatureAPI[];
+  benefits: BenefitAPI[];
   is_active: boolean;
   created_at: string;
   updated_at: string;
@@ -85,13 +99,27 @@ export interface ProjectListResponse {
 }
 
 // Transformed Types
+export interface Feature {
+  id: number;
+  title: string;
+  description: string;
+  createdAt: string;
+}
+
+export interface Benefit {
+  id: number;
+  title: string;
+  description: string;
+  createdAt: string;
+}
+
 export interface Service {
   id: number;
   name: string;
   description: string;
   image: string;
-  keyFeatures: string;
-  benefits: string;
+  keyFeatures: Feature[];
+  benefits: Benefit[];
   isActive: boolean;
   createdAt: string;
   updatedAt: string;
@@ -165,8 +193,18 @@ function transformService(apiService: ServiceAPI): Service {
     name: apiService.name,
     description: apiService.description,
     image: normalizeApiImagePath(apiService.image),
-    keyFeatures: apiService.key_features,
-    benefits: apiService.benefits,
+    keyFeatures: (apiService.key_features || []).map((feature) => ({
+      id: feature.id,
+      title: feature.title,
+      description: feature.description,
+      createdAt: feature.created_at,
+    })),
+    benefits: (apiService.benefits || []).map((benefit) => ({
+      id: benefit.id,
+      title: benefit.title,
+      description: benefit.description,
+      createdAt: benefit.created_at,
+    })),
     isActive: apiService.is_active,
     createdAt: apiService.created_at,
     updatedAt: apiService.updated_at,

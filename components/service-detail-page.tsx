@@ -4,12 +4,21 @@ import { useEffect } from "react";
 import { motion } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowRight, CheckCircle2 } from "lucide-react";
-import type { Service } from "@/lib/services-data";
+import { ArrowRight } from "lucide-react";
+import type { Feature, Benefit } from "@/lib/api/services-api";
 import { useGetServiceByIdQuery } from "@/lib/api/services-api";
 
 interface ServiceDetailPageProps {
-  service: Service;
+  service: {
+    id: string;
+    slug: string;
+    title: string;
+    description: string;
+    longDescription: string;
+    image: string;
+    features: Feature[];
+    benefits: Benefit[];
+  };
 }
 
 export function ServiceDetailPage({ service }: ServiceDetailPageProps) {
@@ -31,7 +40,7 @@ export function ServiceDetailPage({ service }: ServiceDetailPageProps) {
   return (
     <div className="min-h-screen bg-white">
       {/* Hero Section */}
-      <section className="relative py-[60px] sm:py-[80px] md:py-[100px] lg:py-[120px] bg-gradient-to-b from-gray-50 to-white">
+      <section className="relative py-[60px] sm:py-[80px] md:py-[100px] lg:py-[120px] bg-linear-to-b from-gray-50 to-white">
         <div className="container mx-auto max-w-7xl px-4 sm:px-6 md:px-8 lg:px-12 xl:px-16 2xl:px-20">
           <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
             {/* Left Content */}
@@ -90,27 +99,34 @@ export function ServiceDetailPage({ service }: ServiceDetailPageProps) {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6 }}
-              className="text-center mb-16"
+              className="mb-16"
             >
               <h2 className="text-[32px] sm:text-[40px] md:text-[48px] font-bold text-black leading-tight mb-4">
-                Key Features
+                Key Features of {service.title}
               </h2>
             </motion.div>
 
-            <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
+            <div className="grid md:grid-cols-2 gap-8 lg:gap-10 max-w-6xl mx-auto">
               {service.features.map((feature, index) => (
                 <motion.div
-                  key={index}
+                  key={feature.id}
                   initial={{ opacity: 0, y: 30 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.6, delay: index * 0.1 }}
-                  className="bg-gray-50 p-6 rounded-xl border border-gray-100 hover:border-blue-200 hover:shadow-md transition-all"
+                  className="bg-white p-8 lg:p-10 rounded-2xl border-2 border-gray-100 hover:border-blue-300 hover:shadow-xl transition-all duration-300 group"
                 >
-                  <div className="flex items-start gap-4">
-                    <CheckCircle2 className="w-6 h-6 text-blue-600 shrink-0 mt-0.5" />
-                    <p className="text-[16px] sm:text-[18px] font-medium text-gray-900 leading-relaxed">
-                      {feature}
+                  <div className="flex flex-col">
+                    <div className="flex items-center gap-5 mb-4">
+                      <div className="shrink-0 w-12 h-12 lg:w-14 lg:h-14 rounded-full bg-linear-to-br from-blue-600 to-blue-700 text-white flex items-center justify-center font-bold text-lg lg:text-xl shadow-lg shadow-blue-500/30 group-hover:scale-110 transition-transform duration-300">
+                        {index + 1}
+                      </div>
+                      <h3 className="text-xl sm:text-2xl lg:text-2xl font-bold text-black  leading-tight">
+                        {feature.title}
+                      </h3>
+                    </div>
+                    <p className="text-base sm:text-lg font-normal text-gray-700 leading-relaxed pl-0 md:pl-0">
+                      {feature.description}
                     </p>
                   </div>
                 </motion.div>
@@ -129,35 +145,29 @@ export function ServiceDetailPage({ service }: ServiceDetailPageProps) {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6 }}
-              className="text-center mb-16"
+              className="mb-16"
             >
               <h2 className="text-[32px] sm:text-[40px] md:text-[48px] font-bold text-black leading-tight mb-4">
-                Benefits
+                Benefits of {service.title}
               </h2>
-              <p className="text-[18px] text-gray-700 max-w-3xl mx-auto">
-                Discover how our {service.title.toLowerCase()} can transform
-                your database operations
-              </p>
             </motion.div>
 
-            <div className="grid sm:grid-cols-2 gap-6 sm:gap-8 max-w-4xl mx-auto">
+            <div className="grid md:grid-cols-2 gap-8 lg:gap-10 max-w-6xl mx-auto">
               {service.benefits.map((benefit, index) => (
                 <motion.div
-                  key={index}
-                  initial={{ opacity: 0, x: index % 2 === 0 ? -20 : 20 }}
-                  whileInView={{ opacity: 1, x: 0 }}
+                  key={benefit.id}
+                  initial={{ opacity: 0, y: 30 }}
+                  whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.6, delay: index * 0.1 }}
-                  className="bg-white p-6 rounded-xl shadow-sm border border-gray-100"
+                  className="bg-white p-8 lg:p-10 rounded-2xl shadow-sm border-2 border-gray-100 hover:border-blue-300 hover:shadow-xl transition-all duration-300"
                 >
-                  <div className="flex items-center gap-3">
-                    <div className="w-10 h-10 rounded-lg bg-blue-50 flex items-center justify-center shrink-0">
-                      <CheckCircle2 className="w-5 h-5 text-blue-600" />
-                    </div>
-                    <p className="text-[16px] sm:text-[18px] font-semibold text-gray-900">
-                      {benefit}
-                    </p>
-                  </div>
+                  <h3 className="text-xl sm:text-2xl lg:text-2xl font-bold text-black mb-4 leading-tight">
+                    {benefit.title}
+                  </h3>
+                  <p className="text-base sm:text-lg font-normal text-gray-700 leading-relaxed">
+                    {benefit.description}
+                  </p>
                 </motion.div>
               ))}
             </div>
