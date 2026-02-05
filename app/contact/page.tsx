@@ -1,6 +1,7 @@
 "use client";
 
-import { useState, useRef, useEffect } from "react";
+import { useState, useRef, useEffect, Suspense } from "react";
+import { useSearchParams } from "next/navigation";
 import { motion } from "framer-motion";
 import {
   Send,
@@ -18,7 +19,10 @@ import { Footer } from "@/components/footer";
 import { useSubmitContactMutation } from "@/lib/api/contact-api";
 import { useGetServicesQuery } from "@/lib/api/services-api";
 
-export default function ContactPage() {
+function ContactForm() {
+  const searchParams = useSearchParams();
+  const serviceIdParam = searchParams.get("serviceId");
+
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -36,6 +40,30 @@ export default function ContactPage() {
   const [submitStatus, setSubmitStatus] = useState<
     "idle" | "success" | "error"
   >("idle");
+
+  // Prefill service when serviceId is in URL
+  useEffect(() => {
+    if (serviceIdParam && servicesList.length > 0) {
+      const serviceId = parseInt(serviceIdParam, 10);
+      if (!isNaN(serviceId)) {
+        // Check if service exists in the list and is not already selected
+        const serviceExists = servicesList.some((s) => s.id === serviceId);
+        if (serviceExists) {
+          setFormData((prev) => {
+            // Only add if not already in the array
+            if (prev.services.includes(serviceId)) {
+              return prev;
+            }
+            return {
+              ...prev,
+              services: [...prev.services, serviceId],
+            };
+          });
+        }
+      }
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [serviceIdParam, servicesList.length]);
 
   const handleChange = (
     e: React.ChangeEvent<
@@ -138,7 +166,7 @@ export default function ContactPage() {
   };
 
   return (
-    <div className="min-h-screen bg-white">
+    <>
       <Navigation backgroundColor="white" />
 
       {/* Hero Section */}
@@ -190,10 +218,10 @@ export default function ContactPage() {
                       Email
                     </h3>
                     <a
-                      href="mailto:contact@asapdba.com"
+                      href="mailto:jandoinatt@gmail.com"
                       className="text-[#606060] text-sm sm:text-base font-normal hover:text-[#101010] transition-colors"
                     >
-                      contact@asapdba.com
+                      jandoinatt@gmail.com
                     </a>
                   </div>
                 </div>
@@ -208,10 +236,10 @@ export default function ContactPage() {
                       Phone
                     </h3>
                     <a
-                      href="tel:+2349072211222"
+                      href="tel:+18016337828"
                       className="text-[#606060] text-sm sm:text-base font-normal hover:text-[#101010] transition-colors"
                     >
-                      +234 907 221 1222
+                      +1 801 633 7828
                     </a>
                   </div>
                 </div>
@@ -331,7 +359,7 @@ export default function ContactPage() {
                         value={formData.phone}
                         onChange={handleChange}
                         className="w-full bg-white border border-[#E8E8E8] rounded-[8px] px-4 py-3 text-[#48484A] text-sm sm:text-base focus:outline-none focus:border-[#101010] transition-colors"
-                        placeholder="+234 907 221 1222"
+                        placeholder="+1 801 633 7828"
                       />
                     </div>
 
@@ -513,6 +541,20 @@ export default function ContactPage() {
       </section>
 
       <Footer />
-    </div>
+    </>
+  );
+}
+
+export default function ContactPage() {
+  return (
+    <Suspense
+      fallback={
+        <div className="min-h-screen bg-white flex items-center justify-center">
+          <Loader2 className="w-8 h-8 animate-spin text-blue-600" />
+        </div>
+      }
+    >
+      <ContactForm />
+    </Suspense>
   );
 }

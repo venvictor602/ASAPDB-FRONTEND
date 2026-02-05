@@ -57,7 +57,7 @@ export function ServiceDetailPage({ service }: ServiceDetailPageProps) {
                 {service.longDescription}
               </p>
               <div className="pt-4">
-                <Link href="/contact">
+                <Link href={`/contact?serviceId=${service.id}`}>
                   <motion.button
                     whileHover={{ scale: 1.05 }}
                     whileTap={{ scale: 0.95 }}
@@ -194,7 +194,7 @@ export function ServiceDetailPage({ service }: ServiceDetailPageProps) {
               reliability.
             </p>
             <div className="pt-4">
-              <Link href="/contact">
+              <Link href={`/contact?serviceId=${service.id}`}>
                 <motion.button
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}

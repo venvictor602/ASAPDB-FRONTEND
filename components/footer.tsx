@@ -96,10 +96,10 @@ export function Footer() {
                   <Phone className="w-5 h-5 text-[#FFFFFF]" />
                 </div>
                 <a
-                  href="tel:08167000077"
+                  href="tel:+18016337828"
                   className="text-[#FFFFFF] hover:text-white text-sm transition-colors"
                 >
-                  08167000077
+                  +1 801 633 7828
                 </a>
               </li>
               <li className="flex items-center gap-3">
@@ -107,21 +107,10 @@ export function Footer() {
                   <Mail className="w-5 h-5 text-[#FFFFFF]" />
                 </div>
                 <a
-                  href="mailto:Contact@asapdba.com"
+                  href="mailto:jandoinatt@gmail.com"
                   className="text-[#FFFFFF] hover:text-white text-sm transition-colors"
                 >
-                  Contact@asapdba.com
-                </a>
-              </li>
-              <li className="flex items-center gap-3">
-                <div className="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center">
-                  <Phone className="w-5 h-5 text-[#FFFFFF]" />
-                </div>
-                <a
-                  href="tel:08167000077"
-                  className="text-[#FFFFFF] hover:text-white text-sm transition-colors"
-                >
-                  08167000077
+                  jandoinatt@gmail.com
                 </a>
               </li>
             </ul>

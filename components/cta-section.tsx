@@ -16,7 +16,7 @@ export function CtaSection() {
           transition={{ duration: 0.6 }}
           className="text-[24px] sm:text-[30px] md:text-[35px] lg:text-[40px] font-semibold text-black text-start mb-[20px] sm:mb-[30px] md:mb-[40px] leading-[30px] sm:leading-[36px] md:leading-[40px] lg:leading-[48px]"
         >
-          Ready to go for a spin?
+          Ready to Get Started?
         </motion.h2>
 
         {/* CTA Cards */}
