@@ -8,74 +8,6 @@ import Link from "next/link";
 import { Play, ArrowRight, Loader2, X, ArrowLeft } from "lucide-react";
 import { useGetVideosQuery, type Video } from "@/lib/api/contact-api";
 
-const TEST_VIDEOS: Video[] = [
-  // ... existing test videos
-  {
-    id: 1,
-    title: "PostgreSQL Performance Tuning Tutorial",
-    thumbnail: "",
-    videoLink: "https://www.youtube.com/watch?v=BhUzXzVUrxg",
-    caption:
-      "Learn how to optimize PostgreSQL databases for better performance",
-    description:
-      "Learn how to optimize PostgreSQL databases for better performance",
-    createdAt: new Date().toISOString(),
-    updatedAt: new Date().toISOString(),
-  },
-  {
-    id: 2,
-    title: "MySQL Database Administration Best Practices",
-    thumbnail: "",
-    videoLink: "https://www.youtube.com/watch?v=7S_tz1z_5bA",
-    caption:
-      "Essential MySQL administration techniques for database professionals",
-    description:
-      "Essential MySQL administration techniques for database professionals",
-    createdAt: new Date().toISOString(),
-    updatedAt: new Date().toISOString(),
-  },
-  {
-    id: 3,
-    title: "MongoDB Cloud Migration Guide",
-    thumbnail: "",
-    videoLink: "https://www.youtube.com/watch?v=pWbMrx5rVBE",
-    caption: "Step-by-step guide to migrating MongoDB to the cloud",
-    description: "Step-by-step guide to migrating MongoDB to the cloud",
-    createdAt: new Date().toISOString(),
-    updatedAt: new Date().toISOString(),
-  },
-  {
-    id: 4,
-    title: "Database Backup and Recovery Strategies",
-    thumbnail: "",
-    videoLink: "https://www.youtube.com/watch?v=HXV3zeQKqGY",
-    caption: "Comprehensive guide to database backup and disaster recovery",
-    description: "Comprehensive guide to database backup and disaster recovery",
-    createdAt: new Date().toISOString(),
-    updatedAt: new Date().toISOString(),
-  },
-  {
-    id: 5,
-    title: "AWS RDS Management and Optimization",
-    thumbnail: "",
-    videoLink: "https://www.youtube.com/watch?v=Ia-UEYYR44s",
-    caption: "Master AWS RDS for efficient cloud database management",
-    description: "Master AWS RDS for efficient cloud database management",
-    createdAt: new Date().toISOString(),
-    updatedAt: new Date().toISOString(),
-  },
-  {
-    id: 6,
-    title: "Database Security Best Practices",
-    thumbnail: "",
-    videoLink: "https://www.youtube.com/watch?v=H5v6A7yH6nU",
-    caption: "Essential security measures to protect your databases",
-    description: "Essential security measures to protect your databases",
-    createdAt: new Date().toISOString(),
-    updatedAt: new Date().toISOString(),
-  },
-];
-
 function getYouTubeVideoId(videoLink: string): string | null {
   if (!videoLink) return null;
 
@@ -178,9 +110,7 @@ function getYouTubeEmbedUrl(videoLink: string): string | null {
 
 export function VideoCarouselSection() {
   const { data, isLoading } = useGetVideosQuery({ page: 1 });
-  const apiVideos = data?.videos || [];
-
-  const videos = apiVideos.length > 0 ? apiVideos : TEST_VIDEOS;
+  const videos = data?.videos || [];
   const [selectedVideo, setSelectedVideo] = useState<Video | null>(null);
 
   const [emblaRef, emblaApi] = useEmblaCarousel({
@@ -214,20 +144,28 @@ export function VideoCarouselSection() {
     setNextBtnDisabled(!emblaApi.canScrollNext());
   }, [emblaApi]);
 
-  useEffect(() => {
+  const onInit = useCallback(() => {
     if (!emblaApi) return;
     setScrollSnaps(emblaApi.scrollSnapList());
     onSelect();
-    emblaApi.on("select", onSelect);
-    emblaApi.on("reInit", (api) => {
-      setScrollSnaps(api.scrollSnapList());
-      onSelect();
+  }, [emblaApi, onSelect]);
+
+  useEffect(() => {
+    if (!emblaApi) return;
+
+    // Initialize state updates in next frame to avoid synchronous setState
+    requestAnimationFrame(() => {
+      onInit();
     });
+
+    emblaApi.on("reInit", onInit);
+    emblaApi.on("select", onSelect);
+
     return () => {
       emblaApi.off("select", onSelect);
-      emblaApi.off("reInit", onSelect);
+      emblaApi.off("reInit", onInit);
     };
-  }, [emblaApi, onSelect]);
+  }, [emblaApi, onSelect, onInit]);
 
   // Autoplay functionality
   useEffect(() => {
@@ -306,6 +244,12 @@ export function VideoCarouselSection() {
         {isLoading ? (
           <div className="flex justify-center items-center py-12">
             <Loader2 className="w-8 h-8 animate-spin text-blue-600" />
+          </div>
+        ) : videos.length === 0 ? (
+          <div className="flex justify-center items-center py-12">
+            <p className="text-gray-600 text-lg">
+              No videos available at the moment.
+            </p>
           </div>
         ) : (
           <>
